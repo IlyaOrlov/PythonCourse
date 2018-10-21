@@ -1,1 +1,1 @@
-Directory for lectures
+Папка для лекций

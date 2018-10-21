@@ -1,1 +1,1 @@
-Directory for tasks
+Папка для заданий по лекциям
