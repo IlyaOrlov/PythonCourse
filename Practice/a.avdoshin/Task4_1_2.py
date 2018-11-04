@@ -1,8 +1,12 @@
+# 04.11 - [ИО]:  Проверено (есть замечания).
+# 04.11 - [ИО]: Добавьте создание объекта класса Man, чтоб
+# протестировать решение для первого задания
 from random import randint
 from time import sleep
 
 
 class Man:
+    # 04.11 - [ИО]: Зачем нужно это поле?
     name = 'Some Man'
 
     def __init__(self, name):
@@ -13,6 +17,7 @@ class Man:
 
 
 class Pupil(Man):
+    # 04.11 - [ИО]: Зачем нужно это поле?
     name = 'Some Pupil'
     def __init__(self, name):
         super().__init__(name)

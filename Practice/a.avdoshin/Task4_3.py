@@ -1,10 +1,14 @@
+# 04.11 - [ИО]:  Проверено (есть замечания).
 import os
 
 
 class WrapStrToFile:
+    # 04.11 - [ИО]:  Какого предназначение данного поля?
     filepath = None
 
     def __init__(self):
+        # 04.11 - [ИО]:  класс должен инициализовать атрибут filepath,
+        # путем присваивания результата функции mktemp библиотеки tempfile
         self.filepath = 'dataBase.txt'
 
     @property
@@ -16,6 +20,7 @@ class WrapStrToFile:
                 result += i
             file.close()
             return result
+        # 04.11 - [ИО]:  Желательно отлавливать только определенный тип исключений.
         except Exception:
             return 'File does not exist'
 
@@ -24,6 +29,7 @@ class WrapStrToFile:
         try:
             file = open(self.filepath, 'w')
             file.write(value)
+        # 04.11 - [ИО]:  Файл должен закрываться после записи.
         except Exception as e:
             print(e)
 

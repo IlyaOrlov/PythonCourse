@@ -1,3 +1,4 @@
+# 04.11 - [ИО]:  Проверено (OK).
 book = {'    ' : '\t', '\t' : '    '}
 sample = '  gg    gg    '
 for key in book:

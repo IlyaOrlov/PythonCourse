@@ -1,3 +1,4 @@
+# 04.11 - [ИО]:  Проверено (ОК).
 import random
 
 import numpy as np
