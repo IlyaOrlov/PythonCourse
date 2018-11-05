@@ -1,3 +1,5 @@
+# 04.11 - [ИО]:  Проверено (ОК).
+# 04.11 - [ИО]:  Где задания 1-3?.
 inputfile = open('input.txt')
 whatdoIdo = int(input())
 outFile = open('out.txt', 'w')
