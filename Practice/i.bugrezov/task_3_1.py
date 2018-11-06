@@ -1,3 +1,4 @@
+# 06.11 - [ИО]:  Проверено (OK, но можно проще, используя метод строки replace).
 stroka1 = ("the bus	arrived")
 print(stroka1)
 spisok = list(stroka1)
