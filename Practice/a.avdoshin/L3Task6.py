@@ -3,11 +3,12 @@
 # 04.11 - [ИО]:  Довольно эффективным является решение с
 # транспонированием матрицы. Использование 3rd party библиотек
 # - это лишние зависимости для программы.
+
 import numpy as np
 import random
 
 
-def makeMatrix(sizeX=10, sizeY=10, dispersion=10):
+def make_matrix(sizeX=10, sizeY=10, dispersion=10):
     m = []
     for number in range(0, 100):
         m.append(int(dispersion - random.random() * dispersion))
@@ -16,17 +17,23 @@ def makeMatrix(sizeX=10, sizeY=10, dispersion=10):
     return m
 
 
-matrix = makeMatrix()
-noNeedNumber = 0
-matrix = matrix.T
-nums = []
-for i in range(0, len(matrix)):
-    if noNeedNumber in matrix[i]:
-        nums.append(i)
+def remove_element(matrix):
+    noNeedNumber = 0
+    matrix = matrix.T
+    nums = []
+    for i in range(0, len(matrix)):
+        if noNeedNumber in matrix[i]:
+            nums.append(i)
 
-nums.reverse()
+    nums.reverse()
 
-for i in nums:
-    matrix = np.delete(matrix, i, 0)
-matrix = matrix.T
+    for i in nums:
+        matrix = np.delete(matrix, i, 0)
+    matrix = matrix.T
+    return matrix
+
+
+matrix = make_matrix()
+print(matrix)
+matrix = remove_element(matrix)
 print(matrix)
