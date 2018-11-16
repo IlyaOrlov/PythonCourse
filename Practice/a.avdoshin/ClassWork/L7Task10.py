@@ -20,6 +20,12 @@ class Money:
         self.__value -= int(100 * other.value * other.cur.value)
         return Money(self.__value/(100 * self.__currency.value), self.__currency)
 
+    def __mul__(self, other):
+        return Money(self.__value * other / (100 * self.__currency.value), self.__currency)
+
+    def __truediv__(self, other):
+        return Money(self.__value / (100 * self.__currency.value * other), self.__currency)
+
     def __repr__(self):
         return self.__str__()
 
@@ -35,8 +41,9 @@ class Money:
         return self.__currency
 
 
-a = Money(10, Currency.USD)
-b = Money(1, Currency.EUR)
-c = Money(1, Currency.RUB)
+a = Money(10.86, Currency.USD)
+b = Money(1.76, Currency.EUR)
+c = Money(1.28, Currency.RUB)
 print(a - b + c)
+print(b / 2)
 
