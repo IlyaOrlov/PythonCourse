@@ -1,11 +1,7 @@
 class User:
-    def __init__(self):
-        self._name = None
-        self.age = None
-
     @property
     def name(self):
-        return self.name
+        pass
 
     @name.setter
     def name(self, value):
@@ -15,7 +11,39 @@ class User:
     def name(self):
         return self._name
 
+    @property
+    def age(self):
+        pass
 
-us = User()
-us.name = 19
-print(us.name)
+    @age.setter
+    def age(self, value):
+        self._age = value
+
+    @age.getter
+    def age(self):
+        return self._age
+
+class Worker(User):
+    @property
+    def salary(self):
+        pass
+
+    @salary.getter
+    def salary(self):
+        return self._salary
+
+    @salary.setter
+    def salary(self, value):
+        self._salary = value
+
+worker = Worker()
+worker.age = 25
+worker.name = 'John'
+worker.salary = 1000
+worker2 = Worker()
+worker2.age = 26
+worker2.name = 'Jack'
+worker2.salary = 2000
+print(worker.salary+worker2.salary)
+
+
