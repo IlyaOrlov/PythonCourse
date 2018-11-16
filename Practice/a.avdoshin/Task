@@ -1,0 +1,6 @@
+We have polymer system (CHT_np60.gro (you can watch it in programm VMD)).
+Acilation degree and protonation degree are random.
+Programm must to add residue ACE2 on H22 place and rename CHT to CHTR. (Acilation)
+And change CHT to CHTP and add H23 (protonation)
+We can't change CHT0 and CHTN residue, but we must take them into account when calculating.
+User sent input system, output system, percent of protonation and percent of acilation.
