@@ -5,6 +5,7 @@ class Currency(Enum):
     RUB = 1.
     USD = 66.
     EUR = 75.
+    JPY = 2.
 
 
 class Money:
@@ -14,11 +15,11 @@ class Money:
 
     def __add__(self, other):
         self.__value += int(100 * other.value * other.cur.value)
-        return Money(self.__value/(100 * self.__currency.value), self.__currency)
+        return Money(self.__value / (100 * self.__currency.value), self.__currency)
 
     def __sub__(self, other):
         self.__value -= int(100 * other.value * other.cur.value)
-        return Money(self.__value/(100 * self.__currency.value), self.__currency)
+        return Money(self.__value / (100 * self.__currency.value), self.__currency)
 
     def __mul__(self, other):
         return Money(self.__value * other / (100 * self.__currency.value), self.__currency)
@@ -44,6 +45,5 @@ class Money:
 a = Money(10.86, Currency.USD)
 b = Money(1.76, Currency.EUR)
 c = Money(1.28, Currency.RUB)
-print(a - b + c)
-print(b / 2)
-
+d = Money(3, Currency.JPY)
+print(a - b + c*3 + d/2)
