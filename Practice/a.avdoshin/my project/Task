@@ -1,6 +1,5 @@
-We have polymer system (CHT_np60.gro (you can watch it in programm VMD)).
-Acilation degree and protonation degree are random.
-Programm must to add residue ACE2 on H22 place and rename CHT to CHTR. (Acilation)
-And change CHT to CHTP and add H23 (protonation)
-We can't change CHT0 and CHTN residue, but we must take them into account when calculating.
-User sent input system, output system, percent of protonation and percent of acilation.
+У нас есть полимер (CHT_np60.gro (можно посмотреть в программе VMD))
+Не концевые участки (не эти - CHT0 CHTN) могут протонироваться и ацилироваться
+При протонировании надо добавить водород (H23) к NH2 группе, при ацилирповании
+надо на место одного водорода (H22) поместить ацильную группу (ACE2)
+Юзер задает инпут файл, оутпут файл и степени протонирования и ацилирования.
