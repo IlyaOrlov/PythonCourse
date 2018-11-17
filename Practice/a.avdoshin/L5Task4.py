@@ -1,7 +1,9 @@
 import itertools
 
-for i in itertools.combinations('password', 4):
-    print(i)
+mass = [[1, 2, 3], [4, 5], [6, 7]]
+for i in itertools.accumulate(mass):
+    result = i
+print(result)
 
 
 def check(*val):
@@ -16,7 +18,5 @@ mass = ['hello', 'i', 'write', 'cool', 'code']
 for i in itertools.starmap(check, mass):
     pass
 
-mass = [[1, 2, 3], [4, 5], [6, 7]]
-for i in itertools.accumulate(mass):
-    result = i
-print(result)
+for i in itertools.combinations('password', 4):
+    print(i)
