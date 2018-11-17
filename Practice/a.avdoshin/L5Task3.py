@@ -10,5 +10,5 @@ class TestManager:
 
 
 with TestManager():
-    for i in range(10 ** 7):
+    for i in range(10 ** 6):
         pass
