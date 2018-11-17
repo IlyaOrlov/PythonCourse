@@ -1,3 +1,4 @@
+# 04.11 - [ИО]:  Проверено (ОК).
 inputfile = open('input.txt')
 whatdoIdo = int(input())
 outFile = open('out.txt', 'w')
