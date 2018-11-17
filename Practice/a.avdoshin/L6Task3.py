@@ -41,6 +41,6 @@ def load_people():
         print(i)
 
 
-maternity_hospital(10)
+maternity_hospital(3)
 load_people()
 os.remove(temp_file)
