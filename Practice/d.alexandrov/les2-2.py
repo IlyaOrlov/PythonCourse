@@ -7,6 +7,6 @@ def get_number():
     return x
 
 
-num = str(get_number())
+num = get_number()
 for i in range(0, 5):
     print(i, " digit is ", num[i])

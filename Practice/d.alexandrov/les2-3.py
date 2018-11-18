@@ -20,8 +20,9 @@ array = [5, 3, 4, 0, 1, 1, 100, 8, 56]
 print("Array", array)
 for i in range(0, len(array)):
     splitted_array = array[i:len(array)]
+    a = min(splitted_array)
     for j in range(0, len(splitted_array)):
-        if splitted_array[j] == min(splitted_array):
+        if splitted_array[j] == a:
             min_index = j + i
             break
     temp = array[i]
