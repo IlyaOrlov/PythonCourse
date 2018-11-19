@@ -2,9 +2,11 @@ import re
 
 
 def my_format(st, *args):
-    if re.search(r"\{\d+\}", st) is not None and re.search(r"\{\}", st) is not None:
+    d = re.search(r"\{\d+\}", st)
+    e = re.search(r"\{\}", st)
+    if d is not None and e is not None:
         raise ValueError
-    if re.search(r"\{\d+\}", st) is None and re.search(r"\{\}", st) is None:
+    if d is None and e is None:
         raise ValueError
     if re.search(r"\{\d+\}", st) is None:
         st_splitted = re.split(r"\{\}", st)

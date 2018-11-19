@@ -1,7 +1,7 @@
 import os.path
 
 
-def copyfile(source_name, dest_name, rewrite = True):
+def copyfile(source_name, dest_name, rewrite=True):
     if source_name.find("/") < 0:
         source_name = "./{}".format(source_name)
     if dest_name.find("/") < 0:

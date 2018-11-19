@@ -18,6 +18,7 @@ class User:
         self.__name = name
         self.__age = int(age)
 
+
 class Worker(User):
     __salary = -1
 
@@ -32,4 +33,6 @@ class Worker(User):
 john = Worker("John", 25, "1000")
 jack = Worker("Jack", 26, "2000")
 
-print("Summary of salaries {} and {} is {}".format(john.get_name(), jack.get_name(), john.get_salary() + jack.get_salary()))
+print("Summary of salaries {} and {} is {}"
+      .format(john.get_name(), jack.get_name(),
+              john.get_salary() + jack.get_salary()))

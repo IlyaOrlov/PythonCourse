@@ -9,7 +9,8 @@ def ran(startstop, stop=None, step=1):
         print("Step must be more on less than 0")
         return
     if (stop - start) * step < 0:
-        print("If step is less than 0, start must be more than stop, if more than 0 - start must be less")
+        print("If step is less than 0, start must be more than stop, "
+              "if more than 0 - start must be less")
         return
     a = list()
     a.append(start)
