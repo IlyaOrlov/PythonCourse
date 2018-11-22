@@ -1,3 +1,4 @@
+# 22.11 - [ИО]:  Проверено (ОК) - 3 балла из 3.
 class User:
     @property
     def name(self):

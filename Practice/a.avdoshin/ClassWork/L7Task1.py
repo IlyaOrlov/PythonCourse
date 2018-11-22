@@ -1,3 +1,4 @@
+# 22.11 - [ИО]:  Проверено (ОК) - 3 балла из 3.
 def my_len(lst):
     lenght = 0
     for i in lst:

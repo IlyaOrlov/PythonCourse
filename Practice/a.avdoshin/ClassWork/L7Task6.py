@@ -1,3 +1,4 @@
+# 22.11 - [ИО]:  Проверено (OK) - 5 баллов из 5 (т.к. без re).
 def my_format(instring, *args):
     if '{}' in instring:
         for i in args:
