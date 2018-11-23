@@ -11,39 +11,44 @@ class Currency(Enum):
 
 class Money:
     def __init__(self, value=0, cur=Currency.RUB):
-        self.__currency = cur
+        self._currency = cur
         # 22.11 - [ИО]:  пересчитывать произведение констант в каждой функции
-        # очень неэффективно 100 * self.__currency.value
-        self.__value = 100 * value * self.__currency.value
+        # очень неэффективно 100 * self._currency.value
+        self.__value = 100 * value * self._currency.value
 
     def __add__(self, other):
         self.__value += int(100 * other.value * other.cur.value)
         # 22.11 - [ИО]:  а как же стиль? 79 символовв строке!
-        return Money(self.__value / (100 * self.__currency.value), self.__currency)
+        return Money(self.__value / (100 * self._currency.value),
+                     self._currency)
 
     def __sub__(self, other):
         self.__value -= int(100 * other.value * other.cur.value)
-        return Money(self.__value / (100 * self.__currency.value), self.__currency)
+        return Money(self.__value / (100 * self._currency.value),
+                     self._currency)
 
     def __mul__(self, other):
-        return Money(self.__value * other / (100 * self.__currency.value), self.__currency)
+        return Money(self.__value * other / (100 * self._currency.value),
+                     self._currency)
 
     def __truediv__(self, other):
-        return Money(self.__value / (100 * self.__currency.value * other), self.__currency)
+        return Money(self.__value / (100 * self._currency.value * other),
+                     self._currency)
 
     def __repr__(self):
         return self.__str__()
 
     def __str__(self):
-        return '{:.2f} {}'.format(self.__value / (100 * self.__currency.value), self.__currency.name)
+        return '{:.2f} {}'.format(self.__value / (100 * self._currency.value),
+                                  self._currency.name)
 
     @property
     def value(self):
-        return self.__value / (100 * self.__currency.value)
+        return self.__value / (100 * self._currency.value)
 
     @property
     def cur(self):
-        return self.__currency
+        return self._currency
 
 
 a = Money(10.86, Currency.USD)
