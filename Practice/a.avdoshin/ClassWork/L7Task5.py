@@ -2,10 +2,11 @@
 # не работает для случая count_symbol('a', 'a')
 def count_symbol(input_str, symbol):
     count = 0
-    for i in range(len(input_str) - len(symbol)):
+    for i in range(len(input_str)):
         if input_str[i:i + len(symbol)] == symbol:
             count += 1
     return count
 
 
 print(count_symbol('Good by my friend, my only friend', 'my'))
+print(count_symbol('a', 'a'))
