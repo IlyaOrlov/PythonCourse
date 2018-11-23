@@ -12,10 +12,11 @@ def my_range(start, stop=None, step=1):
     result = [start]
     count = 1
     # 22.11 - [ИО]:  это ж на каждой итерации разность вычисляется!
-    while result[-1] != stop - step:
+    stop -= step
+    while result[-1] < stop:
         result.append(start + step * count)
         count += 1
     return tuple(result)
 
 
-print(my_range(10))
+print(my_range(1, 10, 2))
