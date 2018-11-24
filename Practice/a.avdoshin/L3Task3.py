@@ -1,3 +1,4 @@
+# 22.11 - [ИО]:  Проверено (ОК).
 def sort(mass):
     for i in range(len(mass) - 1):
         first = mass[i]
