@@ -1,5 +1,5 @@
 # 22.11 - [ИО]:  Проверено (ОК).
-for i in range(1, 101):#gg1112222
+for i in range(1, 101):#gg11122
     if i%15 == 0:
         print('FizzBuzz')
     elif i%3 == 0:
