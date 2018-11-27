@@ -9,12 +9,14 @@ class Human:
     def __init__(self, name):
         self.name = name
 
-    def solve_task(self):
+    @staticmethod
+    def solve_task():
         print("I'm not ready yet")
 
 class Pupil(Human):
-
-    def solve_task(self):
+    
+    @staticmethod
+    def solve_task():
         sleep(randint(3,6))
         print("I'm not ready yet")
 
