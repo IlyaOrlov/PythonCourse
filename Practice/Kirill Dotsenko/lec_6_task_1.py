@@ -3,7 +3,7 @@ def days(a,b,c,d,e,f):
 	d1=datetime.datetime(a,b,c)
 	d2=datetime.datetime(d,e,f)
 	diff=d1-d2
-	print(diff.days)
+	print(int(diff.days*5/7))
 mes="Data kotoraya byla ranee vvodyat posledney!"
 while True:
 	print(mes)

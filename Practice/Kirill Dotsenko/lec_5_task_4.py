@@ -21,7 +21,13 @@ def kek2(g):
 		if len(i)==5 and i!='write':
 			h.append(i)
 	print(h)
+def obr(h):
+	return len(h)<5
+def kek3(v):
+	res=list(itertools.filterfalse(obr,v))
+	print(res)
 c=kek((['hello','i','write','cool','code','world']))
 p=kek2((['hello','i','write','cool','code','world']))
+v=kek3((['hello','i','write','cool','code','world']))
 #Ну тут я просто решил двумя способами
 
