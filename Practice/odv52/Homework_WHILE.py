@@ -1,7 +1,9 @@
 cmd = input('Введите команду для выхода из консоли Python : ')
 while cmd != 'exit':
     print('Не верно!')
-    cmd = input('Введите команду для выхода из консоли Python : ')
-    continue
+    cmd = input('Попробуйте еще раз : ')
+    if cmd != 'exit':
+        print('Опять мимо((!')
+    #continue
 else:
     print('ВЕРНО!')
