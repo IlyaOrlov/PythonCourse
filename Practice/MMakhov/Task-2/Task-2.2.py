@@ -5,6 +5,7 @@ def MaxReturnNum(a, b):
         return b
     else:
         print("Please, enter different number")
+        return a
 a = input("Enter number A: ")
 b = input("Enter number B: ")
 MaxReturnNum(a, b)
