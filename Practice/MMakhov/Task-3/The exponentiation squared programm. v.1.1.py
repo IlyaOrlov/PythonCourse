@@ -1,5 +1,4 @@
-print("The exponentiation squared programm. v.1.0")
-print()
+print("The exponentiation squared programm. v.1.1\n")
 
 a = (input("Please, enter an integer: "))
 if a.isdigit():
@@ -13,7 +12,7 @@ while b != "Yes":
     if b.isdigit():
         print((b), 'sqr2 =',int(b)**2)
     elif b == "Yes":
-        print()
+        pass
     else:
         print("Only integer!")
 print('Programm closed! Thank you for using!')
