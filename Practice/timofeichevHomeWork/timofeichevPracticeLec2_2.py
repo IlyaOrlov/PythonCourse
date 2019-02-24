@@ -10,4 +10,4 @@ def test(a, b):
     else:
         return("Введенные числа равны друг другу:",a==b)
 
-exit(test(a, b))
+test(a, b)
