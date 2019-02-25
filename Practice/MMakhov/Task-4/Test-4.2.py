@@ -1,7 +1,8 @@
 X = input('Please, enter five-digit number: ')
-Y = str(X)
-# тут хотел вставить условие проверки соответствия введеного числа пятизначному, но не хватило мозгов как это сделать
-Z = 0
-for i in Y:
-    Z += 1
-    print('{} цифра равна {}'.format(Z, i))
+if len(X) == 5:
+    Z = 0
+    for i in X:
+        Z += 1
+        print('{} цифра равна {}'.format(Z, i))
+else:
+    print ('Enter only five-digit number!!!')
