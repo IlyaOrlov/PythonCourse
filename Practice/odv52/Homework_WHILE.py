@@ -1,9 +1,10 @@
 cmd = input('Введите команду для выхода из консоли Python : ')
 while cmd != 'exit':
-    print('Не верно!')
-    cmd = input('Попробуйте еще раз : ')
-    if cmd != 'exit':
-        print('Опять мимо((!')
-    #continue
+    if cmd.isdigit():
+        print('Вводите только буквы!')
+        cmd = input('Попробуйте еще раз : ')
+    else:
+        print('Неверно!')
+        cmd = input('Попробуйте еще раз : ')
 else:
     print('ВЕРНО!')
