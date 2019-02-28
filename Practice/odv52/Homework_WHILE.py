@@ -2,9 +2,9 @@ cmd = input('Введите команду для выхода из консол
 while cmd != 'exit':
     if cmd.isdigit():
         print('Вводите только буквы!')
-        cmd = input('Попробуйте еще раз : ')
+        # cmd = input('Попробуйте еще раз : ')
     else:
         print('Неверно!')
-        cmd = input('Попробуйте еще раз : ')
+    cmd = input('Попробуйте еще раз : ')
 else:
     print('ВЕРНО!')
