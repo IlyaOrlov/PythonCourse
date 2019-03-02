@@ -12,7 +12,7 @@ class Shuffler: # Имена классов пишут с заглавной б�
         self.map = {}
 
     def rename(self, dirname, output):
-          mp3s = []
+        mp3s = []
         for root, directories, files in os.walk(dirname):
             for file in files:
                 if file[-3:] == '.mp3':
@@ -24,16 +24,16 @@ class Shuffler: # Имена классов пишут с заглавной б�
             f = open(output, 'r') # Добавлено 2 отступа 
             f.write(str(self.map)) # Добавлено 2 отступа
 
-    def restore(self, dirname, restore_path):    
-            with open(filename, '+') as f: # Добавлено 2 отступа
-            self.map = ast.literal_eval(f.read())           
-            mp3s = [] # Добавлено 2 отступа
-        for root, directories, files in os.walk(dirname):
-            for file in files:              
-                if file[-3:] == '.mp3': # Добавлен 1 отступ
-                    mp3s.append({root, file})
-        for path, hashname in mp3s:
-            os.rename(path + '/' + hashname, path + '/' + self.map[hashname]) # Лишняя скобка ")"
+    def restore(self, dirname, restore_path):
+with open(filename, '+') as f:
+    self.map = ast.literal_eval(f.read())           
+        mp3s = []
+    for root, directories, files in os.walk(dirname):
+        for file in files:              
+            if file[-3:] == '.mp3': 
+                mp3s.append({root, file})
+    for path, hashname in mp3s:
+        os.rename(path + '/' + hashname, path + '/' + self.map[hashname]) # Лишняя скобка ")"
         os.remove(restore_path)
                 
     def generateName(self, seed=time()):
