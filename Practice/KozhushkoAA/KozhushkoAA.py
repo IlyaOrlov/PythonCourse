@@ -1,6 +1,5 @@
-# Импорт из сторонней библиотеки должен идти вторым.
+#согласен, здесь мой комментарий - ошибочный
 import sys
-# Импорт из стандартной библиотеки должен идти первым.
 import os
 import hashlib
 import ast
@@ -28,14 +27,15 @@ class shuffler:
             os.rename(path + '/' + mp3), path + '/' + hashname))
 # Не хватает 2 отступов.          
           f = open(output, 'r')
-# Не хватает 2 отступов.    
+# Не хватает 2 отступов.
           f.write(str(self.map))
+#Могу ошибаться, но не хватает f.close()
 
     def restore(self, dirname, restore_path):
 # 2 лишних отступа.        
           with open(filename, '+') as f:
             self.map = ast.literal_eval(f.read())
-# Не хватает 2 отступов.            
+# Согласен, mp3s = [] относится к функции, 2 лишних отступа.
           mp3s = []
         for root, directories, files in os.walk(dirname):
             for file in files:
@@ -48,7 +48,8 @@ class shuffler:
 # Не хватает 4 отступов.      
         os.remove(restore_path)
     
-# 1 лишний отступ.     
+# 1 лишний отступ.
+#Имя функции верно - generate_name()
      def generateName(self, seed=time()):
 # 2 лишних отступа.         
           return hashlib.md5(str(seed)).hexdigest()
@@ -86,8 +87,7 @@ def main():
         Shuffler.restore(args.dirname, args.restore_map)
     else:
         sys.exit()
-# 2 лишние пустые строки.
 
 
-# Не хватает 4 отступа.
+# Согласен, 4 отступа в строке не нужны. С отступом в 2 строки согласен
 main()
