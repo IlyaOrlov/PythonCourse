@@ -1,4 +1,4 @@
-x = range(1, 100)
+x = range(1, 101)
 
 def check(x):
     for i in x:
