@@ -21,6 +21,7 @@ class shuffler:
                 if file[-3:] == '.mp3':
                     mp3s.append([root, file])
         for path, mp3 in mp3s:
+# Имя функции верно - generate_name()
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
 # Не хватает 1 открывающей и 1 лишняя закрывющая скобка
@@ -45,7 +46,7 @@ class shuffler:
         for path, hashname in mp3s:
 # Лишняя закрывающая скобка.            
             os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))
-# Не хватает 4 отступов.      
+#Согласен, мой комментарий в данном случае - ошибочный
         os.remove(restore_path)
     
 # 1 лишний отступ.
@@ -53,10 +54,10 @@ class shuffler:
      def generateName(self, seed=time()):
 # 2 лишних отступа.         
           return hashlib.md5(str(seed)).hexdigest()
-# Методы внутри класса разделяются одной строкой.
 
 
-# Не хватает 4 отступов для всего абзаца.
+# Согласен, соседний комментарий, относительно отступов строк,
+# тоже удалил.
 def parse_arguments():
     parser = argparse.ArgumentParser()
 # Превышена допустимая длина строки, требуется перенос.    
@@ -71,7 +72,8 @@ def parse_arguments():
     args = parser.parse_args()
     return args
 
-# Не хватает 4 отступа для 4 следующих строк.
+# Согласен, 4 отступа не требуются.
+#Необходимо сделать отступ в 2 строки вместо 1
 def main():
     args = parse_arguments()
     Shuffler = shuffler()
