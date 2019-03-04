@@ -1,12 +1,11 @@
 # лекция 4 задание 3
 
 arr = [0,3,24,2,3,7]
-N = len(arr)
 i = 0
-while i < N:
+while i < len(arr):
     m = i
     j = i + 1
-    while j < N:
+    while j < len(arr):
         if arr[j] < arr[m]:
             m = j
         j += 1
