@@ -1,15 +1,16 @@
 # лекция 4 задание 4
 
-def fun(arg):
-    if arg == a:
+import os.path
+def fun(a):
+    if os.path.isfile(a):
         fo = open(a)
         f = fo.read()
         print(f)
         fnew = f.replace('    ', '\t')
         print(fnew)
     else:
-        print('Укажите имя файла')
+        print('Вы не указали имя файла')
 
-a = "myfile.txt"
+a = input('Укажите имя файла: ')
 fun(a)
 
