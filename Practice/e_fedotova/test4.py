@@ -1,4 +1,4 @@
-guess = ''
+guess = None
 
 while guess != 'exit':
     guess = input('Введите целое число или exit: ')
