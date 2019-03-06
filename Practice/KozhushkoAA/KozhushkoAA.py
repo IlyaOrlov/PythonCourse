@@ -78,18 +78,22 @@ def main():
     args = parse_arguments()
     Shuffler = shuffler()
     if args.subcommand == 'rename':
-# Не хватает 2 отступа.        
+# Согласен, 2 отступа лишних.
+#Не учел, ранее отмененный коментарий
           if args.output:   
                 Shuffler.rename(args.dirname, 'restore.info')
-# Не хватает 2 отступа.    
+# Согласен, 2 отступа лишних.
+#Не учел, ранее отмененный коментарий
           else:       
                 Shuffler.rename(args.dirname, args.output)
-# Не хватает 4 отступа для 4 следующих строк.            
+#Дополнительные тступы не нужны для следующих 4 строк.
+#Не учел, ранее отмененный коментарий
     elif args.subcommand == 'restore':
         Shuffler.restore(args.dirname, args.restore_map)
     else:
         sys.exit()
 
-
-# Согласен, 4 отступа в строке не нужны. С отступом в 2 строки согласен
+# Согласен, 4 отступа в строке не нужны.
+# Перечитал PEP8, всё-таки достаточно отступа в 1 строку
+#Ранее смутило, что Pycharm подчеркивал main() волнистой чертой.
 main()
