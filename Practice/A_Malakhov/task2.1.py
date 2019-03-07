@@ -4,6 +4,8 @@ def task2():
     if n < m:
         (n, m) = (m, n)
         return n
+    else:
+        return n
 
 
 maxNum = task2()
