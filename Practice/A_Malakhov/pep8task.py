@@ -1,14 +1,14 @@
 import sys
 import os
-#import os должен стоять в начале, только после него можно ввести import sys
 import hashlib
 import ast
 import argparse
 from time import *
+# Ошибка в импортировании. Нужно писать import time
 
 
 class shuffler:
-#Возможно нужно нижнее подчеркивание после class (class_shuffle)???
+    #Лучше писать Shuffler
 
     def __init__(self):
         self.map = {}
@@ -20,14 +20,15 @@ class shuffler:
         for file in files:
             if file[-3:] == '.mp3':
                 mp3s.append([root, file])
-            #нужна пустая строка(PEP8 Определения методов внутри класса разделяются одной пустой строкой)
     for path, mp3 in mp3s:
         hashname = self.generateName() + '.mp3'
         self.map[hashname] = mp3
         os.rename(path + '/' + mp3), path + '/' + hashname))
-        # 2 лишние закрывающие скобки (SyntaxError: invalid syntax)
+        # лишняя скобка в коце строки 26 и нет скобки перед вторым аргументом в os.rename
+        # но можно и без внутренних скобок: os.rename(path + '/' + mp3, path + '/' + hashname)
         f = open(output, 'r')
         f.write(str(self.map))
+    #Нет нужных отступов с 19 по 28 строки(код относится к функции rename)
 
     def restore(self, dirname, restore_path):
         with open(filename, '+') as f:
@@ -38,14 +39,12 @@ class shuffler:
         for file in files:
             if file[-3:] == '.mp3':
                 mp3s.append({root, file})
-            # нужна пустая строка(PEP8 Определения методов внутри класса разделяются одной пустой строкой)
     for path, hashname in mp3s:
         os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))
-        #снова лишняя закрывающая скобка (SyntaxError: invalid syntax)
         os.remove(restore_path)
+        # Практически то же самое, что и в функции rename - отступы и скобки в os.rename
 
     def generateName(self, seed=time()):
-    #нет пробелов вокруг оператора сравнения "="
         return hashlib.md5(str(seed)).hexdigest()
 
 
@@ -65,6 +64,8 @@ def parse_arguments():
 def main():
     args = parse_arguments()
     Shuffler = shuffler()
+    #Разве можно создавать обьект класса в функции, которая не относится к классу?
+    #Python предлагает писать название обьекта в lowercase
     if args.subcommand == 'rename':
         if args.output:
             Shuffler.rename(args.dirname, 'restore.info')
@@ -77,4 +78,3 @@ def main():
 
 
 main()
-#необхима пустая строка в конце файла
