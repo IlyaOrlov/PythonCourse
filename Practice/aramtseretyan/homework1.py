@@ -16,7 +16,7 @@ class shuffler:
         for root, directories, files in os.walk(dirname):
             for file in files:
                 if file[-3:] == '.mp3':
-                    mp3s.append([root, file])# лишний отступ 
+                    mp3s.append([root, file])# лишний пробел 
         for path, mp3 in mp3s:
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
@@ -25,17 +25,16 @@ class shuffler:
           f.write(str(self.map))# необходимо поставить перед началом строки отступ 
 
     def restore(self, dirname, restore_path):
-          with open(filename, '+') as f: # функция as олжна начинаться с новой строки
-            self.map = ast.literal_eval(f.read())# необходимо поставить перед началом строки отступ 
+          with open(filename, '+') as f:
+              self.map = ast.literal_eval(f.read())# необходимо поставить перед началом строки отступ 
           mp3s = []# необходимо поставить перед началом строки 3 отступа
         for root, directories, files in os.walk(dirname):
             for file in files:
                if file[-3:] == '.mp3':
-                    mp3s.append({root, file})# лишний отступ
+                    mp3s.append({root, file})# лишний пробел
         for path, hashname in mp3s:
             os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))
-        os.remove(restore_path)# необходимо поставить перед началом строки 3 отступа
-
+        os.remove(restore_path)
      def generateName(self, seed=time()):
           return hashlib.md5(str(seed)).hexdigest()
 
