@@ -60,3 +60,48 @@ def test(s, l):
     else:
         print('Список отсортирован:{}'.format(l))
 test(s, l)
+
+
+# Данную идею позаимствовал у Е.Федотовой.Но с разбором и пониманием.
+
+arr = [0,3,24,2,3,7]
+i = 0
+while i < len(arr):
+    m = i
+    j = i + 1
+    while j < len(arr):
+        if arr[m] < arr[j]:
+            j += 1
+        else:
+            m = j
+            j += 1
+    arr[i], arr[m] = arr[m], arr[i]
+    i += 1
+print(arr)
+
+
+# Задание 4
+# Строка
+
+s = 'Ре ализовать\tфункци    ональ ноcть\tкоторая бы'
+
+def test(s):
+    if "\t" in s:
+        s = s.replace("\t", "    ")
+    elif "    " in s:
+        s = s.replace("    ", "\t")
+    print(s)
+test(s)
+
+
+import re
+
+s = 'Ре ализовать\tфункци    ональ ноcть\tкоторая бы'
+
+def test(s):
+    if "\t" in s:
+        s = re.sub("\t", "    ", s)
+    elif "    " in s:
+        s = re.sub("    ", "\t", s)
+    print(s)
+test(s)

@@ -9,5 +9,4 @@ def test(a, b):
         return("Большее число это:", b)
     else:
         return("Введенные числа равны друг другу:",a==b)
-
 test(a, b)
