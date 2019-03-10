@@ -26,8 +26,8 @@ class shuffler:
 
     def restore(self, dirname, restore_path):
           with open(filename, '+') as f:
-              self.map = ast.literal_eval(f.read())# необходимо поставить перед началом строки отступ 
-          mp3s = []# необходимо поставить перед началом строки 3 отступа
+              self.map = ast.literal_eval(f.read()) 
+          mp3s = []
         for root, directories, files in os.walk(dirname):
             for file in files:
                if file[-3:] == '.mp3':
