@@ -1,10 +1,10 @@
-def count_symbol():
+def count_symbol(n='H'):
     a = 'Hi, Elvis, I am here'
-    n = 0
-    for i in a:
-        if i == 'i':
-            n += 1
-    print(n)
+    i = 0
+    for x in a:
+        if x == n:
+            i += 1
+    print(i)
 
 
 count_symbol()
