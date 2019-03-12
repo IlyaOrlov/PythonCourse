@@ -1,7 +1,14 @@
+
 def to_title(str):
     l = str.split(' ')
-    print(l[0].capitalize(), l[1].capitalize(), l[2].capitalize())
+    i = 0
+    newstr = None
+    while i < len(l):
+        l[i] = l[i].capitalize()
+        i += 1
+    newstr = ' '.join(l)
+    return newstr
 
 
 str = 'fedotova elena vladimirovna'
-to_title(str)
+print(to_title(str))
