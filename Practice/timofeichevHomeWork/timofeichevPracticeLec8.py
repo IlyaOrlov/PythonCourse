@@ -15,9 +15,8 @@ l = [1, 2, 3, 4, 5]
 s = []
 def test(l, s):
     while len(l) != 0:
-        a = l.index(l[-1])
-        s.append(l[a])
-        del l[a]
+        s.append(l[-1])
+        del l[-1]
     else:
         print('Список отсортирован:{}'.format(s))
 test(l, s)
@@ -43,12 +42,12 @@ def to_title(a):
     while i < len(b):
         if b[i - 1] == ' ':
             b[i] = b[i].upper()
-        elif b[0]:
-            b[0] = b[0].upper()
+        elif i == 0:
+            b[i] = b[i].upper()
         i = i + 1
     c = ''.join(b)
-    print(c)
-to_title(a)
+    return(c)
+print(to_title(a))
 
 
 a = 'привет, дорогой друг'
@@ -59,8 +58,8 @@ def to_title(a):
         b[i] = b[i].capitalize()
         i = i + 1
     c = ' '.join(b)
-    print(c)
-to_title(a)
+    return(c)
+print(to_title(a))
 
 
 a = 'привет, дорогой друг'
@@ -81,5 +80,5 @@ def count_symbol(a, b):
     for i in a:
         if i == b:
             c = c + 1
-    print('Символ встречается {} раза'.format(c))
-count_symbol(a, b)
+    return('Символ встречается {} раза'.format(c))
+print(count_symbol(a, b))

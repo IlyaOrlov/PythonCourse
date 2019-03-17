@@ -105,3 +105,55 @@ def test(s):
         s = re.sub("    ", "\t", s)
     print(s)
 test(s)
+
+
+# Файл
+
+f = open('1.txt', 'w')
+f.write('Ре ализовать\tфункци    ональ ноcть\tкоторая бы')
+f.close()
+def test():
+    a = open('1.txt')
+    b = a.read()
+    print(b)
+    if '\t' in b:
+        bnew = b.replace('\t', '    ')
+    elif '    ' in b:
+        bnew = b.replace('    ', '\t')
+    h = open('2.txt', 'w')
+    h.write(bnew)
+    h.close()
+    g = open('2.txt')
+    k = g.read()
+    print(k)
+test()
+
+
+# Задание 5
+
+dict = {1:"one", 2:'two', 3:"three"}
+line = "I have 1 cat and 2 dog"
+
+def test(dict, line):
+    if 1 in dict:
+        line = line.replace('1', dict[1])
+    if 2 in dict:
+        line = line.replace('2', dict[2])
+    return(line)
+print(test(dict, line))
+
+
+# Задание 6
+
+M = [[8, 2, 3], [4, 4, 6], [7, 11, 5]]
+a = int(input('Введите число:'))
+def test(M, a):
+    for i in M:
+        for m in i:
+            if a == m:
+                c = i.index(a)
+                for i in M:
+                    del i[c]
+                test(M, a)
+                return(M)
+print(test(M, a))
