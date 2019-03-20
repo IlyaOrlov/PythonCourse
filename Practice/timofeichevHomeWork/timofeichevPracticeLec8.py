@@ -40,9 +40,7 @@ def to_title(a):
     b = list(a)
     i = 0
     while i < len(b):
-        if b[i - 1] == ' ':
-            b[i] = b[i].upper()
-        elif i == 0:
+        if b[i - 1] == ' ' or i == 0:
             b[i] = b[i].upper()
         i = i + 1
     c = ''.join(b)
