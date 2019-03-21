@@ -10,5 +10,4 @@ def test(a, b):
     else:
         print("Введенные числа равны друг другу:")
     print("Конец")
-
 test(a, b)
