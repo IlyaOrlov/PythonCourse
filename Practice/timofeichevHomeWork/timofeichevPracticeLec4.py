@@ -37,29 +37,29 @@ else:
 
 s = [0, 3, 24, 2, 3, 7]
 l = []
-def list(s, l):
+def spisok(s, l):
     if len(s) != 0:
         a = s.index(min(s))
         l.append(s[a])
         del s[a]
-        list(s, l)
+        spisok(s, l)
     else:
         print('Список отсортирован:{}'.format(l))
-list(s, l)
+spisok(s, l)
 
 
 # Цикл while
 
 s = [0, 3, 24, 2, 3, 7]
 l = []
-def list2(s, l):
+def spisok2(s, l):
     while len(s) != 0:
         a = s.index(min(s))
         l.append(s[a])
         del s[a]
     else:
         print('Список отсортирован:{}'.format(l))
-list2(s, l)
+spisok2(s, l)
 
 
 # Данную идею позаимствовал у Е.Федотовой.Но с разбором и пониманием.
@@ -153,16 +153,16 @@ file2()
 
 # Задание 5
 
-dict = {1:"one", 2:'two', 3:"three"}
-line = "I have 1 cat and 2 dog"
+d = {1:"one", 2:'two', 3:"three"}
+l = "I have 1 cat and 2 dog"
 
-def dictionary(dict, line):
-    if 1 in dict:
-        line = line.replace('1', dict[1])
-    if 2 in dict:
-        line = line.replace('2', dict[2])
-    return(line)
-print(dictionary(dict, line))
+def slovar(d, l):
+    if 1 in d:
+        l = l.replace('1', d[1])
+    if 2 in d:
+        l = l.replace('2', d[2])
+    return l
+print(slovar(d, l))
 
 
 # Задание 6
@@ -193,3 +193,4 @@ def array2(M, a):
     finish = [[row[i] for row in edited] for i in range(len(edited[0]))]
     return finish
 print(array2(M, a))
+
