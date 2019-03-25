@@ -6,5 +6,5 @@ setup(name='myapp',
       description='My pretty application',
       author='Orlov Ilya',
       author_email='orlov@mera.ru',
-      packages=['somepackage']
+      packages=['myapp']
       )
