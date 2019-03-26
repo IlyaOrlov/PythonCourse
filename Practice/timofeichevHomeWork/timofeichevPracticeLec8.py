@@ -80,3 +80,82 @@ def count_symbol(a, b):
             c = c + 1
     return('Символ встречается {} раза'.format(c))
 print(count_symbol(a, b))
+
+
+# Задание 9 Вариант 1
+
+class User:
+
+    name = None
+    age = None
+
+    def setName(self, name):
+        self.name = name
+
+    def getName(self):
+        return self.name
+
+    def setAge(self, age):
+        self.age = age
+
+    def getAge(self):
+        return self.age
+
+class Worker(User):
+
+    salary = None
+
+    def setSalary(self, salary):
+        self.salary = salary
+
+    def getSalary(self):
+        return self.salary
+
+if __name__ == '__main__':
+    a = Worker()
+    a.setName('Bob')
+    a.setAge(18)
+    a.setSalary(2000)
+    print(a.getName())
+    print(a.getAge())
+    print(a.getSalary())
+    b = Worker()
+    b.setName('Pit')
+    b.setAge(19)
+    b.setSalary(2500)
+    print(b.getName())
+    print(b.getAge())
+    print(b.getSalary())
+    print('Сумма зарплат равна:{}'.format(a.getSalary()+b.getSalary()))
+
+# Вариант 2
+
+class User:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def getName(self):
+        return self.name
+
+    def getAge(self):
+        return self.age
+
+class Worker(User):
+    def __init__(self, name, age, salary):
+        super().__init__(name, age)
+        self.salary = salary
+
+    def getSalary(self):
+        return self.salary
+
+if __name__ == '__main__':
+    a = Worker('Bob', 18, 2000)
+    print(a.getName())
+    print(a.getAge())
+    print(a.getSalary())
+    b = Worker('Pit', 19, 2500)
+    print(b.getName())
+    print(b.getAge())
+    print(b.getSalary())
+    print('Сумма зарплат равна:{}'.format(a.getSalary()+b.getSalary()))
