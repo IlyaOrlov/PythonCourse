@@ -82,6 +82,73 @@ def count_symbol(a, b):
 print(count_symbol(a, b))
 
 
+# Задание 7 Вариант 1
+
+with open('source.txt', 'w') as f:
+    f.write('1')
+    z = 'source.txt'
+with open('destination.txt', 'w') as f1:
+    f1.write('2')
+    l = 'destination.txt'
+def myfile(z, l):
+    try:
+        with open(z) as f:
+            a = f.read()
+            print(a)
+            anew = a
+        with open('destination.txt', 'x') as f1:
+            f1.write(anew)
+            b = 'destination.txt'
+        with open(b) as f2:
+            c = f2.read()
+            print(c)
+    except FileNotFoundError:
+        print('Такой файл не найден')
+    except FileExistsError:
+        print('Такой файл уже существует,запись невозмжна')
+myfile(z, l)
+
+# Вариант 2
+
+import os.path
+
+class MyError(Exception):
+    pass
+
+with open('source.txt', 'w') as f:
+    f.write('1')
+    a = 'source.txt'
+def test(a):
+    if not os.path.isfile(a):
+        raise MyError()
+try:
+    test(a)
+except MyError:
+    print('Такой файл не найден')
+else:
+    with open(a) as f:
+        b = f.read()
+        print(b)
+
+with open('destination.txt', 'w') as f1:
+    f1.write('2')
+    b = 'destination.txt'
+def test1(b):
+    if os.path.isfile(b) :
+        raise MyError ()
+try:
+    test1(b)
+except MyError:
+    print('Такой файл уже существует,запись невозможна')
+else:
+    with open('destination.txt', 'w') as f1:
+        f1.write('3')
+        b = 'destination.txt'
+    with open(b) as f1:
+        c = f1.read()
+        print(c)
+
+
 # Задание 9 Вариант 1
 
 class User:
