@@ -131,25 +131,6 @@ class DBClient(object):
             )
             return res.encode(stdout.encoding, errors='replace')
 
-    class EduStudentEntry(Base):
-        __tablename__ = 'edu_student_entry'
-
-        entry_id = Column(Integer, primary_key=True)
-        student_id = Column(Integer,
-                            ForeignKey('edu_student.object_id'))
-        course_id = Column(Integer,
-                           ForeignKey('edu_course.object_id'))
-        entry_date = Column(Date)
-        required_begin_date = Column(Date)
-        entry_text = Column(String)
-
-        def __repr__(self):
-            res = u'<EduStudentEntry(entry_id={}, student_id={}, ' \
-                  u'course_id={})>'.format(
-                    self.entry_id, self.student_id, self.course_id
-            )
-            return res.encode(stdout.encoding, errors='replace')
-
     class EduContract(Base):
         __tablename__ = 'edu_contract'
 
