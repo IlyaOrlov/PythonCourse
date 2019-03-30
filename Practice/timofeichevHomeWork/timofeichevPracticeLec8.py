@@ -110,43 +110,42 @@ myfile(z, l)
 
 # Вариант 2
 
-import os.path
-
-class MyError(Exception):
-    pass
-
 with open('source.txt', 'w') as f:
     f.write('1')
     a = 'source.txt'
-def test(a):
-    if not os.path.isfile(a):
-        raise MyError()
-try:
-    test(a)
-except MyError:
-    print('Такой файл не найден')
-else:
-    with open(a) as f:
-        b = f.read()
-        print(b)
-
 with open('destination.txt', 'w') as f1:
     f1.write('2')
     b = 'destination.txt'
-def test1(b):
+
+import os.path
+
+class MyError1(Exception):
+    pass
+class MyError2(Exception):
+    pass
+
+def test(a, b):
+    if not os.path.isfile(a) :
+        raise MyError1 ()
     if os.path.isfile(b) :
-        raise MyError ()
+        raise MyError2 ()
 try:
-    test1(b)
-except MyError:
+    test(a, b)
+except MyError1:
+    print('Такой файл не найден')
+except MyError2:
     print('Такой файл уже существует,запись невозможна')
 else:
-    with open('destination.txt', 'w') as f1:
-        f1.write('3')
-        b = 'destination.txt'
-    with open(b) as f1:
-        c = f1.read()
+    with open(a) as f:
+        c = f.read()
         print(c)
+        cnew = c
+    with open('destination.txt', 'w') as f1:
+        f1.write(cnew)
+        d = 'destination.txt'
+    with open(d) as f1:
+        g = f1.read()
+        print(g)
 
 
 # Задание 9 Вариант 1
