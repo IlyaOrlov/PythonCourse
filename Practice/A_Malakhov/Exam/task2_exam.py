@@ -1,27 +1,29 @@
 class Iteration:
-    lst = []
-
     def __init__(self, n):
         self.n = n
+        self.k = 1
+        self.lst = []
 
     def __iter__(self):
+        return self
+
+    def __next__(self):
         a = 2
-        k = 1
-        while k < self.n + 1:
-            counter = 0
+        while self.k < self.n + 1:
+            is_prime = False
             for i in self.lst:
                 if a % i == 0:
-                    counter += 1
-            if counter == 0:
+                    is_prime = True
+                    break
+            if is_prime == False:
+                self.k += 1
                 self.lst.append(a)
                 yield a
-                k += 1
-            else:
-                counter = 0
             a += 1
-            if k == self.n + 1:
-                break
 
 
-for i in Iteration(20):
-    print(i, end=' ')
+try:
+    for i in Iteration(20):
+        print(next(i), end=' ')
+except StopIteration:
+    print('')
