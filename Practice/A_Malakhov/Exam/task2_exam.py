@@ -1,8 +1,9 @@
 class Iteration:
+    lst = []
     def __init__(self, n):
         self.n = n
         self.k = 1
-        self.lst = []
+
 
     def __iter__(self):
         return self
