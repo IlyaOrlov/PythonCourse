@@ -11,3 +11,4 @@ line="keys:\tvalue:"
 s1="\t"
 s2="    "
 changeStr(line,s1,s2)
+print(line.replace(s1,s2))
