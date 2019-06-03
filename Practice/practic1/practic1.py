@@ -1,6 +1,6 @@
 def zad1():
     i = 0
-    
+
     while i <= 100:
         if i % 15 == 0:
             print("FizzBuzz")
@@ -18,9 +18,11 @@ zad1()
 
 def zad2():
     str = input("Введите число: ")
+    index = 0
 
     for char in str:
-        print("1 цифра равна {}".format(char))
+        print("{} цифра равна {}".format(index, char))
+        index +=1
 
 
 zad2()
@@ -67,33 +69,70 @@ def zad6():
     num = input("Enter the number: ")
     i = 0
     j = 0
-    count = -1
+    # count = None
     arr = [
-        [1, 2, 37, 98, 5],
-        [3, 72, 9, 19, 7],
-        [12, 10, 8, 4, 0],
-        [13, 14, 35, 40, 11],
+        [1, 56, 37, 98, 5],
+        [3, 72, 9, 2, 7],
+        [12, 10, 8, 4, 2],
+        [2, 14, 2, 40, 41],
         [30, 89, 78, 45, 65]
     ]
 
-    while i < len(arr):
-        while j < len(arr[i]):
-            if arr[i][j] == int(num):
-                count = j
-                print(count)
-            j += 1
-        i += 1
-        j = 0
-    i = 0
-    if count != -1:
+    # Новый вариант
+
+    while j < len(arr[i]):
         while i < len(arr):
-            while j < len(arr[i]):
-                if j == count:
+            if arr[i][j] == int(num):
+                ki = i
+                i = 0
+                while i < len(arr):
                     del arr[i][j]
-                j += 1
-            j = 0
+                    i += 1
+                i = ki
+                j = 0
             i += 1
+        i = 0
+        j += 1
+
+    # Старый вариант
+
+    # while i < len(arr):
+    #     while j < len(arr[i]):
+    #         if arr[i][j] == int(num):
+    #             count = j
+    #             print(count)
+    #         j += 1
+    #     i += 1
+    #     j = 0
+    # i = 0
+    # if count != None:
+    #     while i < len(arr):
+    #         while j < len(arr[i]):
+    #             if j == count:
+    #                 del arr[i][j]
+    #             j += 1
+    #         j = 0
+    #         i += 1
     print(arr)
 
 
 zad6()
+
+def zad5():
+    string = "одна голова - хорошо, а две - лучше"
+    dct = {"одна": "1", "две": "2"}
+    if string.find("одна") != -1:
+        s = string.replace("одна", dct.get("одна"))
+        if s.find("две") != 1:
+            st = s.replace("две", dct.get("две"))
+        else:
+            st = s
+    elif string.find("две") != -1:
+        s = string.replace("две", dct.get("две"))
+        if s.find("одна") != 1:
+            st = s.replace("одна", dct.get("одна"))
+        else:
+            st = s
+    print(st)
+
+zad5()
