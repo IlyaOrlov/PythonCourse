@@ -20,6 +20,7 @@ def del_column(matrix, key, n, m):
                         matrix[a] = matrix[a][0: g:]
                         matrix[a].extend(temp)
                         a += 1
+                    g -= 1
             g += 1
         k += 1
         g = 0
@@ -41,7 +42,7 @@ while i < N:
 print('\n')
 
 i = 0
-mat = del_column(mat, 0, N, M)
+mat = del_column(mat, 2, N, M)
 while i < N:
     print(mat[i])
     i += 1
