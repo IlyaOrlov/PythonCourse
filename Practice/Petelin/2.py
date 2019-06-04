@@ -1,6 +1,6 @@
 def f1():
     lst = []
-    for x in range(1,100):
+    for x in range(1,101):
         t=""
         if x%3==0 :
             t+="Fizz"
@@ -58,13 +58,45 @@ print(f4_2(str3))
 
 def f5(str):
     d= {"a":"A", "b":"B", "s":"S"}
-    lst=[str,]
     for key in iter(d):
-        str2=lst.pop(0).replace(key,d[key] )
-        lst.append(str2)
-    return lst[0]
+        str=str.replace(key,d[key] )
+    return str
 
 str="a i b sideli na trube"
 print(str)
 print( f5(str) )
 
+
+def T(arr):
+    tCol=[]
+    tRow=[]
+    i=0
+    if len(arr)==0:#"нулевая матрица"
+        return []
+    while i<len(arr[0]):
+        j=0
+        while j< len(arr):
+            tCol.append(arr[j][i])
+            j+= 1
+        tRow.append(tCol.copy())
+        tCol.clear()
+        i += 1
+    return tRow
+
+def f6(arr, num):
+    i=0
+    while i<len(arr):
+        if num in arr[i]:
+            del arr[i]
+            i-=1
+        i+=1
+    return arr
+
+num = 12
+arr= [[11,12,13],[21,22,23],[12,32,33],[41,42,12]]
+for s in arr:
+    print(s)
+arr2=T(f6(T(arr),num))
+for s in arr2:
+    print(s)
+print(arr2)
