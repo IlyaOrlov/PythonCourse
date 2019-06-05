@@ -20,10 +20,12 @@ def zad2():
     str = input("Введите число: ")
     index = 0
 
-    for char in str:
-        print("{} цифра равна {}".format(index, char))
-        index +=1
-
+    if len(str) == 5:
+        for char in str:
+            print("{} цифра равна {}".format(index, char))
+            index +=1
+    else:
+        print("Not five-digit number!")
 
 zad2()
 
@@ -34,16 +36,10 @@ def zad3():
 
     while i < len(arr):
         # находим минимальный элемент
-        s = arr[i:]
-        x = min(s)
+        x = min(arr[i:])
         # индекс минимального элемента
         j = arr.index(x, i)
-        # сохраняем значение i-ого элемента
-        num = arr[i]
-        # заменяем i-ый элемнт на минимальное значение
-        arr[i] = x
-        # заменяем минимальный элемент i-ым
-        arr[j] = num
+        arr[i], arr[j] = x, arr[i]
         i += 1
     print(arr)
 
@@ -57,7 +53,7 @@ def zad4():
     str2 = "\t"
     if string.find(str1) != -1:
         s = string.replace(str1, str2)
-    if string.find(str2) != -1:
+    else:
         s = string.expandtabs(4)
     print(s)
 
@@ -78,25 +74,25 @@ def zad6():
         [30, 89, 78, 45, 65]
     ]
 
+    if len(arr):
+        while j < len(arr[i]):
+            while i < len(arr):
+                if len(arr[i]) != 0 and arr[i][j] == int(num):
+                    check = 1
+                    k = 0
+                    while k < len(arr):
+                        del arr[k][j]
+                        k += 1
+                    j = 0
+                    # i = 0
+                if check == 1:
+                    i = 0
+                    check = 0
+                else:
+                    i += 1
 
-    while j < len(arr[i]):
-        while i < len(arr):
-            if len(arr[i]) != 0 and arr[i][j] == int(num):
-                check = 1
-                k = 0
-                while k < len(arr):
-                    del arr[k][j]
-                    k += 1
-                j = 0
-                # i = 0
-            if check == 1:
-                i = 0
-                check = 0
-            else:
-                i += 1
-
-        i = 0
-        j += 1
+            i = 0
+            j += 1
     print(arr)
 
 
