@@ -67,50 +67,36 @@ zad4()
 
 def zad6():
     num = input("Enter the number: ")
+    check = 0
     i = 0
     j = 0
     arr = [
         [1, 56, 37, 98, 5],
         [3, 45, 9, 27, 25],
         [12, 10, 8, 4, 89],
-        [24, 2, 2, 2, 2],
+        [2, 2, 2, 2, 2],
         [30, 89, 78, 45, 65]
     ]
 
-    # Новый вариант
 
     while j < len(arr[i]):
         while i < len(arr):
-            if arr[i][j] == int(num):
+            if len(arr[i]) != 0 and arr[i][j] == int(num):
+                check = 1
                 k = 0
                 while k < len(arr):
                     del arr[k][j]
                     k += 1
                 j = 0
+                # i = 0
+            if check == 1:
                 i = 0
-            i += 1
+                check = 0
+            else:
+                i += 1
+
         i = 0
         j += 1
-
-    # Старый вариант
-
-    # while i < len(arr):
-    #     while j < len(arr[i]):
-    #         if arr[i][j] == int(num):
-    #             count = j
-    #             print(count)
-    #         j += 1
-    #     i += 1
-    #     j = 0
-    # i = 0
-    # if count != None:
-    #     while i < len(arr):
-    #         while j < len(arr[i]):
-    #             if j == count:
-    #                 del arr[i][j]
-    #             j += 1
-    #         j = 0
-    #         i += 1
     print(arr)
 
 
