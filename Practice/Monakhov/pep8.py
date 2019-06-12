@@ -27,8 +27,8 @@ class Shuffler:  # имя класса сделал с заглавной бук
             # os.rename(src, dst), где:
             # src − This is the actual name of the file or directory.
             # dst − This is the new name of the file or directory.
-            f = open(output, 'r')  # добавил 2 пробела
-            f.write(str(self.map))  # добавил 2 пробела
+        f = open(output, 'r')  # вынул из цикла
+        f.write(str(self.map))  # вынул из цикла
 
     def restore(self, dirname, restore_path):
         with open(filename, '+') as f:  # убрал 2 пробела
