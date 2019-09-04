@@ -33,7 +33,7 @@ class shuffler:                                                    # Имя кл
                if file[-3:] == '.mp3':                             # отступы
                     mp3s.append({root, file})                      # отступы
         for path, hashname in mp3s:
-            os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))   # лишнее разделение и скобка
+            os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))   # скобка
         os.remove(restore_path)
                 
      def generateName(self, seed=time()):                          # отступы и маленькая буква N, и вероятно метод стат.
