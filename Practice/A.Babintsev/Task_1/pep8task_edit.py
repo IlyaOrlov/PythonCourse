@@ -6,10 +6,6 @@ import argparse
 from time import *
 
 
-def generatename(seed=time()):
-    return hashlib.md5(str(seed)).hexdigest()
-
-
 class Shuffler:
 
     def __init__(self):
@@ -31,7 +27,7 @@ class Shuffler:
     def restore(self, dirname, restore_path):
         with open(restore_path, '+') as f: 
             self.map = ast.literal_eval(f.read())
-            mp3s = []
+        mp3s = []
         for root, directories, files in os.walk(dirname):
             for file in files:
                 if file[-3:] == '.mp3':
@@ -39,6 +35,10 @@ class Shuffler:
         for path, hashname in mp3s:
             os.rename(path + '/' + hashname, path + '/' + self.map[hashname])
         os.remove(restore_path)
+
+    @staticmethod
+    def generatename(seed=time()):
+        return hashlib.md5(str(seed)).hexdigest()
 
 
 def parse_arguments():
