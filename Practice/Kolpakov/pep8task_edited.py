@@ -27,7 +27,7 @@ class shuffler:# класс должен быть с большой буквы
     def restore(self, dirname, restore_path):
           with open(filename, '+') as f:# лишний отступ
             self.map = ast.literal_eval(f.read())
-          mp3s = []# не хватает пробелов
+          mp3s = []# # лишний отступ
         for root, directories, files in os.walk(dirname):
             for file in files:
                if file[-3:] == '.mp3':# не хватает пробелов
