@@ -6,14 +6,13 @@ import argparse
 from time import *
 
 
-class shuffler:
+class Shuffler:
 
     def __init__(self):
         self.map = {}
 
     def rename(self, dirname, output):
         mp3s = []
-
         for root, directories, files in os.walk(dirname):
             for file in files:
                 if file[-3:] == '.mp3':
@@ -29,7 +28,6 @@ class shuffler:
         with open(restore_path, '+') as f:
             self.map = ast.literal_eval(f.read())
         mp3s = []
-
         for root, directories, files in os.walk(dirname):
             for file in files:
                 if file[-3:] == '.mp3':
@@ -40,7 +38,6 @@ class shuffler:
 
     def generatename(self, seed=time()):
         return hashlib.md5(str(seed)).hexdigest()
-
 
     def parse_arguments():
         parser = argparse.ArgumentParser()
@@ -54,17 +51,18 @@ class shuffler:
         args = parser.parse_args()
         return args
 
-
 def main():
     args = parse_arguments()
-    shuffler = Shuffler()
+    shuffler_ = Shuffler()
     if args.subcommand == 'rename':
         if args.output:
-            Shuffler.rename(args.dirname, 'restore.info')
+            shuffler_.rename(args.dirname, 'restore.info')
         else:
-            Shuffler.rename(args.dirname, args.output)
+            shuffler_.rename(args.dirname, args.output)
     elif args.subcommand == 'restore':
-        Shuffler.restore(args.dirname, args.restore_map)
+        shuffler_.restore(args.dirname, args.restore_map)
     else:
         sys.exit()
-    main()
+
+
+main()
