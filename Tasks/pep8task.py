@@ -18,7 +18,7 @@ class shuffler:# класс должен быть с большой буквы
                 if file[-3:] == '.mp3':
                     mp3s.append([root, file])
         for path, mp3 in mp3s:
-            hashname = self.generateName() + '.mp3'
+            hashname = self.generateName() + '.mp3'# Name с большой буквы
             self.map[hashname] = mp3
             os.rename(path + '/' + mp3), path + '/' + hashname))# лишние скобки
           f = open(output, 'r')# не хватает пробелов
