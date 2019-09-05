@@ -6,38 +6,38 @@ import argparse
 from time import *
 
 
-class shuffler:# класс должен быть с большой буквы
+class shuffler:
 
     def __init__(self):
         self.map = {}
 
     def rename(self, dirname, output):
-          mp3s = []# лишний отступ
+          mp3s = []
         for root, directories, files in os.walk(dirname):
             for file in files:
                 if file[-3:] == '.mp3':
                     mp3s.append([root, file])
         for path, mp3 in mp3s:
-            hashname = self.generateName() + '.mp3'# Name с большой буквы
+            hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
-            os.rename(path + '/' + mp3), path + '/' + hashname))# лишние скобки
-          f = open(output, 'r')# лишние пробелы
-          f.write(str(self.map))# лишние пробелы
+            os.rename(path + '/' + mp3), path + '/' + hashname))
+          f = open(output, 'r')
+          f.write(str(self.map))
 
     def restore(self, dirname, restore_path):
-          with open(filename, '+') as f:# лишний отступ
+          with open(filename, '+') as f:
             self.map = ast.literal_eval(f.read())
-          mp3s = []# лишний отступ
+          mp3s = []
         for root, directories, files in os.walk(dirname):
             for file in files:
-               if file[-3:] == '.mp3':# не хватает пробелов
+               if file[-3:] == '.mp3':
                     mp3s.append({root, file})
         for path, hashname in mp3s:
-            os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))# лишняя скобка
-        os.remove(restore_path)# не хватает пробелов
+            os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))
+        os.remove(restore_path)
                 
-     def generateName(self, seed=time()):# лишний пробел
-          return hashlib.md5(str(seed)).hexdigest()# лишние пробелы
+     def generateName(self, seed=time()):
+          return hashlib.md5(str(seed)).hexdigest()
 
 
 def parse_arguments():
@@ -54,11 +54,11 @@ def parse_arguments():
 
 def main():
     args = parse_arguments()
-    Shuffler = shuffler()# локальная переменная с маленькой буквы, класс с большой
+    Shuffler = shuffler()
     if args.subcommand == 'rename':
-          if args.output:# лишние пробелы
-                Shuffler.rename(args.dirname, 'restore.info')# лишние пробелы
-          else:# лишние пробелы
+          if args.output:
+                Shuffler.rename(args.dirname, 'restore.info')
+          else:
                 Shuffler.rename(args.dirname, args.output)
     elif args.subcommand == 'restore':
         Shuffler.restore(args.dirname, args.restore_map)
