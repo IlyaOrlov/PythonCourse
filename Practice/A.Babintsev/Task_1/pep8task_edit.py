@@ -18,7 +18,7 @@ class Shuffler:
                 if file[-3:] == '.mp3':
                     mp3s.append([root, file])
         for path, mp3 in mp3s:
-            hashname = generatename() + '.mp3'
+            hashname = self.generatename() + '.mp3'
             self.map[hashname] = mp3
             os.rename(path + '/' + mp3, path + '/' + hashname)
         f = open(output, 'r')
