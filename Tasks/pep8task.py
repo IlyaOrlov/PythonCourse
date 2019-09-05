@@ -21,8 +21,8 @@ class shuffler:# класс должен быть с большой буквы
             hashname = self.generateName() + '.mp3'# Name с большой буквы
             self.map[hashname] = mp3
             os.rename(path + '/' + mp3), path + '/' + hashname))# лишние скобки
-          f = open(output, 'r')# не хватает пробелов
-          f.write(str(self.map))# не хватает пробелов
+          f = open(output, 'r')# лишние пробелы
+          f.write(str(self.map))# лишние пробелы
 
     def restore(self, dirname, restore_path):
           with open(filename, '+') as f:# лишний отступ
