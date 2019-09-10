@@ -3,6 +3,11 @@
 на экран большее из двух.
 """
 
+
+def gores(x, y):
+    res = max(x, y)
+    print('Большее значение: {}'.format(res))
+
+
 (a, b) = eval(input('Введите значения a и b через запятую: '))
-res = max(a, b)
-print('Большее значение: {}'.format(res))
+gores(a, b)
