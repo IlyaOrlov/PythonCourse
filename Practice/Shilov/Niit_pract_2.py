@@ -21,6 +21,9 @@ print(return_more_and_less(1, 5))
 
 #Third task
 
+"""
+# Old version.  
+
 class Effect_from_items():
     def default_value (self):
         print('Движение и анимация вернулись к стандартным')
@@ -83,7 +86,53 @@ player1 = Player1('Mark')
 
 player1.collection('up')
 
+"""
+# New version.
 
+# Создаем класс героя, которым будем управлять.
+class Hero:
+    action = None
+
+    # Инициализируем героя, у которого есть параметр из атрибута дочернего класса.
+    def __init__(self, action):
+        self.act = action
+
+    # Создаем метод смены действия персонажа.
+    def change_action(self, action):
+        self.act = action
+
+# Создаем класс дейтвия типа: бег.
+class Run:
+    def running(self):
+        print('Бежать')
+
+# Создаем класс дейтвия типа: полет.
+class Fly:
+    def flying(self):
+        print('Лететь')
+
+# Создаем класс персонажа типа: бегун.
+class Runner(Hero):
+    action = Run()
+
+# Создаем класс персонажа типа: летун.
+class Flyer(Hero):
+    action = Fly()
+
+# Создаем игрока "а" класса бегун.
+a = Runner(Hero)
+# Даем ему команду бежать.
+a.action.running()
+
+# Создаем игрока "b" класса летун.
+b = Flyer(Hero)
+# Даем ему команду летать.
+b.action.flying()
+
+# Изменяем игроку тип действия с "бежать" на "летать".
+a.change_action(Fly())
+# Даем игроку "а" команду летать.
+a.act.flying()
 
 
 
