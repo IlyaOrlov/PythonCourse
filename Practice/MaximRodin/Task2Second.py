@@ -1,6 +1,6 @@
 def task(a,b):
     return max(a,b)
 
-a=input()
-b=input()
+a=int(input())
+b=int(input())
 print('Максимальное значение:', task(a,b))
