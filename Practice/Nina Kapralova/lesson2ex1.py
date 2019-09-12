@@ -5,4 +5,4 @@ def great(a, b):
         print(b)
 
 
-great(5, 10)
+great(5, 10)  # для проверки функции
