@@ -25,19 +25,49 @@ class PersonFly(Person):
         pass
 
 
-class Animations:
-    """Класс, который отвечает за анимацию"""
-    def __init__(self, *args):
-        self.ani_shoot = args
-        self.ani_run = args
-        self.ani_fly = args
-        self.pick_up = args
-    def ani_shoot(self):
-        """Показывает анимацию стрельбы при стрельбе"""
+# class Animations:
+#     """Класс, который отвечает за анимацию"""
+#     def __init__(self, *args):
+#         self.ani_shoot = args
+#         self.ani_run = args
+#         self.ani_fly = args
+#         self.pick_up = args
+#     def ani_shoot(self):
+#         """Показывает анимацию стрельбы при стрельбе"""
+#         pass
+#     def ani_run(self):
+#         """Показывает анимацию бега при беге"""
+#         pass
+#     def ani_pick_up(self):
+#         """Показывает анимацию подбора предметов"""
+#         pass
+
+
+class FastRun:
+    """Быстрый бег"""
+    def fastrun(self):
         pass
-    def ani_run(self):
-        """Показывает анимацию бега при беге"""
+
+
+class SlowRun:
+    """Медленный бег"""
+    def slowrun(self):
         pass
-    def ani_pick_up(self):
-        """Показывает анимацию подбора предметов"""
+
+
+class AnimationsFastRun:
+    """Анимация быстрый бег"""
+    def fastrun(self):
+        pass
+
+
+class AnimationsSlowRun:
+    """Анимация медленный бег"""
+    def slowrun(self):
+        pass
+
+
+class AnimationsShoot:
+    """Анимация """
+    def shoot(self):
         pass
