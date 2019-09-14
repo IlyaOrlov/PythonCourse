@@ -6,7 +6,7 @@ import argparse
 from time import *
 
 
-class shuffler:
+class shuffler: #Имена классов должны обычно следовать соглашению CapWords, правильно Shuffler
 
     def __init__(self):
         self.map = {}
@@ -21,8 +21,8 @@ class shuffler:
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
             os.rename(path + '/' + mp3), path + '/' + hashname))#лишние 2 скобки ) поле mp3 и после hashname
-          f = open(output, 'r')#необходимо добавть 2 пробела
-          f.write(str(self.map))#необходимо добавть 2 пробела
+          f = open(output, 'r')#необходимо удалить  2 пробела
+          f.write(str(self.map))#необходимо удалить 2 пробела
 
     def restore(self, dirname, restore_path):
           with open(filename, '+') as f:#лишние 2 пробела
@@ -37,6 +37,8 @@ class shuffler:
         os.remove(restore_path)#пустая сттрока (ниже) содержит пробелы
                 
      def generateName(self, seed=time()):#лишний пробел
+            #Имена функций должны состоять из маленьких букв, а слова разделяться символами подчеркивания.
+            #правильно - generate_name
          return hashlib.md5(str(seed)).hexdigest()#лишний пробел
 
 
