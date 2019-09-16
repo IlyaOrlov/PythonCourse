@@ -37,8 +37,8 @@ class Shuffler:        #название класса с большой букв
         for path, hashname in mp3s:
             os.rename(path + '/' + hashname, path + '/' + self.map[hashname])
             os.remove(restore_path)  #Данная строчка должна быть на одной линии с верхней тк относятся к блоку for
-
-    def generatename(self, seed=time()):                    #Буква N должна быть маленькой
+    @staticmethod
+    def generatename(seed=time()):                    #Буква N должна быть маленькой
         return hashlib.md5(str(seed)).hexdigest()  #тут было 5 отступов
 
 
@@ -60,9 +60,9 @@ def main():
     shuffler = Shuffler()                 #Переменная с маленькой, класс с большой
     if args.subcommand == 'rename':
         if args.output:
-            Shuffler.rename(args.dirname, 'restore.info') #тут было 6 отступов
+            shuffler.rename(args.dirname, 'restore.info') #тут было 6 отступов
         else:
-            Shuffler.rename(args.dirname, args.output) #тут было 6 отступов
+            shuffler.rename(args.dirname, args.output) #тут было 6 отступов
     elif args.subcommand == 'restore':
         Shuffler.restore(args.dirname, args.restore_map)
     else:
