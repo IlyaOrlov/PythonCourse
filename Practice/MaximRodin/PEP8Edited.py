@@ -14,16 +14,16 @@ class Shuffler:        #название класса с большой букв
     def rename(self, dirname, output):
         mp3s = []  #Тут было 6 пробелов, исправил до 4
 
-    for root, directories, files in os.walk(dirname):
-        for file in files:
-            if file[-3:] == '.mp3':
-                mp3s.append([root, file])
-    for path, mp3 in mp3s:
-        hashname = self.generateName() + '.mp3'    #Буква N должна быть маленькой
-        self.map[hashname] = mp3
-        os.rename(path + '/' + mp3, path + '/' + hashname) #тут были лишние скобки
-       f = open(output, 'r')
-       f.write(str(self.map))
+        for root, directories, files in os.walk(dirname):        #Циклы For входят в def rename
+            for file in files:
+                if file[-3:] == '.mp3':
+                    mp3s.append([root, file])
+        for path, mp3 in mp3s:
+            hashname = self.generatename() + '.mp3'    #Буква N должна быть маленькой
+            self.map[hashname] = mp3
+            os.rename(path + '/' + mp3, path + '/' + hashname) #тут были лишние скобки
+        f = open(output, 'r')                   #Сравнял 2 строки с For
+        f.write(str(self.map))
 
     def restore(self, dirname, restore_path):
         with open(filename, '+') as f:   #тут было 5 отступов
@@ -38,7 +38,7 @@ class Shuffler:        #название класса с большой букв
             os.rename(path + '/' + hashname, path + '/' + self.map[hashname])
             os.remove(restore_path)  #Данная строчка должна быть на одной линии с верхней тк относятся к блоку for
 
-    def generateName(seed=time()):                    #Буква N должна быть маленькой и вместо self надо воспользоваться декоратором
+    def generatename(self, seed=time()):                    #Буква N должна быть маленькой
         return hashlib.md5(str(seed)).hexdigest()  #тут было 5 отступов
 
 
@@ -57,7 +57,7 @@ def parse_arguments():
 
 def main():
     args = parse_arguments()
-    Shuffler() = Shuffler                  #Поменял местами название переменной и класса
+    shuffler = Shuffler()                 #Переменная с маленькой, класс с большой
     if args.subcommand == 'rename':
         if args.output:
             Shuffler.rename(args.dirname, 'restore.info') #тут было 6 отступов
