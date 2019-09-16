@@ -11,7 +11,7 @@ class shuffler: #Имена классов должны обычно следо�
     def __init__(self):
         self.map = {}
 
-    def rename(self, dirname, output): #не объявлен self в теле функции
+    def rename(self, dirname, output):
         mp3s = []
 
 
@@ -23,8 +23,8 @@ class shuffler: #Имена классов должны обычно следо�
         hashname = self.generateName() + '.mp3'
         self.map[hashname] = mp3
         os.rename(path + '/' + mp3), path + '/' + hashname)) #лишние закрывающие скобки
-        f = open(output, 'r')
-        f.write(str(self.map))
+        f = open(output, 'r') #файл открыт для чтения, нужно поставить w или +
+        f.write(str(self.map)) #попытка записи в файл, открытый для чтения. Нужно закрыть файл после записи в него (f.close())
 
     def restore(self, dirname, restore_path):
         with open(filename, '+') as f:
@@ -39,16 +39,16 @@ class shuffler: #Имена классов должны обычно следо�
         os.rename(path + '/' + hashname, path + '/' + self.map[hashname])) #лишняя закрывающая скобка
         os.remove(restore_path)
 
-    def generateName(self, seed=time()): #имя функции должно быть написано маленькими буквами, не объявлен self в теле функции
+    def generateName(self, seed=time()): #имя функции должно быть написано маленькими буквами
         return hashlib.md5(str(seed)).hexdigest()
 
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    subparsers = parser.add_subparsers(dest='subcommand', help='subcommand help')
+    subparsers = parser.add_subparsers(dest='subcommand', help='subcommand help') #Строка длиннее 79 символов
     rename_parser = subparsers.add_parser('rename', help='rename help')
     rename_parser.add_argument('dirname')
-    rename_parser.add_argument('-o', '--output', help='path to a file where restore map is stored')
+    rename_parser.add_argument('-o', '--output', help='path to a file where restore map is stored') #Строка длиннее 79 символов
     restore_parser = subparsers.add_parser('restore', help="command_a help")
     restore_parser.add_argument('dirname')
     restore_parser.add_argument('restore_map')
@@ -58,7 +58,7 @@ def parse_arguments():
 
 def main():
     args = parse_arguments()
-    Shuffler = shuffler() #Имя функции должно быть написано с маленькой буквы
+    Shuffler = shuffler() #Имя функции должно быть написано с маленькой буквы, а имя класса - с большой
     if args.subcommand == 'rename':
         if args.output:
             Shuffler.rename(args.dirname, 'restore.info')
