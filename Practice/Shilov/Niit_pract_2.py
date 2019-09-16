@@ -103,12 +103,12 @@ class Hero:
 
 # Создаем класс дейтвия типа: бег.
 class Run:
-    def running(self):
+    def behave(self):
         print('Бежать')
 
 # Создаем класс дейтвия типа: полет.
 class Fly:
-    def flying(self):
+    def behave(self):
         print('Лететь')
 
 # Создаем класс персонажа типа: бегун.
@@ -122,17 +122,17 @@ class Flyer(Hero):
 # Создаем игрока "а" класса бегун.
 a = Runner(Hero)
 # Даем ему команду бежать.
-a.action.running()
+a.action.behave()
 
 # Создаем игрока "b" класса летун.
 b = Flyer(Hero)
 # Даем ему команду летать.
-b.action.flying()
+b.action.behave()
 
 # Изменяем игроку тип действия с "бежать" на "летать".
 a.change_action(Fly())
 # Даем игроку "а" команду летать.
-a.act.flying()
+a.act.behave()
 
 
 
