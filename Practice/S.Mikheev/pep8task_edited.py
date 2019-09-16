@@ -22,9 +22,9 @@ class Shuffler:
             hashname = self.generatename() + '.mp3'
             self.map[hashname] = mp3
             os.rename(path + '/' + mp3, path + '/' + hashname)
-            f = open(output, '+')
-            f.write(str(self.map))
-            f.close()
+        f = open(output, '+')
+        f.write(str(self.map))
+        f.close()
 
     def restore(self, dirname, restore_path):
         with open(filename, '+') as f:
