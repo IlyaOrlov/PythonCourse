@@ -9,7 +9,7 @@
 str1 = input('Введите строку с пробелами и табуляциями: ')
 str2 = str1.replace('    ', chr(9))
 print(str2)    # сначала всё заменим на табуляцию
-str3 = str2.replace(chr(9), '    ')
+str3 = str2.expandtabs(tabsize=4)
 print(str3)    # теперь всё на 4 пробела
 
 # Для файла. Проверяем только первую строку исходного текста
@@ -17,5 +17,6 @@ fl = open("task4_4.txt", "r+")
 str5 = fl.readline()
 str6 = str5.replace('    ', chr(9))
 fl.write(str6)    # сначала всё заменим на табуляцию
-str7 = str6.replace(chr(9), '    ')
+str7 = str6.expandtabs(tabsize=4)
 fl.write(str7)    # теперь всё на 4 пробела
+
