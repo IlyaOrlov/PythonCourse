@@ -5,11 +5,11 @@
 """
 
 for x in range(1, 101):
-    if x // 15 == x / 15:
+    if x % 15 == 0:
         print('FizzBuzz')
-    elif x // 5 == x / 5:
+    elif x % 5 == 0:
         print('Buzz')
-    elif x // 3 == x / 3:
+    elif x % 3 == 0:
         print('Fizz')
     else:
         print(x)

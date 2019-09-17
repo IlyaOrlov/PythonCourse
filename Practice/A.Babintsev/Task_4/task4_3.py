@@ -14,7 +14,7 @@ arr = [0,3,24,2,3,7]
 arr = [0, 3, 24, 2, 3, 7]
 print(arr)
 for i in range(0, len(arr)):
-    arr2 = arr[i:len(arr)]
+    arr2 = arr[i:]
     x = min(arr2)
     for j in range(0, len(arr2)):
         if arr2[j] == x:
