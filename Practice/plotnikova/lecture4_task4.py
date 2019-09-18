@@ -15,7 +15,7 @@ def read_file_to_str(file_name_in):
 
 
 # Записывает в новый файл измененный текст
-def write_file_from_str(file_name_out):
+def write_file_from_str(file_name_out,str_out):
     with open(file_name_out, 'w', encoding="UTF-8") as file_out:
         file_out.write(str_out)
         print("Файл {} записан".format('text_res.txt'))
@@ -27,11 +27,9 @@ print('Для сворачивания табуляции введите 0, дл
 choice = input("Введите число:")
 
 if choice == "0":
-    str_out = tab_to_blank(str_in)
-    write_file_from_str('text_res.txt')
+    write_file_from_str('text_res.txt',tab_to_blank(str_in))
 else:
     if choice == "1":
-        str_out = blank_to_tab(str_in)
-        write_file_from_str('text_res.txt')
+        write_file_from_str('text_res.txt',blank_to_tab(str_in))
     else:
         print("Операция отменена ")
