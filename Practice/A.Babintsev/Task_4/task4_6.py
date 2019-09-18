@@ -19,7 +19,7 @@ for rr in range(r):
             if x == matrix1[ii][jj]:
                 y = jj
                 break
-    if y:       
+    if y != None:       
         for ii in range(i):
             del matrix1[ii][y]
         print(matrix1)
