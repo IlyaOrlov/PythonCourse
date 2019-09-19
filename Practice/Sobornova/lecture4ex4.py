@@ -1,12 +1,10 @@
 def change_spaces(file_name):
     with open(file_name, 'r+') as file_object:
-        lines = file_object.readlines()
+        format_text = ''
+        for line in file_object:
+            format_text += line.replace('    ', '\t')
 
-    format_text = ''
-    for line in lines:
-        format_text += line.replace('    ', '\t')
-
-    return format_text
+        return format_text
 
 
 q = change_spaces('some_text_file.txt')
@@ -15,13 +13,11 @@ print(q)
 
 def change_tab(file_name):
     with open(file_name, 'r+') as file_object:
-        lines = file_object.readlines()
+        format_text = ''
+        for line in file_object:
+            format_text += line.replace("\t", '    ')
 
-    format_text = ''
-    for line in lines:
-        format_text += line.replace("\t", '    ')
-
-    return format_text
+        return format_text
 
 
 qq = change_spaces('some_text_file2.txt')
