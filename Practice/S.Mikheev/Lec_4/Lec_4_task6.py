@@ -5,12 +5,11 @@ k = []  # список индексом строк, в которых содер
 for i in range(n):
     for j in range(len(a[i])):
         if a[i][j] == m:
-            if j not in k:
-                k.append(j)
-k = sorted(k)
+            k.append(j)
+k = sorted(set(k))
 for elem in reversed(k):
     for i in range(len(a)):
-        del (a[i][elem])
+        del a[i][elem]
 
 for row in a:
     print(*row)
