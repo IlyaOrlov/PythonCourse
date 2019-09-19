@@ -9,8 +9,8 @@ class Man:
         self.first_name = first_name
         self.last_name = last_name
         self.login = (first_name[0] + last_name).lower()
+
     def solve_task():
         print("I'm not ready yet")
         
 Man.solve_task()
-  

@@ -12,8 +12,10 @@ class Man:
         self.first_name = first_name
         self.last_name = last_name
         self.login = (first_name[0] + last_name).lower()
+
     def solve_task():
         print("I'm not ready yet.")
+
 
 class Pupil(Man):
     def solve_task():
@@ -21,6 +23,6 @@ class Pupil(Man):
         time.sleep(x)
         print("I'm not ready yet to. But I will ready in {} seconds.".format(x))
 
+
 Man.solve_task()
 Pupil.solve_task()
-    
