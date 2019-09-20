@@ -10,7 +10,9 @@ class Man:
         self.last_name = last_name
         self.login = (first_name[0] + last_name).lower()
 
-    def solve_task():
+    def solve_task(self):
         print("I'm not ready yet")
         
-Man.solve_task()
+Person1 = Man("Ivan", "Oleynikov") 
+print(Person1.login +": ")
+Person1.solve_task()
