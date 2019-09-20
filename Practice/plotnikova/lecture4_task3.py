@@ -6,6 +6,7 @@ def find_min_arr(data,ii):
            min_arr=data[i]
     return min_arr
 
+
 def sort(data):
     t=len(data)
     for i in range(t):

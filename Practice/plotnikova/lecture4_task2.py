@@ -3,7 +3,7 @@ def fun(data):
         print("{} цифра равна {}". format(i+1, data[i]))
 
 
-res = input("Введите пятизначное число: ")
+res = input("Введите пятизначное число:")
 if res.isdigit():
     if len(res)==5:
         if int(res)<=10000:
