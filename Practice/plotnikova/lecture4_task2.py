@@ -5,10 +5,13 @@ def fun(data):
 
 res = input("Введите пятизначное число: ")
 if res.isdigit():
-    if int(res)<=10000:
-        print("Число должно быть пятизначным")
+    if len(res)==5:
+        if int(res)<=10000:
+            print("Число должно быть пятизначным")
+        else:
+            fun(res)
     else:
-        fun(res)
+        print("Число должно быть пятизначным")
 else:
     print ('Необходимо ввести число, а не строку')
 
