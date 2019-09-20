@@ -13,16 +13,21 @@ class Man:
         self.last_name = last_name
         self.login = (first_name[0] + last_name).lower()
 
-    def solve_task():
+    def solve_task(self):
         print("I'm not ready yet.")
 
 
 class Pupil(Man):
-    def solve_task():
+    def solve_task(self):
         x = random.randint(3, 6)
         time.sleep(x)
         print("I'm not ready yet to. But I will ready in {} seconds.".format(x))
 
 
-Man.solve_task()
-Pupil.solve_task()
+Person1 = Man("Ivan", "Oleynikov") 
+print(Person1.login +": ")
+Person1.solve_task()
+
+Person2 = Pupil("Tolya", "Myasnikov") 
+print(Person2.login +": ")
+Person2.solve_task()
