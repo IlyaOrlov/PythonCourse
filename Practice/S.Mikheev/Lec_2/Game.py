@@ -21,15 +21,12 @@ class Hero:
 class SimpleMove():
 
     def move(self, name, speed):
-
         print('{} moves at a speed {}'.format(name, speed))
-
 
 
 class Fly():
 
     def move(self, name, speed):
-
         print('{} flies at a speed {}'.format(name, speed))
 
 
@@ -39,13 +36,16 @@ class FastSpeed():
         speed = speed * 2
         print('{} accelerated. His speed {}'.format(name, speed))
     
+
 class SlowSpeed():
     
     def collect(self, name, speed, ammunition):
         speed = speed // 2
         print('{} slowed down. His speed {}'.format(name, speed))
 
+
 class Shoot():
+    
     def collect(self, name, speed, ammunition):
         p = random.randint(1, 10)
         ammunition += p
@@ -56,23 +56,11 @@ class Shoot():
 
 halk = Hero('Halk', 'Human', '5')
 superman = Hero('Superman', 'Human', '10')
-
 herous = [halk, superman]
 for hero in herous:
-
     for action in [SimpleMove(), Fly()]:
-
         hero.action = action
-
-        hero.action.move(hero.name, hero.speed)
-    
+        hero.action.move(hero.name, hero.speed)   
     for artifact in [FastSpeed(), SlowSpeed(), Shoot()]:
         hero.artifact = artifact
         hero.artifact.collect(hero.name, hero.speed, hero.ammunition)
-
-
-
-
-
-
-
