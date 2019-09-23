@@ -34,13 +34,23 @@ class WrapStrToFile:
             return "File doesn't exist"
         else:
             return test_f.read()
+        finally:
+            try:
+                test_f.close()
+            except NameError:
+                return "Ups! File doesn't exist"
     
     @content.setter
     def content(self, value):
     # попытка записи в файл указанного содержимого
-        test_f = open(self.filepath, 'w')
-        test_f.write(value)
-        test_f.close()
+        try:
+            test_f = open(self.filepath, 'w')
+        except PermissionError:
+            return "Editing is prohibited"
+        else:
+            return test_f.write(value)
+        finally:
+            test_f.close()
     
     @content.deleter
     def content(self):
