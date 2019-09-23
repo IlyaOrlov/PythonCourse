@@ -10,6 +10,8 @@ If it does not exist we return warning.
 /gentleman must clean up after himself/
 Note: I think that 'except' can be omitted in this peculiar case.
 Only 'try' and 'finally'.
+=== ===
+v.2: try/except block included in @content.setter
 """
 
 from os import remove
@@ -32,16 +34,21 @@ class WrapStrToFile:
             substance = fo.read()
             fo.close()
         except FileNotFoundError as ex:  # If the file does not exist.
-            # print(ex.strerror)
+            #
             substance = 'File is not found'
         finally:
             return substance
 
     @content.setter
     def content(self, value):  # We create file and its content.
-        fo = open(self.filepath, 'w')
-        fo.write(value)
-        fo.close()
+        try:
+            fo = open(self.filepath, 'w')
+            fo.write(value)
+            fo.close()
+        except :
+            print('Something goes wrong with writing...')
+
+
 
     @content.deleter
     def content(self):  # We delete file.
