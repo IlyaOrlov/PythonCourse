@@ -18,9 +18,9 @@ flag = input('If you prefer change tabulation on 4 spaces, please, press 0\n'
              'for inverse change, press t: ')
 
 if flag == '0':
-    filetext = filetext.replace('\t', 'QQQQ')
+    filetext = filetext.replace('\t', '    ')
 elif flag == 't':
-    filetext = filetext.replace('    ', 'TTTT')
+    filetext = filetext.replace('    ', '\t')
 else:
     print('You are miss the target. The text remains the same.')
 
