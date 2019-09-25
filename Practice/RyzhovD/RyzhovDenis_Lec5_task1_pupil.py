@@ -14,17 +14,17 @@ class Man:
     def __init__(self, name):
         self.name = name
 
-    def solve_task(self, name):
+    def solve_task(self):
         print('{} says: I\'m not ready yet.'.format(self.name))
 
 captain = Man('Captain')
-captain.solve_task(captain.name)
+captain.solve_task()
 print('')
 
 
 class Pupil(Man):
 
-    def solve_task(self, name):
+    def solve_task(self):
         tau = randint(3, 6)
         print('{} starts to think...'.format(self.name))
         sleep(tau)
@@ -32,4 +32,4 @@ class Pupil(Man):
                                                 ' And I don\'t know.')
 
 rookie = Pupil('Rookie')
-rookie.solve_task(rookie.name)
+rookie.solve_task()
