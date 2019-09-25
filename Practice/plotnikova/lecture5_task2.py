@@ -8,7 +8,7 @@ class Man():
         # self.solve_task()
 
     def solve_task(self):
-        return print ("I'm not ready yet")
+        return print ("{}: I'm not ready yet".format(self.name))
 
 
 class Pupil(Man):
@@ -18,8 +18,8 @@ class Pupil(Man):
     def solve_task(self):
         t=random.randint(3, 6)
         time.sleep(t)
-        return print ("I'm not ready yet")
+        return print ("{}: I'm not ready yet".format(self.name))
 
 
-a=Pupil()
+a=Pupil("Вяся")
 a.solve_task()
