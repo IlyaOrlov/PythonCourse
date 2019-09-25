@@ -24,6 +24,8 @@ class WrapStrToFIle:
                 f.write(value)
         except FileNotFoundError:
             print("Файл не записан, т.к. указананный файл не существует")
+        except Exception as exc:
+            print ("Some unexpected error:".format(exc))
 
     @content.deleter
     def content(self):
@@ -36,6 +38,6 @@ class WrapStrToFIle:
 
 
 a=WrapStrToFIle()
-b=a.content
+#b=a.content
 a.content="текст"
-del a.content
+#del a.content
