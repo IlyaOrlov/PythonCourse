@@ -15,7 +15,7 @@ class Man:
         self.name = name
 
     def solve_task(self, name):
-        print('{} says: I\'m not ready yet.'.format(name))
+        print('{} says: I\'m not ready yet.'.format(self.name))
 
 captain = Man('Captain')
 captain.solve_task(captain.name)
@@ -26,7 +26,7 @@ class Pupil(Man):
 
     def solve_task(self, name):
         tau = randint(3, 6)
-        print('{} starts to think...'.format(name))
+        print('{} starts to think...'.format(self.name))
         sleep(tau)
         print('And now he says: I\'ve thought for ' + str(tau) + ' seconds.'
                                                 ' And I don\'t know.')
