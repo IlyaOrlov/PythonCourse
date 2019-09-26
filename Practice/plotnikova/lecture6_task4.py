@@ -10,12 +10,8 @@ fun([1,2], [3, 4], [5, 6, 7])
 
 
 # пример 2
-def fan1(x):
-    return len(x) < 5 and True or False
-
-
 def fan2(x):
-    print(list(itertools.filterfalse(fan1, x)))
+    print(list(itertools.filterfalse((lambda x: len(x) < 5 ), x)))
 
 fan2(['hello','i','write', 'cool', 'code'])
 
