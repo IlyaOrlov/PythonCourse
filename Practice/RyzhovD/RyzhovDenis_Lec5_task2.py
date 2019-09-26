@@ -24,7 +24,7 @@ class WrapStrToFile:
 
     @property
     def content(self):
-        substance = 'Hey, this file does not exist.'
+        substance = 'There seems to be something wrong with our bloody files today.'
         # I think it is easier way to produce warning - without 'except'.
         # We should define it in 1st line after def
         # and than do 'try' and 'finally'.
@@ -34,27 +34,22 @@ class WrapStrToFile:
             substance = fo.read()
             fo.close()
         except FileNotFoundError as ex:  # If the file does not exist.
-            #
             substance = 'File is not found.'
         finally:
             return substance
 
     @content.setter
     def content(self, value):  # We create file and its content.
-        try:
-            fo = open(self.filepath, 'w')
+        with open(self.filepath, 'w') as fo:
             fo.write(value)
             fo.close()
-        except :
-            print('Something goes wrong with writing...')
-
 
     @content.deleter
     def content(self):  # We delete file.
         remove(self.filepath)
         print('deleted')
 
-
+### TEST
 wstf = WrapStrToFile()
 print('Filepath is: ' + wstf.filepath)
 print(wstf.content)
