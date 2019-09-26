@@ -35,7 +35,7 @@ class WrapStrToFile:
             fo.close()
         except FileNotFoundError as ex:  # If the file does not exist.
             #
-            substance = 'File is not found'
+            substance = 'File is not found.'
         finally:
             return substance
 
@@ -49,10 +49,10 @@ class WrapStrToFile:
             print('Something goes wrong with writing...')
 
 
-
     @content.deleter
     def content(self):  # We delete file.
-        os.remove(self.filepath)
+        remove(self.filepath)
+        print('deleted')
 
 
 wstf = WrapStrToFile()
@@ -66,3 +66,8 @@ print('')
 
 wstf.content = 'Itsy bitsy spider'
 print(wstf.content)
+print(wstf.filepath)
+del wstf.content  # delete the content of file
+print(wstf.content)
+print(wstf.filepath)  # but the file already exists itself?
+    # Or it is just reminiscence to the name of file?
