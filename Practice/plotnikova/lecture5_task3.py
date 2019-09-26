@@ -10,7 +10,7 @@ class WrapStrToFIle:
     @property
     def content(self):
         try:
-            with open(self.filepath + "/" + "file.xml", encoding="utf-8") as f:
+            with open(self.filepath) as f:
                 self._content = f.read()
         except FileNotFoundError:
             print("Файл еще не существует")
@@ -20,10 +20,8 @@ class WrapStrToFIle:
     def content(self, value):
         self._content = value
         try:
-            with open(self.filepath + "/" + "file.xml", 'w', encoding="utf-8") as f:
+            with open(self.filepath) as f:
                 f.write(value)
-        except FileNotFoundError:
-            print("Файл не записан, т.к. указананный файл не существует")
         except Exception as exc:
             print ("Some unexpected error:".format(exc))
 
@@ -31,7 +29,7 @@ class WrapStrToFIle:
     def content(self):
         del self._content
         try:
-            os.remove(self.filepath + "/" + "file.xml")
+            os.remove(self.filepath)
         except FileNotFoundError:
             print("Вы пытаетете удалить несуществующий файл")
 
