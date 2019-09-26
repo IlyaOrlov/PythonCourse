@@ -13,6 +13,7 @@ fun([1,2], [3, 4], [5, 6, 7])
 def fan2(x):
     print(list(itertools.filterfalse((lambda x: len(x) < 5 ), x)))
 
+
 fan2(['hello','i','write', 'cool', 'code'])
 
 
