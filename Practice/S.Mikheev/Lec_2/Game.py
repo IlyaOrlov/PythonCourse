@@ -3,57 +3,64 @@ import random
 
 class Hero:
     ammunition = 0
+    action = None
+    artifact = None
 
     def __init__(self, name, race, speed):
         self.name = name
         self.race = race
         self.speed = int(speed)
-
+        
     def move(self):
-        print('{} moves at a speed {}'.format(self.name, self.speed))
-
-    def shoot(self):
-        if self.ammunition != 0:
-            self.ammunition -= 1
-            print('{} shoot'.format(self.name))
-        else:
-            print('{} has no ammunition'.format(self.name))
-
+        self.action.move(self.name, self.speed)
+        
     def collect(self):
-        print('{} found an artifact'.format(self.name))
-        x = random.randint(10, 50)
-        if x < 20:
-            self.speed = self.speed // 2
-            print('{} slowed down. His speed {}'.format(self.name, self.speed))
-        elif 20 <= x < 30:
-            self.speed = self.speed * 2
-            print('{} accelerated. His speed {}'.format(self.name, self.speed))
-        else:
-            p = random.randint(1, 10)
-            self.ammunition += p
-            print('{} found {} ammunition. His ammunition {}'.format(self.name, p, self.ammunition))
+        self.artifact.collect(self.name, self.speed, self.ammunition)
+        
+
+class SimpleMove():
+
+    def move(self, name, speed):
+        print('{} moves at a speed {}'.format(name, speed))
 
 
-class FlyHero(Hero):
-    def move(self):
-        print('{} flies at a speed {}'.format(self.name, self.speed))
+class Fly():
 
+    def move(self, name, speed):
+        print('{} flies at a speed {}'.format(name, speed))
+
+
+class FastSpeed():
+    
+    def collect(self, name, speed, ammunition):
+        speed = speed * 2
+        print('{} accelerated. His speed {}'.format(name, speed))
+    
+
+class SlowSpeed():
+    
+    def collect(self, name, speed, ammunition):
+        speed = speed // 2
+        print('{} slowed down. His speed {}'.format(name, speed))
+
+
+class Shoot():
+    
+    def collect(self, name, speed, ammunition):
+        p = random.randint(1, 10)
+        ammunition += p
+        print('{} found {} ammunition. His ammunition {}'.format(name, p, ammunition))    
+        for i in range(p):
+            print('{} shoot'.format(name))
+    
 
 halk = Hero('Halk', 'Human', '5')
-
-halk.move()
-halk.collect()
-halk.collect()
-halk.collect()
-print(halk.ammunition)
-halk.shoot()
-print(halk.ammunition)
-halk.shoot()
-print(halk.ammunition)
-
-superman = FlyHero('Superman', 'Human', '10')
-superman.move()
-superman.collect()
-superman.shoot()
-superman.collect()
-superman.shoot()
+superman = Hero('Superman', 'Human', '10')
+herous = [halk, superman]
+for hero in herous:
+    for action in [SimpleMove(), Fly()]:
+        hero.action = action
+        hero.action.move(hero.name, hero.speed)   
+    for artifact in [FastSpeed(), SlowSpeed(), Shoot()]:
+        hero.artifact = artifact
+        hero.artifact.collect(hero.name, hero.speed, hero.ammunition)
