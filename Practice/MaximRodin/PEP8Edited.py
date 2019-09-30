@@ -37,6 +37,7 @@ class Shuffler:        #название класса с большой букв
         for path, hashname in mp3s:
             os.rename(path + '/' + hashname, path + '/' + self.map[hashname])
             os.remove(restore_path)  #Данная строчка должна быть на одной линии с верхней тк относятся к блоку for
+
     @staticmethod
     def generatename(seed=time()):                    #Буква N должна быть маленькой
         return hashlib.md5(str(seed)).hexdigest()  #тут было 5 отступов

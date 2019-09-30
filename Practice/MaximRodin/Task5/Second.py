@@ -2,14 +2,10 @@ import time
 import random
 
 
-class Man:
-    def __init__(self, name, surname):
-       self.name = name
-       self.surname = surname
-       self.login = (name[0] + surname).lower()
+from First import Man
 
-    def solve_task(self):
-        print("I am ready")
+def solve_task(self):
+    print("I am ready")
 
 
 class Pupil(Man):
