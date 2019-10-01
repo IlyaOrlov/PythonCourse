@@ -24,13 +24,17 @@ class MyIter:
 # In opposite case it will be local variable
 # and at every next procedure should be initialised.
     def __next__(self):
-        j2 = st.find(self.delim, self.j1)  # index of the end of partition
-        if j2 == -1:
-            piece_end = st[self.j1:]
+        self.j2 = st.find(self.delim, self.j1)  # index of the end of partition
+        # print(self.j2)
+
+        if self.j1 == None:
             raise StopIteration
+        elif self.j2 > 0:
+            piece = st[self.j1:self.j2 + 1]
+            self.j1 = self.j2 + 1
         else:
-            piece = st[self.j1:j2 + 1]
-            self.j1 = j2 + 1
+            piece = st[self.j1:]
+            self.j1 = None
         return piece
 
 
@@ -38,7 +42,7 @@ with open('yellow_subm.txt','r') as fo:
     st = fo.read()
     # print('Length of text is ' + str(len(st)) + ' symbols.\n')
 
-splitted = MyIter(st, 'd')
+splitted = MyIter(st, '\n')
 
 for pp in splitted:
     print('- - -')
