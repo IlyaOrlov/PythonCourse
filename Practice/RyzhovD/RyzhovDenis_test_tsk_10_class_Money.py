@@ -34,6 +34,7 @@ class Money:
     def amount(self):
         return float('{}.{}'.format(self.rub, self.kop))
 
+### ARITHMETIC
 
     def __add__(self, other):
         res = self.amount + other.amount
@@ -56,48 +57,82 @@ class Money:
         try:
             res = self.amount*other
             # print('\nresult of multiplicaion is {}'.format(res))  ##
-        except:
-            print('Check the types of your variables: \n'
+            res = int(100 * res) / 100  # rounding to zero (negative float too)
+            res_rub, res_kop = str(res).split('.')
+            return Money(res_rub, res_kop)
+        except TypeError:
+            print('\nCheck the types of your variables: \n'
                   'first should be instance of class Money,\n'
-                  'second should be a number (integer or float).')
-            raise TypeError
-        res = int(100*res)/100  # rounding to zero (negative float too)
-        res_rub, res_kop = str(res).split('.')
-        return Money(res_rub, res_kop)
+                  'second should be a number (integer or float).\n')
+            # raise TypeError
 
 
     def __truediv__(self, other):
         try:
             res = self.amount/other
             # print('\nresult of division is {}'.format(res))  ##
-        except:
-            print('Check the types of your variables: \n'
+            res = int(100 * res) / 100  # rounding to zero (negative float too)
+            res_rub, res_kop = str(res).split('.')
+            # res_kop = res_kop[0:2]  # rounding toward zero (negative float too)
+            # print('rounded value of cents is {}'.format(res_kop))  ##
+            return Money(res_rub, res_kop)
+        except TypeError:
+            print('\nCheck the types of your variables: \n'
                   'first should be instance of class Money,\n'
-                  'second should be a number (integer or float).')
-            raise TypeError
-        res = int(100*res)/100  # rounding to zero (negative float too)
-        res_rub, res_kop = str(res).split('.')
-        # res_kop = res_kop[0:2]  # rounding toward zero (negative float too)
-        # print('rounded value of cents is {}'.format(res_kop))  ##
-        return Money(res_rub, res_kop)
+                  'second should be a number (integer or float).\n')
+        except ZeroDivisionError:
+            print('\nI will not divide on 0!\n')
 
+
+### COMPARISON
 
     def __lt__(self, other):
-        if self.amount <= other.amount:
-            return True
-        else:
-            return False
+        return self.amount < other.amount
+
+    def __le__(self, other):
+        return self.amount <= other.amount
+
+    def __eq__(self, other):
+        return self.amount == other.amount
+
+    def __ne__(self, other):
+        return self.amount != other.amount
+
+    def __gt__(self, other):
+        return self.amount > other.amount
+
+    def __ge__(self, other):
+        return self.amount >= other.amount
+
 
 ### CURRENCY CONVERSION
     @property
     def curr_exchange(self):
-        return self._curr_exchange
+        return self.curr_exchange  # self._curr_exchange
+    # As I understood we need @property
+    # for creation a calculated property (attribute).
+    # While @setter set the certain instruction (rule)
+    # of calculation of this property.
 
-    @curr_exchange.setter
+## Variant 1 (old):
+# 1. using 'setter' as a function
+# 2. _curr_exchange was a protected attribute
+    # @property
+    # def curr_exchange(self):
+    #     return self._curr_exchange
+
+    # @curr_exchange.setter
+    # def curr_exchange(self, currency):
+    #     cec = dict(USD = 64.42, GBP = 79.19)  # hidden data
+    #     x = self.amount/cec[currency]
+    #     self._curr_exchange  = int(100*x)/100
+
+## Variant 2 (new): curr_exchange is just a method of class
     def curr_exchange(self, currency):
         cec = dict(USD = 64.42, GBP = 79.19)  # hidden data
         x = self.amount/cec[currency]
-        self._curr_exchange  = int(100*x)/100
+        return int(100*x)/100
+
 
 ### TESTING
 m1 = Money(200, 80)
@@ -105,6 +140,7 @@ m2 = Money(100, 64)
 print(m1.amount)
 print(m2.amount)
 
+print('\n <<< ARITHMETIC >>>')
 m3 = m1 + m2
 print('\n')
 print(' {}'.format(m1.amount))
@@ -133,12 +169,47 @@ print('{} / {}'.format(m2.amount, denominator))
 print('='*len(str(m2.amount)) + ' Division')
 print(m4.amount)
 
+print('\n <<< COMPARISON >>>')
 print('')
 print('{} < {}'.format(m1.amount, m2.amount))
 print(m1 < m2)
 
 print('')
-key = 'USD'  # or 'GBP'
-m1.curr_exchange = key
+print('{} <= {}'.format(m1.amount, m2.amount))
+print(m1 <= m2)
+
+print('')
+print('{} == {}'.format(m1.amount, m2.amount))
+print(m1 == m2)
+
+print('')
+print('{} != {}'.format(m1.amount, m2.amount))
+print(m1 != m2)
+
+print('')
+print('{} >= {}'.format(m1.amount, m2.amount))
+print(m1 >= m2)
+
+print('')
+print('{} > {}'.format(m1.amount, m2.amount))
+print(m1 > m2)
+
+
+print('\n <<< CURRENCY CONVERSION >>>')
+
+### Variant 1
+# print('')
+# key = 'USD'  # or 'GBP'
+# m1.curr_exchange = key
+# print('conversion sum {} in {}'.format(m1.amount, key))
+# print(m1.curr_exchange)
+
+### Variant 2
+print('')
+key = 'GBP'  # or 'GBP'
 print('conversion sum {} in {}'.format(m1.amount, key))
-print(m1.curr_exchange)
+print(m1.curr_exchange(key))
+
+### for my thoughts
+# m1._curr_exchange = 42
+# print(m1.curr_exchange)
