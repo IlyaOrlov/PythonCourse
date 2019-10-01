@@ -82,6 +82,8 @@ class Money:
                   'second should be a number (integer or float).\n')
         except ZeroDivisionError:
             print('\nI will not divide on 0!\n')
+        except Exception as ex:
+            print(ex)
 
 
 ### COMPARISON
@@ -162,7 +164,7 @@ print('{} * {}'.format(m2.amount, multiplier))
 print('='*len(str(m2.amount)) + ' Multiplication')
 print(m4.amount)
 
-denominator = 7
+denominator = 'a'
 m4 = m2/denominator
 print('')
 print('{} / {}'.format(m2.amount, denominator))
