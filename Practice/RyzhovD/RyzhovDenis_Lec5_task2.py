@@ -30,9 +30,8 @@ class WrapStrToFile:
         # and than do 'try' and 'finally'.
         # But for tutorial reason I include except for particular error.
         try:
-            fo = open(self.filepath, 'r')  # May be this file exists.
-            substance = fo.read()
-            fo.close()
+            with open(self.filepath, 'r') as fo:  # May be this file exists.
+                substance = fo.read()
         except FileNotFoundError as ex:  # If the file does not exist.
             substance = 'File is not found.'
         finally:
@@ -42,7 +41,6 @@ class WrapStrToFile:
     def content(self, value):  # We create file and its content.
         with open(self.filepath, 'w') as fo:
             fo.write(value)
-            fo.close()
 
     @content.deleter
     def content(self):  # We delete file.
