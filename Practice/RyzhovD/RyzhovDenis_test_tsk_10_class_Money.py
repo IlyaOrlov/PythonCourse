@@ -13,12 +13,9 @@ There are three types of operations are defined:
     multiplication
     true division
 2.comparison (now only <)
-    <
-    # <=
-    # ==
-    # !=
-    # >=
-    # >
+    < ; <=
+    == ; !=
+    >= ; >
 3. currency conversion
 
 '''
@@ -164,7 +161,7 @@ print('{} * {}'.format(m2.amount, multiplier))
 print('='*len(str(m2.amount)) + ' Multiplication')
 print(m4.amount)
 
-denominator = 'a'
+denominator = 7
 m4 = m2/denominator
 print('')
 print('{} / {}'.format(m2.amount, denominator))
@@ -208,10 +205,9 @@ print('\n <<< CURRENCY CONVERSION >>>')
 
 ### Variant 2
 print('')
-key = 'GBP'  # or 'GBP'
+key = 'USD'  # or 'GBP'
 print('conversion sum {} in {}'.format(m1.amount, key))
 print(m1.curr_exchange(key))
 
-### for my thoughts
-# m1._curr_exchange = 42
-# print(m1.curr_exchange)
+
+
