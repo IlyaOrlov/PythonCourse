@@ -1,4 +1,4 @@
-st = "dvst\tdsvsdvvcascaac\tvacczvvsvvdvvxxvvsvsdv"
+st = "\ndv\nstdsvsdvvcascaacv\nacczvvsvvdvvxxvvsvs\ndv"
 
 
 class My_Iterator:
@@ -6,32 +6,23 @@ class My_Iterator:
     def __init__(self, text, it):
         self.text = text
         self.it = it
-        self.num = self.text.find(self.it)
+        self.flag = True
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        if self.num is None:
-            raise StopIteration
-        if self.num == -1:
-            self.num = None
-            return self.text
-        elif self.num == 0:
-            num = self.text.find(self.it, self.num + 1)
+        if self.flag:
+            num = self.text.find(self.it)
+            text = self.text[:num].replace(self.it, "")
             if num == -1:
-                text = self.text[self.num + 1:]
-                self.num = None
-                return text
-            text = self.text[self.num + 1:num]
+                num = 0
+                text = self.text.replace(self.it, "")
+                self.flag = False
             self.text = self.text[num:]
-            self.num = self.text.find(self.it)
             return text
-        elif self.num > 0:
-            text = self.text[:self.num]
-            self.text = self.text[self.num:]
-            self.num = self.text.find(self.it)
-            return text
+        else:
+            raise StopIteration
 
 
 for i in My_Iterator(st, '\t'):
