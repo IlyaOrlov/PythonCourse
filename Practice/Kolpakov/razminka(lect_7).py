@@ -4,19 +4,20 @@
 
 class Iter:
     def __init__(self, sym, st):
-        self.st = st.split(sym)
+        self.st = st
         self.i = 0
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        if self.i < len(self.st):
-            ret = self.st[self.i]
-            self.i += 1
-            return ret
-        else:
-            raise StopIteration()
+        for k in self.st.split('\t'):
+            if self.i < len(self.st.split('\t')):
+                ret = self.st.split('\t')[self.i]
+                self.i += 1
+                return ret
+            else:
+                raise StopIteration()
 
 
 st = 'fgjfgjy\tjuiliedeh\tbdrtl.iop;\tcghkhk,ouil\thjk'
