@@ -7,7 +7,6 @@ def my_format(* args):
     for idx, val in enumerate(args):
         if idx!=0:
             if count==0:
-                print(res.count("{" + str(idx - 1) + "}"))
                 if res.count("{" + str(idx - 1) + "}") > 0:
                     res = res.replace("{" + str(idx - 1) + "}", str(val))
                 else:
