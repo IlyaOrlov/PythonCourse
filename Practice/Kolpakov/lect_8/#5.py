@@ -4,7 +4,7 @@ def count_symbol(s,k):
     for i in range(len(s)):
         if s[i] == k:
             bukv += 1
-    return(bukv)
+    return bukv
 
 
 s = 'dhhj df55 ghk 346'

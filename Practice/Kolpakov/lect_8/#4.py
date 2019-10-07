@@ -19,3 +19,15 @@ def to_title_1(s):
 
 s = 'dhhj df55 ghk 346'
 print(to_title_1(s))
+
+#Num 4/2
+def to_title_1(s):
+    s1 = s.split(' ')
+    s2 = []
+    for i in s1:
+        s2.append(i[0].upper() + i[1:])
+    s2 = ' '.join(s2)
+    return s2
+
+s = 'dhhj df55 ghk 346'
+print(to_title_1(s))

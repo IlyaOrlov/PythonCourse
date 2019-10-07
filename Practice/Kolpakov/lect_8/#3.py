@@ -9,10 +9,12 @@ def my_range(start, stop, step):
             yield start
             start -= step
     elif step == 0:
-        yield '!!!step must not be zero!!!'
+        yield None
     else:
         yield None
 
 
 for i in (my_range(-10, 0, 2)):
     print(i)
+
+

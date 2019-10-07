@@ -30,13 +30,13 @@ class Money:
             kop = kop % 100
             return Money(rub, kop)
         else:
-            return 'Error! Вы должник!'
+            return None
 
     # Деление
 
     def __truediv__(self, other):
         if other.to_kop() == 0:
-            return 'Error! Division by zero!'
+            return None
         else:
             kop = self.to_kop() / other.to_kop()
             return Money(int(kop // 100), int(kop % 100))
