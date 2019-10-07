@@ -13,5 +13,5 @@ class Pupil(Man):
         return print ("{}: I'm not ready yet".format(self.name))
 
 
-a=Pupil("Вяся")
+a=Pupil("Вася")
 a.solve_task()
