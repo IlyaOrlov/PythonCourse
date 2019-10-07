@@ -6,10 +6,9 @@ def private_func(d):
     try:
         num = d.num
     except AttributeError:
-        print('Not private info')
+        print('Private info is not set for the {}'.format(threading.current_thread().name))
     else:
-        print('Current thread name: {}'.format(threading.current_thread().name))
-        print('Private info number: {}'.format(num))
+        print('Private info number {} is set for the {}'.format(num, threading.current_thread().name))
 
 
 def func(d):
