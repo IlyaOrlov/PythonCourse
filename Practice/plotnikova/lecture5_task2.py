@@ -1,14 +1,6 @@
 import time
 import random
-
-class Man():
-
-    def __init__(self, name=""):
-        self.name=name
-        # self.solve_task()
-
-    def solve_task(self):
-        return print ("{}: I'm not ready yet".format(self.name))
+from lecture5_task1 import Man
 
 
 class Pupil(Man):
@@ -21,5 +13,5 @@ class Pupil(Man):
         return print ("{}: I'm not ready yet".format(self.name))
 
 
-a=Pupil("Вяся")
+a=Pupil("Вася")
 a.solve_task()
