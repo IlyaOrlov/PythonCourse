@@ -2,10 +2,8 @@ import time
 
 
 class TimeCodeExecution:
-    def __init__(self):
-        self.begin = time.time()
-
     def __enter__(self):
+        self.begin = time.time()
         print('Время начала исполнения кода {} секунд'.format(str(self.begin)))
 
     def __exit__(self, exc_type, exc_val, exc_tb):
