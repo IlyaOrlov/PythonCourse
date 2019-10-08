@@ -1,5 +1,5 @@
 import time
-import multiprocessing
+from multiprocessing import Process
 
 
 def adder(*args):
@@ -18,17 +18,26 @@ def adder(*args):
 
 
 if __name__ == '__main__':  # обязательно для многопроцессного приложения
-    start_time = time.time()
-    multiprocess = []
-    p1 = multiprocessing.Process(target=adder, args=('aaa', 'bbbb', 'cccc', 'dddd',))
-    multiprocess.append(p1)
-    p2 = multiprocessing.Process(target=adder, args=(1, 2, 3, 4,))
-    multiprocess.append(p2)
-    p3 = multiprocessing.Process(target=adder, args=(5.5, 7.8, 3.4, 5.6,))
-    multiprocess.append(p3)
-    p4 = multiprocessing.Process(target=adder, args=([1, 2, 3, 4, 5], [10, 55, 77, 89], ['asd', 'rrr'], [12.3, 13.2],))
-    multiprocess.append(p4)
-    for mp in multiprocess:
-        mp.start()
-        mp.join()
-    print('Общее время вычислений в секундах: {}'.format(int(time.time() - start_time)))
+    args = [('aaa', 'bbbb', 'cccc', 'dddd',),
+            (1, 2, 3, 4,),
+            (5.5, 7.8, 3.4, 5.6,),
+            ([1, 2, 3, 4, 5], [10, 55, 77, 89], ['asd', 'rrr'], [12.3, 13.2],)]
+    # processes = []
+    # for arg in args:
+    #     processes.append(Process(target=adder, args=arg))
+    # for p in processes:
+    #     p.start()
+    # for p in processes:
+    #     p.join()
+
+    def my_gen_proc(func, args):
+        processes = []
+        for arg in args:
+            processes.append(Process(target=func, args=arg))
+        for p in processes:
+            p.start()
+        for p in processes:
+            yield p.join()
+
+    for _ in my_gen_proc(adder, args):
+        continue
