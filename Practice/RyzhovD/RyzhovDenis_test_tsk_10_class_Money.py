@@ -61,6 +61,7 @@ class Money:
             print('\nCheck the types of your variables: \n'
                   'first should be instance of class Money,\n'
                   'second should be a number (integer or float).\n')
+            return None
             # raise TypeError
 
 
@@ -76,11 +77,16 @@ class Money:
         except TypeError:
             print('\nCheck the types of your variables: \n'
                   'first should be instance of class Money,\n'
-                  'second should be a number (integer or float).\n')
+                  'second should be a number (integer or float).\n'
+                  'But you input {} and {}.\n'
+                  .format(str(type(self)), str(type(other))))
+            return None
         except ZeroDivisionError:
             print('\nI will not divide on 0!\n')
+            return None
         except Exception as ex:
-            print(ex)
+            print('Something goes wrong with division...')
+            return None
 
 
 ### COMPARISON
@@ -161,11 +167,12 @@ print('{} * {}'.format(m2.amount, multiplier))
 print('='*len(str(m2.amount)) + ' Multiplication')
 print(m4.amount)
 
-denominator = 7
+denominator = 1+2j
 m4 = m2/denominator
 print('')
 print('{} / {}'.format(m2.amount, denominator))
 print('='*len(str(m2.amount)) + ' Division')
+print(m4)
 print(m4.amount)
 
 print('\n <<< COMPARISON >>>')
