@@ -6,15 +6,6 @@ in
 s) serial mode
 t) threading mode
 m) multiprocessing mode
-
-There are 2 questions:
-1. I propose to use one 'for' to initialize threads and to join them.
-I didn't notice difference in execution time for the case with 1 or 2 'for'.
-What the reason of this effect?
-
-2. Why we should to start all of processes and only then make 'join'
-(i.e., wait for competion of each processes)?
-The same question is for threads.
 '''
 
 import threading
@@ -61,17 +52,19 @@ print('Calculations of prime numbers in given range as a series '
 print('> THREADING <')
 start_clock = time.time()
 
+threads = []
 for j in range(3):
     if j == 0:
         start = 3
     else:
         start = j*(10**POWER)+1
     end = (j+1)*(10**POWER)
-    # create an oject of threading
+    # create an object of threading
     thr = threading.Thread(target= my_find_primes, args=(end, start))  # creation of thread
     thr.start()  # [cap] start of the current thread
-# I propose to use one 'for' to initialize threads and to join them.
-# I didn't notice difference in execution time for the case with 1 or 2 'for'
+    threads.append(thr)
+
+for thr in threads:
     thr.join()  #  the program waits for completion of each thread
 
 # The question is: How to read the result of executing of each thread?
@@ -97,9 +90,7 @@ if __name__ == '__main__': # NECESSARY!
         prc = multiprocessing.Process(target=my_find_primes, args=(end, start))
         prc.start()
         processes.append(prc)
-    # Why we should to start all of processes and only then make 'join'
-    # (i.e., wait for competion of each processes)?
-    # The same question is for threads.
+
     for prc in processes:
         prc.join()
 
