@@ -1,7 +1,6 @@
 '''
 Function my_format which is my realization of format.
 It works with substitution of {} with everything you want.
-But I have an error for 'numbered' version: when I have {\d}.
 '''
 
 import re
@@ -13,17 +12,12 @@ def my_format(string, *args):
     if len(re.findall('{\d+}', string)) > 0:  # Case of 'numbered' patterns
         findObj = re.findall('{\d+}', string)
         for x in findObj:  # x is an string, kind of '{1}' or '{0}'
-            print('x = {}'.format(x))  ##
-            print('repr(x) = {}'.format(repr(x)))  ##
             x_int = int(x[1:len(x)-1])  # extracting integer number from x
-            print('x_int = {}'.format(x_int))  ##
-            print('args[x_int] = {}'.format(args[x_int]))  ##
-            string = re.sub(repr(x), str(args[x_int]), string)  # does not raise error,
-                                                            # but do nothing
-            # string = re.sub(x, str(args[x_int]), string)  # error
-            # string = re.sub(r'\{1\}', str(args[1]), string)  # it works
-            print(string)  ##
-            print('-- iter --\n')  ##
+            # string = re.sub(repr(x), str(args[x_int]), string)  # does not raise error,
+                                                            # but do nothing.
+            # The reason is: '{' and '}' are special symbols for re.methods.
+            # Therefore here we use replace method for string.
+            string = string.replace(x, str(args[x_int]))
     else:
         ### Case of not 'numbered' patterns (i.e., just {})
         for x in args:
@@ -60,4 +54,4 @@ print(frmt)
 print('')
 Quote = '{1}, {0}, {2}'
 frmt = my_format(Quote, 'a', 'b', 'c')
-print('answer is {}'.format(frmt))
+print('The answer is: {}'.format(frmt))
