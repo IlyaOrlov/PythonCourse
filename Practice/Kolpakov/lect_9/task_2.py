@@ -28,14 +28,16 @@ if __name__ == '__main__':
     start = time.time()
     num_start = 1
     num_end = 0
+    processes = []
     for j in type_list:
-        print(f'start #{num_start}')
         num_start += 1
         num_end += 1
         #print(j)
         p = Process(target=addition, args=j)
         p.start()
-        p.join()
-        print(f'end #{num_end}')
+        processes.append(p)
+
+    for k in processes:
+        k.join()
 
     print(f'время выполнения: {time.time() - start}')
