@@ -1,25 +1,6 @@
-import socket
 import re
-
-
-def decoder(phrase, step):
-    step = -step
-    alphabet_en = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.,:-!'
-    decod_phrase = ''
-    for symbol in phrase:
-        index = alphabet_en.find(symbol)
-        new_index = step + index
-        if step >= 0:
-            while new_index >= len(alphabet_en):
-                new_index -= len(alphabet_en)
-            if new_index < len(alphabet_en):
-                decod_phrase += alphabet_en[new_index]
-        else:
-            while new_index < -len(alphabet_en):
-                new_index += len(alphabet_en)
-            if new_index > -len(alphabet_en):
-                decod_phrase += alphabet_en[new_index]
-    return decod_phrase
+import socket
+from ciphercaesar import decoder
 
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -27,7 +8,6 @@ host = '127.0.0.1'
 port = 12345
 s.bind((host, port))
 s.listen(5)
-
 while True:
     conn, addr = s.accept()
     data = conn.recv(1024)

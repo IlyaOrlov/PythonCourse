@@ -1,25 +1,5 @@
 import socket
-
-
-def encoder(phrase, step):  # Буду использовать для шифровки сообщений "Шифр Цезаря"
-    alphabet_en = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.,:-!'
-    phrase = phrase.strip(' ')
-    encod_phrase = ''
-    for symbol in phrase:
-        index = alphabet_en.find(symbol)
-        new_index = step + index
-        if step >= 0:
-            while new_index >= len(alphabet_en):
-                new_index -= len(alphabet_en)
-            if new_index < len(alphabet_en):
-                encod_phrase += alphabet_en[new_index]
-        else:
-            while new_index < -len(alphabet_en):
-                new_index += len(alphabet_en)
-            if new_index > -len(alphabet_en):
-                encod_phrase += alphabet_en[new_index]
-    return encod_phrase
-
+from ciphercaesar import encoder
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = '127.0.0.1'
