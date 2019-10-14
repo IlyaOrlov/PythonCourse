@@ -9,7 +9,7 @@ def add(*args):
     elif isinstance(args[0], list):
         back = list()
     else:
-        back = ' '
+        back = ''
 
     for elem in args:
         back += elem
