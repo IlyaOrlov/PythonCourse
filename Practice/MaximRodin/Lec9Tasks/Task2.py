@@ -1,4 +1,4 @@
-import multiprocessing
+from multiprocessing import Process
 import time
 
 
@@ -19,23 +19,25 @@ def add(*args):
 
 
 if __name__ == '__main__':
-    start_time = time.time()
-    multiprocess = []
-    p1 = multiprocessing.Process(target=add, args=(1, 2, 3, 4,))
-    multiprocess.append(p1)
-    p2 = multiprocessing.Process(target=add, args=(1.6, 2.7, 3.3, 5.4,))
-    multiprocess.append(p2)
-    p3 = multiprocessing.Process(target=add, args=('a', 'b', 'c', 'd',))
-    multiprocess.append(p3)
-    p4 = multiprocessing.Process(target=add, args=([1, 2, 3, 4], ['abcd'], [1.1, 2.2],))
-    multiprocess.append(p4)
-    p1.start()
-    p2.start()
-    p3.start()
-    p4.start()
-    p1.join()
-    p2.join()
-    p3.join()
-    p4.join()
+    args = [('aaa', 'bbbb', 'cccc'),
+            (1, 2, 3, 4,),
+            (1.1, 2.2, 3.3, 4.4,),
+            ([1, 2, 3], ['asd', 'rrr'], [10.3, 2.2],)]
+
+    def my_proc(func, args):
+        multiprocess = []
+        for arg in args:
+            multiprocess.append(Process(target=func, args=arg))
+        for p in multiprocess:
+            p.start()
+            yield p
+
+
+    new_list = list(my_proc(add, args))
+
+    for p in new_list:
+        p.join()
+
+
 
 

@@ -1,5 +1,5 @@
 import time
-import multiprocessing
+from multiprocessing import Process
 
 def find_primes(end,start):
     start_time = time.time()
@@ -20,17 +20,22 @@ def find_primes(end,start):
 
 
 if __name__ == '__main__':
-    restime = []
-    for i in range(3):
-        start_time = time.time()
-        p1 = multiprocessing.Process(target=find_primes, args=(10000, 3))
-        p2 = multiprocessing.Process(target=find_primes, args=(20000, 10001,))
-        p3 = multiprocessing.Process(target=find_primes, args=(30000, 20001,))
-        p1.start()
-        p2.start()
-        p3.start()
-        p1.join()
-        p2.join()
-        p3.join()
-        restime.append(time.time() - start_time)
+    args = [(10000, 3),
+           (20000, 10001,),
+           (30000, 20001,)]
+
+
+    def my_proc(func, args):
+        multiprocess = []
+        for arg in args:
+            multiprocess.append(Process(target=func, args=arg))
+        for p in multiprocess:
+            p.start()
+            yield p
+
+
+    new_list = list(my_proc(find_primes, args))
+
+    for p in new_list:
+        p.join()
         break
