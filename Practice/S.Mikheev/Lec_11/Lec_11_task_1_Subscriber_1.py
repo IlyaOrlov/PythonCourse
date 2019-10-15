@@ -1,5 +1,5 @@
 import pika
-import random
+
 
 NAME = 'even numbers'
 connection = pika.BlockingConnection(
@@ -11,9 +11,11 @@ queue_name = result.method.queue
 channel.queue_bind(exchange='logs2', queue=queue_name, routing_key='task_queue')
 
 
-def callback(ch, method, properties, body):
-    body = 'Number {} is {}'.format(body.decode(), NAME)
-    print(body)
+def callback(ch, method, properties, body, filename='even_numbers.txt'):
+    body = body.decode()
+    print('Number {} is {}'.format(body, NAME))
+    with open(filename, "a") as file:
+        file.write('{}, '.format(body))
     channel.basic_ack(delivery_tag=method.delivery_tag)
 
 
