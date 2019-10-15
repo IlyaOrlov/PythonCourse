@@ -60,7 +60,9 @@ class Money:
         except TypeError:
             print('\nCheck the types of your variables: \n'
                   'first should be instance of class Money,\n'
-                  'second should be a number (integer or float).\n')
+                  'second should be a number (integer or float).\n'
+                  'But you input {} and {}.\n'
+                  .format(str(type(self)), str(type(other))))
             return None
             # raise TypeError
 
@@ -82,10 +84,10 @@ class Money:
                   .format(str(type(self)), str(type(other))))
             return None
         except ZeroDivisionError:
-            print('\nI will not divide on 0!\n')
+            print('\nDescent people do not divide on 0!\n')
             return None
         except Exception as ex:
-            print('Something goes wrong with division...')
+            print('Something goes wrong with this division...\n{}'.format(ex))
             return None
 
 
@@ -150,14 +152,14 @@ m3 = m1 + m2
 print('\n')
 print(' {}'.format(m1.amount))
 print('+{}'.format(m2.amount))
-print('='*(len(str(m3.amount)) + 1) + ' Addition')
+print('=' * (len(str(m3.amount)) + 1) + ' Addition')
 print(m3.amount)
 
 m3 = m1 - m2
 print('\n')
 print(' {}'.format(m1.amount))
 print('-{}'.format(m2.amount))
-print('='*len(str(m3.amount)) + ' Subtraction')
+print('=' * len(str(m3.amount)) + ' Subtraction')
 print(m3.amount)
 
 multiplier = -3.1415926
@@ -167,12 +169,12 @@ print('{} * {}'.format(m2.amount, multiplier))
 print('='*len(str(m2.amount)) + ' Multiplication')
 print(m4.amount)
 
-denominator = 1+2j
+denominator = 4.83
 m4 = m2/denominator
 print('')
 print('{} / {}'.format(m2.amount, denominator))
 print('='*len(str(m2.amount)) + ' Division')
-print(m4)
+# print(m4)
 print(m4.amount)
 
 print('\n <<< COMPARISON >>>')
@@ -216,5 +218,11 @@ key = 'USD'  # or 'GBP'
 print('conversion sum {} in {}'.format(m1.amount, key))
 print(m1.curr_exchange(key))
 
-
-
+# ### OFFTOPIC TEST for Anton
+# Mlist = [m1, m2, Money(160, 84)]
+# print('\n--- OFFTOPIC TEST for Anton [instance]')
+# print(Money(200, 80) in Mlist)
+# Mlist.append(m3)
+# for x in Mlist:
+#     if Money(200, 80) == x:
+#         print('\nBingo!')
