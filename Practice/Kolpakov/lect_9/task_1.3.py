@@ -27,4 +27,4 @@ if __name__ == '__main__':
     for i in processes:
         i.join()
 
-print(f'время выполнения: {time.time() - start}')
+    print(f'время выполнения: {time.time() - start}')
