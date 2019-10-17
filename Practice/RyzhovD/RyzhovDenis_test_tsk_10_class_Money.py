@@ -82,13 +82,13 @@ class Money:
                   'second should be a number (integer or float).\n'
                   'But you input {} and {}.\n'
                   .format(str(type(self)), str(type(other))))
-            return None
+            # return None
         except ZeroDivisionError:
             print('\nDescent people do not divide on 0!\n')
-            return None
+            # return None
         except Exception as ex:
             print('Something goes wrong with this division...\n{}'.format(ex))
-            return None
+        return None
 
 
 ### COMPARISON
@@ -169,7 +169,7 @@ print('{} * {}'.format(m2.amount, multiplier))
 print('='*len(str(m2.amount)) + ' Multiplication')
 print(m4.amount)
 
-denominator = 4.83
+denominator = 3.25
 m4 = m2/denominator
 print('')
 print('{} / {}'.format(m2.amount, denominator))
