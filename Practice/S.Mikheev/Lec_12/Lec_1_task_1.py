@@ -1,5 +1,5 @@
 import sqlite3
-
+import json
 
 class Wrapper:
     def __init__(self, dbasename):
@@ -14,7 +14,7 @@ class Wrapper:
         self.conn.close()
 
     def create(self, table, columns):
-        query = "CREATE TABLE {0} ({1});".format(table, columns)
+        query = "CREATE TABLE {0} ({1})".format(table, columns)
         self.conn.execute(query)
 
     def select(self, columns, table, condition=None):
@@ -25,7 +25,7 @@ class Wrapper:
             query = "SELECT {0} from {1}".format(columns, table)
         cursor = self.conn.execute(query)
         names = [description[0] for description in cursor.description]
-        return [dict(zip(names, row)) for row in cursor.fetchall()]
+        return json.dumps([dict(zip(names, row)) for row in cursor.fetchall()], sort_keys=True, indent=4)
 
     def selectall(self):
         cursor = self.conn.execute("SELECT name FROM sqlite_master WHERE type='table'")
@@ -36,10 +36,10 @@ class Wrapper:
             names = [description[0] for description in cursor.description]
             rows = cursor.fetchall()
             d[tbl[0]] = [dict(zip(names, row)) for row in rows]
-        return d
+        return json.dumps(d, sort_keys=True, indent=4)
 
     def insert(self, table, columns, data):
-        query = "INSERT INTO {0} ({1}) VALUES ({2});".format(table, columns, data)
+        query = "INSERT INTO {0} ({1}) VALUES ({2})".format(table, columns, data)
         self.conn.execute(query)
 
     def update(self, table, column, condition):
