@@ -16,15 +16,17 @@ INPUT arguments are: string (text/data), key string, and an integer.
 OUTPUT is a text (string).
 
 Realization with Python 3.6.
-Last date: 2019 Oct 16
+Last date: 2019 Oct 21
 List of modifications:
 1. Realization with single for-loop
     instead of previous version with 3 functions.
+2. Arrangement within PEP8 desires.
 """
+
 
 # action may be coding (action=integer)
 # or decoding (action=integer, which is opposite to coding action)
-def Vigenere(text, coding_key_string, action):
+def vigenere(text, coding_key_string, action):
     if action % 128 == 0:
         print('Please, choose an action in range [1 .. 127], '
               'otherwise your text will not be encrypted.')
@@ -37,12 +39,12 @@ def Vigenere(text, coding_key_string, action):
         numlst_init.append(int(ord(text[k])))
         # Displace symbols according to Vigenere mask:
         x = (numlst_init[k]
-             + action * ord(coding_key_string[k % len(coding_key_string)])) % 128
+             + action
+                 * ord(coding_key_string[k % len(coding_key_string)])) % 128
         # Transform list of numbers to the text
         # according ASCII table (128 symbols):
         text_encr += chr(x)
     return text_encr
-
 
 
 ### TEST
@@ -53,6 +55,6 @@ print('  == UNIVERSAL ==')
 print('key string    : {}'.format(key_str))
 print('multiplier = {}'.format(action))
 print('plaintext     : {}'.format(string1))
-string2 = Vigenere(string1, key_str, action)
+string2 = vigenere(string1, key_str, action)
 print('encrypted text: {}'.format(string2))
-print('decrypted text: {}'.format(Vigenere(string2, key_str, -action)))
+print('decrypted text: {}'.format(vigenere(string2, key_str, -action)))
