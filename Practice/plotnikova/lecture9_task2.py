@@ -14,16 +14,22 @@ class MyThread(threading.Thread):
             self.res= "{}: Операция не выполнена - типы данных не совпадают: {} и {}".format(thread, self.a, self.b)
         else:
             self.res= "{}:Результат: {}". format(thread, self.a+self.b)
+        print(self.res)
 
 if __name__ == '__main__':
-    arg=[
-                [1, 2],
-                ["string1", "string2"],
-                [["1", "2"], ["3","4","5"]],
-                [["1", "2"], "string2"]
-        ]
-    for i in range(4):
-        th = MyThread(arg[i][0],arg[i][1])
-        th.start()
-        print(th.res)
+    th1 = MyThread(1, 2)
+    th2 = MyThread("string1", "string2")
+    th3 = MyThread(["1", "2"], ["3","4","5"])
+    th4 = MyThread(["1", "2"], "string2")
+
+    th1.start()
+    th2.start()
+    th3.start()
+    th4.start()
+
+    th1.join()
+    th2.join()
+    th3.join()
+    th4.join()
+
 

@@ -13,11 +13,15 @@ def find_primes(n, start=3):
 
 def fun1():
     start = time.time()
-    a = [[10000], [20000, 10001], [30000,20001]]
-    for i in range(3):
-        my_thread = threading.Thread(target=find_primes, args=(a [i]))
-        my_thread.start()
-        my_thread.join()
+    th1= threading.Thread(target=find_primes, args=(10000,))
+    th2= threading.Thread(target=find_primes, args=(20000, 10001,))
+    th3= threading.Thread(target=find_primes, args=(30000,20001,))
+    th1.start()
+    th2.start()
+    th3.start()
+    th1.join()
+    th2.join()
+    th3.join()
     print('Время вычислений для 3 потоков: {}'.format(time.time() - start))
 
 def fun2():
