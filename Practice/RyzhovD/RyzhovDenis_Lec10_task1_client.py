@@ -7,7 +7,6 @@ port = 55443
 
 s.connect((host, port))
 
-# encrypted =
 encrypted_list = ['1202', 'Houston, we\'ve got a problem!']
 encrypted_pickle = pickle.dumps(encrypted_list)
 
