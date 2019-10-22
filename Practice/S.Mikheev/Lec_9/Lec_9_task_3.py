@@ -19,6 +19,11 @@ def func(d):
 
 if __name__ == '__main__':
     d = threading.local()
+    my_threads = []
     for i in range(5):
         my_thread = threading.Thread(target=func, args=(d,))
+        my_threads.append(my_thread)
         my_thread.start()
+    for my_thread in my_threads:
+        my_thread.join()
+
