@@ -2,6 +2,12 @@ import time
 import random
 
 
+
+from First import Man
+
+def solve_task(self):
+    print("I am ready")
+=======
 class Man:
     def __init__(self, name, surname):
        self.name = name
@@ -10,6 +16,7 @@ class Man:
 
     def solve_task(self):
         print("I am ready")
+
 
 
 class Pupil(Man):
