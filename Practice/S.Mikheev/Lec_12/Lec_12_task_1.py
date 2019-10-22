@@ -1,7 +1,10 @@
 import sqlite3
 import json
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ad3da31db20c3dfcd474aea5a5653e2fdfb0cb6e
 class Wrapper:
     def __init__(self, dbasename):
         self.dbasename = dbasename
@@ -24,18 +27,31 @@ class Wrapper:
             query = "SELECT {0} from {1} WHERE {2} = {3}".format(columns, table, condition[0], condition[1])
         else:
             query = "SELECT {0} from {1}".format(columns, table)
+<<<<<<< HEAD
         self.conn.row_factory = sqlite3.Row
         cursor = self.conn.execute(query)
         return json.dumps([dict(row) for row in cursor.fetchall()], sort_keys=True, indent=4)
+=======
+        cursor = self.conn.execute(query)
+        names = [description[0] for description in cursor.description]
+        return json.dumps([dict(zip(names, row)) for row in cursor.fetchall()], sort_keys=True, indent=4)
+>>>>>>> ad3da31db20c3dfcd474aea5a5653e2fdfb0cb6e
 
     def selectall(self):
         cursor = self.conn.execute("SELECT name FROM sqlite_master WHERE type='table'")
         tables = cursor.fetchall()
         d = {}
         for tbl in tables:
+<<<<<<< HEAD
             self.conn.row_factory = sqlite3.Row
             cursor = self.conn.execute("SELECT * FROM {}".format(tbl[0]))
             d[tbl[0]] = [dict(row) for row in cursor.fetchall()]
+=======
+            cursor.execute("SELECT * FROM {}".format(tbl[0]))
+            names = [description[0] for description in cursor.description]
+            rows = cursor.fetchall()
+            d[tbl[0]] = [dict(zip(names, row)) for row in rows]
+>>>>>>> ad3da31db20c3dfcd474aea5a5653e2fdfb0cb6e
         return json.dumps(d, sort_keys=True, indent=4)
 
     def insert(self, table, columns, data):
