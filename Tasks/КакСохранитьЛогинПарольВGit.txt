@@ -1,0 +1,3 @@
+Перед выполнением git push выполнить команду:
+
+git config --global credential.helper store
