@@ -1,156 +1,66 @@
-import sqlite3
+from sqlalchemy import create_engine, PrimaryKeyConstraint, func, or_
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.schema import CreateTable
+from sqlalchemy.orm import sessionmaker
 import random
 import os
-from collections import Counter
 
-db_name = "Shoppingcenter.db"
+db_name = 'Shoppingcenter.db'
+engine = create_engine('sqlite:///' + db_name)
 db_exists = os.path.exists(db_name)
-conn = sqlite3.connect(db_name)
-conn.row_factory = sqlite3.Row
+
+Base = declarative_base()
 
 
-# Конфигурирование базы данных (если необходимо выполнить в скрипте)
-def configure_db(conn):
-    cur = conn.cursor()
+class Buyer(Base):
+    __tablename__ = 'Buyers'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String)
+    balance = Column(Integer)
+    login = Column(String)
+    password = Column(String)
 
-    # Создаем таблицу Buyers
-    cur.execute("CREATE TABLE Buyers"
-                "    (Id          INTEGER    PRIMARY KEY  AUTOINCREMENT,"
-                "     Name        CHAR(128)  NOT NULL,"
-                "     Balance     REAL       DEFAULT 0,"
-                "     Login       CHAR(16)   NOT NULL,"
-                "     Password    CHAR(16)   NOT NULL)")
-
-    # Создаем таблицу Manufacturers
-    cur.execute("CREATE TABLE Manufacturers"
-                "    (Id        INTEGER    PRIMARY KEY  AUTOINCREMENT,"
-                "     Name      CHAR(128)  NOT NULL,"
-                "     Sales     REAL       DEFAULT 0)")
-
-    # Создаем таблицу Goods
-    cur.execute("CREATE TABLE Goods"
-                "    (Id           INTEGER    PRIMARY KEY  AUTOINCREMENT,"
-                "     Name         CHAR(128)  NOT NULL,"
-                "     Manufacturer CHAR(128)  NOT NULL,"
-                "     Price        REAL       NOT NULL,"
-                "     Quantity     INTEGER    DEFAULT 0)")
-
-    # Создаем таблицу BuyersGoods
-    cur.execute("CREATE TABLE BuyersGoods"
-                "    (BuyerID  INTEGER,"
-                "     GoodID   INTEGER,"
-                "     Quantity  INTEGER,"
-                "     PRIMARY KEY (BuyerID, GoodID))")
+    def __repr__(self):
+        return "<Buyer(name='{}', balance='{}', login='{}', password='{}')>".format(
+            self.name, self.balance, self.login, self.password)
 
 
-# Добавление записей в таблицу Покупатели
-def insert_buyers(conn, name, balance, login, pswd):
-    cur = conn.cursor()
-    cur.execute("INSERT INTO Buyers (Name, Balance, Login, Password)"
-                " VALUES (:name, :balance, :login, :pswd)",
-                {'name': name, 'balance': balance,
-                 'login': login, 'pswd': pswd})
-    conn.commit()
+class Good(Base):
+    __tablename__ = 'Goods'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String)
+    manufacturer = Column(String)
+    price = Column(Integer)
+    quantity = Column(Integer)
+
+    def __repr__(self):
+        return "<Good(name='{}', manufacturer='{}', price='{}', quantity='{}')>".format(
+            self.name, self.manufacturer, self.price, self.quantity)
 
 
-# Добавление записей в таблицу Производители
-def insert_manufacturers(conn, name, sales):
-    cur = conn.cursor()
-    cur.execute("INSERT INTO Manufacturers (Name, Sales)"
-                " VALUES (:name, :sales)",
-                {'name': name, 'sales': sales})
-    conn.commit()
+class BuyersGoods(Base):
+    __tablename__ = 'BuyersGoods'
+    __table_args__ = (
+        PrimaryKeyConstraint('BuyerID', 'GoodID'),)
+    BuyerID = Column(Integer)
+    GoodID = Column(Integer)
+    quantity = Column(Integer)
 
-
-# Добавление записей в таблицу Товары
-def insert_goods(conn, name, manufacturer, price, quantity):
-    cur = conn.cursor()
-    cur.execute("INSERT INTO Goods (Name, Manufacturer, Price, Quantity)"
-                " VALUES (:name, :manufacturer, :price, :quantity)",
-                {'name': name, 'manufacturer': manufacturer, 'price': price, 'quantity': quantity})
-    conn.commit()
-
-
-# Добавление записей в таблицу Покупатели-Товары
-def add_goods_to_buyer(conn, buyer_id, good_id, quantity):
-    cur = conn.cursor()
-    cur.execute("INSERT INTO BuyersGoods (BuyerID, GoodID, Quantity)"
-                " VALUES (:buyer_id, :good_id, :quantity)",
-                {'buyer_id': buyer_id, 'good_id': good_id, 'quantity': quantity})
-    conn.commit()
-
-
-# Получение списка производителей по заданным условиям
-def get_manufacturer(conn, count, price):
-    cur = conn.cursor()
-    cur.execute("SELECT G.Manufacturer"
-                " FROM Goods AS G"
-                " WHERE G.Price <= :price",
-                {'price': price})
-    print("Список Производителей, у которых не менее {} товаров по цене {} долларов и ниже:".format(count, price))
-    manufacturer_list = [row['Manufacturer'] for row in cur.fetchall()]
-    manufacturer_count = Counter(manufacturer_list)
-    return [elem for elem in manufacturer_count if manufacturer_count[elem] >= 2]
-
-
-# Получение списка покупателей, сделавших заказы
-def get_buyers(conn):
-    cur = conn.cursor()
-    cur.execute("SELECT G.Manufacturer, B.ID, B.Name, B.Balance, B.Login, B.Password"
-                " FROM Goods AS G, Buyers AS B, BuyersGoods AS BG"
-                " WHERE B.ID = BG.BuyerID AND BG.GoodID = G.Id"
-                " GROUP BY G.Manufacturer, B.ID  ORDER BY G.Manufacturer")
-    print("Информация о покупателях, которые делали заказы, "
-          "сгруппированных по компаниям производителей чьи товары покупались:")
-    for row in cur.fetchall():
-        print(dict(row))
-
-
-# Получение списка самых популярных товаров у каждого производителя с указанием количества проданных товаров
-def get_popular_goods(conn):
-    cur = conn.cursor()
-    cur.execute("SELECT G.Manufacturer, G.Id, G.Name, G.Price, BG.Quantity"
-                " FROM Goods AS G, Buyers AS B, BuyersGoods AS BG"
-                " WHERE B.ID = BG.BuyerID AND BG.GoodID = G.Id"
-                " GROUP BY G.Manufacturer, G.ID, BG.Quantity")
-    popular_goods = {}
-    for row in cur.fetchall():
-        if row['Manufacturer'] not in popular_goods:
-            popular_goods[row['Manufacturer']] = [{row['Name']: row['Quantity']}]
-        else:
-            if row['Name'] not in popular_goods[row['Manufacturer']][0]:
-                popular_goods[row['Manufacturer']][0][row['Name']] = row['Quantity']
-            else:
-                popular_goods[row['Manufacturer']][0][row['Name']] += row['Quantity']
-    for mf in popular_goods:
-        max_value = max(popular_goods[mf][0].values())
-        final_dict = {k: v for k, v in popular_goods[mf][0].items() if v == max_value}
-        popular_goods[mf] = final_dict
-    print("Список самых популярных товаров у каждого производителя с указанием количества проданных товаров:")
-    print(popular_goods)
-
-
-# Получение списка производителей товаров, которые продавались, с указанием их выручек по каждому виду товара
-def get_manufacturer_sales(conn):
-    cur = conn.cursor()
-    cur.execute("SELECT G.Manufacturer,G.Name, BG.Quantity * G.Price AS Sales"
-                " FROM Goods AS G, BuyersGoods AS BG"
-                " WHERE BG.GoodID = G.Id"
-                " GROUP BY G.Manufacturer, BG.Quantity * G.Price")
-    manufacturer_sales = {}
-    print("Список производителей товаров, которые продавались, с указанием их выручек по каждому виду товара:")
-    for row in cur.fetchall():
-        print(dict(row))
-        if row['Manufacturer'] not in manufacturer_sales:
-            manufacturer_sales[row['Manufacturer']] = row['Sales']
-        else:
-            manufacturer_sales[row['Manufacturer']] += row['Sales']
-    print("Данные о выручке производителей:")
-    print(manufacturer_sales)
+    def __repr__(self):
+        return "<BuyersGoods(BuyerID='{}', GoodID='{}', quantity='{}')>".format(
+            self.BuyerID, self.GoodID, self.quantity)
 
 
 if not db_exists:
-    configure_db(conn)
+    Base.metadata.create_all(engine)
+    print(CreateTable(Buyer.__table__).compile(engine))
+    print('Таблица Buyer создана')
+    print(CreateTable(Good.__table__).compile(engine))
+    print('Таблица Good создана')
+    print(CreateTable(BuyersGoods.__table__).compile(engine))
+    print('Таблица BuyersGoods создана')
+
     name = ['Alex', 'Sergey', 'Petr', 'Anna',
             'Nikolay', 'Victor', 'Viktoria',
             'Jack', 'Iliya', 'Julia', 'Avgust',
@@ -164,38 +74,111 @@ if not db_exists:
                'Medvedev', 'Navalniy', 'Sechin']
     manufactures = ['manufacturer_' + str(i + 1) for i in range(5)]
     goods = ['good_' + str(i + 1) for i in range(20)]
-    d = {}
+    Session = sessionmaker(bind=engine)
+    session = Session()
     for i in range(10):
-        name = random.choice(name)
-        surname = random.choice(surname)
-        bayer = '{} {}'.format(name, surname)
+        name_user = random.choice(name)
+        surname_user = random.choice(surname)
+        user = '{} {}'.format(name_user, surname_user)
         balance = random.randint(100, 1000)
-        login = 'bayer_{}'.format(i + 1)
-        pswd = '{}{}'.format(surname, random.randint(12345, 54321))
-        insert_buyers(conn, bayer, balance, login, pswd)
-    for manufacturer in manufactures:
-        insert_manufacturers(conn, manufacturer, 0)
+        login = '{}.{}'.format(name_user[0], surname_user)
+        pswd = '{}{}'.format(surname_user, random.randint(12345, 54321))
+        # Добавляем новый объект в базу
+        session.add(Buyer(name=user, balance=balance, login=login, password=pswd))
+        session.commit()
+        print('Покупатель {} добавлен в базу данных'.format(user))
     for good in goods:
-        insert_goods(conn, good, random.choice(manufactures), random.randint(1, 30), random.randint(1, 100))
+        session.add(Good(name=good,
+                         manufacturer=random.choice(manufactures),
+                         price=random.randint(1, 100),
+                         quantity=random.randint(1, 30)))
+        session.commit()
+    d = {}
     for i in range(15):
-        buyer_id = random.randint(1, 11)
-        good_id = random.randint(1, 21)
+        buyer_id = random.randint(1, 10)
+        good_id = random.randint(1, 20)
         if buyer_id not in d:
             d[buyer_id] = [good_id]
-            add_goods_to_buyer(conn, buyer_id, good_id, random.randint(1, 20))
+            session.add(BuyersGoods(BuyerID=buyer_id,
+                                    GoodID=good_id,
+                                    quantity=random.randint(1, 20)))
+            print('Добавлена новая запись в таблицу BuyersGoods')
+            session.commit()
         else:
             if good_id in d[buyer_id]:
                 while good_id in d[buyer_id]:
-                    good_id = random.randint(1, 21)
+                    good_id = random.randint(1, 20)
                     if good_id not in d[buyer_id]:
                         d[buyer_id] += [good_id]
-                        add_goods_to_buyer(conn, buyer_id, good_id, random.randint(1, 20))
+                        session.add(BuyersGoods(BuyerID=buyer_id,
+                                                GoodID=good_id,
+                                                quantity=random.randint(1, 20)))
+                        print('Добавлена новая запись в таблицу BuyersGoods')
+                        session.commit()
                         break
             else:
                 d[buyer_id] += [good_id]
-                add_goods_to_buyer(conn, buyer_id, good_id, random.randint(1, 20))
+                session.add(BuyersGoods(BuyerID=buyer_id,
+                                        GoodID=good_id,
+                                        quantity=random.randint(1, 20)))
+                print('Добавлена новая запись в таблицу BuyersGoods')
+                session.commit()
 
-# print(get_manufacturer(conn, 2, 10.0))
-get_buyers(conn)
-get_popular_goods(conn)
-get_manufacturer_sales(conn)
+# Получение списка производителей товаров по определенным параметрам
+def get_manufacturer(engine, count, price):
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    print('Список производителей, у которых не менее {} товаров по цене {} долларов и ниже:'.format(count, price))
+    for manufacturer, count_goods in session.query(Good.manufacturer, func.count(Good.manufacturer)).filter(
+            Good.price <= price).group_by(Good.manufacturer):
+        if count_goods >= count:
+            print('Производитель {} имеет {} товара(ов) по цене 10 долларов и ниже'.format(manufacturer, count_goods))
+
+
+# Получение списка покупателей, сделавших заказы
+def get_buyers(engine):
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    print("Информация о покупателях, которые делали заказы, "
+          "сгруппированных по компаниям производителей чьи товары покупались:")
+    for manufacturer, id, name, login in session.query(Good.manufacturer, Buyer.id, Buyer.name, Buyer.login).filter(
+            Buyer.id == BuyersGoods.BuyerID).filter(BuyersGoods.GoodID == Good.id).group_by(Good.manufacturer,
+                                                                                            Buyer.id):
+        print('Производитель: {} => Покупатель: ID: {}, Имя: {}, login: {}'.format(manufacturer, id, name, login))
+
+
+# Получение списка популярных товаров
+def get_popular_goods(engine):
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    print("Список самых популярных товаров у каждого производителя с указанием количества проданных товаров:")
+    for manufacturer, id in session.query(Good.manufacturer, Good.id).group_by(Good.manufacturer):
+        result = session.query(Good.manufacturer, Good.id, Good.name, Good.price, BuyersGoods.quantity).filter(
+            Buyer.id == BuyersGoods.BuyerID).filter(BuyersGoods.GoodID == Good.id).filter(
+            Good.manufacturer == manufacturer).order_by(BuyersGoods.quantity.desc()).all()[0]
+        print('Производитель: {} => Товар: ID: {}, Наименование: {}, цена: {}, количество проданных: {}'.
+              format(result[0], result[1], result[2], result[3], result[4]))
+
+
+# Получение списка производителей товаров, которые продавались, с указанием их выручек по каждому виду товара
+def get_manufacturer_sales(engine):
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    print("Список производителей товаров, которые продавались, с указанием их выручек по каждому виду товара:")
+    for manufacturer, id, name, sales in session.query(Good.manufacturer, Good.id, Good.name,
+                                                       BuyersGoods.quantity * Good.price).filter(
+        Good.id == BuyersGoods.GoodID).group_by(Good.manufacturer, Good.id).order_by(Good.id):
+        print('Производитель: {} => Товар: ID: {}, Наименование: {}, выручка: {}'.format(manufacturer, id, name, sales))
+    print("Список производителей товаров, которые еще не продавались:")
+    for manufacturer, id, name in session.query(Good.manufacturer, Good.id, Good.name).filter(
+            ~Good.id.in_(session.query(BuyersGoods.GoodID))).group_by(Good.manufacturer, Good.id):
+        print('Производитель: {} => Товар: ID: {}, Наименование: {}, выручка: 0'.format(manufacturer, id, name))
+
+
+get_manufacturer(engine, 2, 10)
+print()
+get_buyers(engine)
+print()
+get_popular_goods(engine)
+print()
+get_manufacturer_sales(engine)
