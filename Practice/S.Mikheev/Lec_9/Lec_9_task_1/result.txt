@@ -1,3 +1,0 @@
-Normal: 2.98 sec.
-Threading: 3.12 sec.
-Multiprocessing: 2.77 sec.
