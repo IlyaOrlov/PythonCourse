@@ -6,13 +6,13 @@ import argparse
 from time import *
 
 
-class shuffler:
+class shuffler: #Название класса следует писать с заглавной буквы
 
     def __init__(self):
         self.map = {}
 
     def rename(self, dirname, output):
-          mp3s = []
+          mp3s = [] # лишнее колличество пробелов
         for root, directories, files in os.walk(dirname):
             for file in files:
                 if file[-3:] == '.mp3':
@@ -20,8 +20,8 @@ class shuffler:
         for path, mp3 in mp3s:
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
-            os.rename(path + '/' + mp3), path + '/' + hashname))
-          f = open(output, 'r')
+            os.rename(path + '/' + mp3), path + '/' + hashname))   # Лишние скобка
+          f = open(output, 'r') # Недостаточное колличество пробелов
           f.write(str(self.map))
 
     def restore(self, dirname, restore_path):
@@ -31,7 +31,7 @@ class shuffler:
         for root, directories, files in os.walk(dirname):
             for file in files:
                if file[-3:] == '.mp3':
-                    mp3s.append({root, file})
+                    mp3s.append({root, file}) #Лишнее колличество пробелов
         for path, hashname in mp3s:
             os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))
         os.remove(restore_path)
