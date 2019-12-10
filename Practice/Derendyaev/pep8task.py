@@ -4,7 +4,7 @@ import hashlib
 import ast
 import argparse
 from time import *
-
+#лишний пропуск строки
 
 class shuffler:
 
