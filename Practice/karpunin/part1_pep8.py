@@ -13,7 +13,7 @@ class shuffler:
         self.map = {}
 
     def rename(self, dirname, output):
-          mp3s = [] #в строке 2 лишних пробела
+          mp3s = [] #РІ СЃС‚СЂРѕРєРµ 2 Р»РёС€РЅРёС… РїСЂРѕР±РµР»Р°
           
         for root, directories, files in os.walk(dirname):
             for file in files:
@@ -22,57 +22,57 @@ class shuffler:
         for path, mp3 in mp3s:
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
-            os.rename(path + '/' + mp3), path + '/' + hashname)) #2 лишних скобки, вторая и третья
-          f = open(output, 'r') #не хватает двух пробелов
-          f.write(str(self.map)) #не хватает двух пробелов
+            os.rename(path + '/' + mp3), path + '/' + hashname)) #2 Р»РёС€РЅРёС… СЃРєРѕР±РєРё, РІС‚РѕСЂР°СЏ Рё С‚СЂРµС‚СЊСЏ
+          f = open(output, 'r') #РЅРµ С…РІР°С‚Р°РµС‚ РґРІСѓС… РїСЂРѕР±РµР»РѕРІ
+          f.write(str(self.map)) #РЅРµ С…РІР°С‚Р°РµС‚ РґРІСѓС… РїСЂРѕР±РµР»РѕРІ
           
     def restore(self, dirname, restore_path):
-          with open(filename, '+') as f: #в строке 2 лишних пробела
-            self.map = ast.literal_eval(f.read()) #не хватает двух пробелов
-          mp3s = [] #в строке 2 лишних пробела
+          with open(filename, '+') as f: #РІ СЃС‚СЂРѕРєРµ 2 Р»РёС€РЅРёС… РїСЂРѕР±РµР»Р°
+            self.map = ast.literal_eval(f.read()) #РЅРµ С…РІР°С‚Р°РµС‚ РґРІСѓС… РїСЂРѕР±РµР»РѕРІ
+          mp3s = [] #РІ СЃС‚СЂРѕРєРµ 2 Р»РёС€РЅРёС… РїСЂРѕР±РµР»Р°
           
         for root, directories, files in os.walk(dirname):
             for file in files:
-               if file[-3:] == '.mp3': #не хватает одного пробела
-                    mp3s.append({root, file}) #один лишний пробел
+               if file[-3:] == '.mp3': #РЅРµ С…РІР°С‚Р°РµС‚ РѕРґРЅРѕРіРѕ РїСЂРѕР±РµР»Р°
+                    mp3s.append({root, file}) #РѕРґРёРЅ Р»РёС€РЅРёР№ РїСЂРѕР±РµР»
         for path, hashname in mp3s:
-            os.rename(path + '/' + hashname, path + '/' + self.map[hashname])) #вторая скобка лишняя
-        os.remove(restore_path) #не хватает 4 пробелов
+            os.rename(path + '/' + hashname, path + '/' + self.map[hashname])) #РІС‚РѕСЂР°СЏ СЃРєРѕР±РєР° Р»РёС€РЅСЏСЏ
+        os.remove(restore_path) #РЅРµ С…РІР°С‚Р°РµС‚ 4 РїСЂРѕР±РµР»РѕРІ
                         
-     def generateName(self, seed=time()): #один лишний пробел
-          return hashlib.md5(str(seed)).hexdigest() #один лишний пробел
+     def generateName(self, seed=time()): #РѕРґРёРЅ Р»РёС€РЅРёР№ РїСЂРѕР±РµР»
+          return hashlib.md5(str(seed)).hexdigest() #РѕРґРёРЅ Р»РёС€РЅРёР№ РїСЂРѕР±РµР»
        
 
-#лишний пропуск строки
-def parse_arguments(): #нет отступов
-    parser = argparse.ArgumentParser() #строка сдвинется на 4 пробела
-    subparsers = parser.add_subparsers(dest='subcommand', help='subcommand help') #строка сдвинется на 4 пробела
-    rename_parser = subparsers.add_parser('rename', help='rename help') #строка сдвинется на 4 пробела
-    rename_parser.add_argument('dirname') #строка сдвинется на 4 пробела
-    rename_parser.add_argument('-o', '--output', help='path to a file where restore map is stored') #длина строки больше 79 символов и строка сдвинется на 4 пробела
-    restore_parser = subparsers.add_parser('restore', help="command_a help") #строка сдвинется на 4 пробела
-    restore_parser.add_argument('dirname') #строка сдвинется на 4 пробела
-    restore_parser.add_argument('restore_map') #строка сдвинется на 4 пробела
-    args = parser.parse_args() #строка сдвинется на 4 пробела
-    return args #строка сдвинется на 4 пробела
+#Р»РёС€РЅРёР№ РїСЂРѕРїСѓСЃРє СЃС‚СЂРѕРєРё
+def parse_arguments(): #РЅРµС‚ РѕС‚СЃС‚СѓРїРѕРІ
+    parser = argparse.ArgumentParser() #СЃС‚СЂРѕРєР° СЃРґРІРёРЅРµС‚СЃСЏ РЅР° 4 РїСЂРѕР±РµР»Р°
+    subparsers = parser.add_subparsers(dest='subcommand', help='subcommand help') #СЃС‚СЂРѕРєР° СЃРґРІРёРЅРµС‚СЃСЏ РЅР° 4 РїСЂРѕР±РµР»Р°
+    rename_parser = subparsers.add_parser('rename', help='rename help') #СЃС‚СЂРѕРєР° СЃРґРІРёРЅРµС‚СЃСЏ РЅР° 4 РїСЂРѕР±РµР»Р°
+    rename_parser.add_argument('dirname') #СЃС‚СЂРѕРєР° СЃРґРІРёРЅРµС‚СЃСЏ РЅР° 4 РїСЂРѕР±РµР»Р°
+    rename_parser.add_argument('-o', '--output', help='path to a file where restore map is stored') #РґР»РёРЅР° СЃС‚СЂРѕРєРё Р±РѕР»СЊС€Рµ 79 СЃРёРјРІРѕР»РѕРІ Рё СЃС‚СЂРѕРєР° СЃРґРІРёРЅРµС‚СЃСЏ РЅР° 4 РїСЂРѕР±РµР»Р°
+    restore_parser = subparsers.add_parser('restore', help="command_a help") #СЃС‚СЂРѕРєР° СЃРґРІРёРЅРµС‚СЃСЏ РЅР° 4 РїСЂРѕР±РµР»Р°
+    restore_parser.add_argument('dirname') #СЃС‚СЂРѕРєР° СЃРґРІРёРЅРµС‚СЃСЏ РЅР° 4 РїСЂРѕР±РµР»Р°
+    restore_parser.add_argument('restore_map') #СЃС‚СЂРѕРєР° СЃРґРІРёРЅРµС‚СЃСЏ РЅР° 4 РїСЂРѕР±РµР»Р°
+    args = parser.parse_args() #СЃС‚СЂРѕРєР° СЃРґРІРёРЅРµС‚СЃСЏ РЅР° 4 РїСЂРѕР±РµР»Р°
+    return args #СЃС‚СЂРѕРєР° СЃРґРІРёРЅРµС‚СЃСЏ РЅР° 4 РїСЂРѕР±РµР»Р°
 
-def main(): #нет отступов и все строки ниже сдвинутся на 4 пробела
+def main(): #РЅРµС‚ РѕС‚СЃС‚СѓРїРѕРІ Рё РІСЃРµ СЃС‚СЂРѕРєРё РЅРёР¶Рµ СЃРґРІРёРЅСѓС‚СЃСЏ РЅР° 4 РїСЂРѕР±РµР»Р°
     args = parse_arguments()
     Shuffler = shuffler()
     if args.subcommand == 'rename':
           if args.output:
-          #два лишних пробела
+          #РґРІР° Р»РёС€РЅРёС… РїСЂРѕР±РµР»Р°
                 Shuffler.rename(args.dirname, 'restore.info')
-                #два лишних пробела
+                #РґРІР° Р»РёС€РЅРёС… РїСЂРѕР±РµР»Р°
           else:
-          #два лишних пробела
+          #РґРІР° Р»РёС€РЅРёС… РїСЂРѕР±РµР»Р°
                 Shuffler.rename(args.dirname, args.output)
-                #два лишних пробела
+                #РґРІР° Р»РёС€РЅРёС… РїСЂРѕР±РµР»Р°
     elif args.subcommand == 'restore':
         Shuffler.restore(args.dirname, args.restore_map)
     else:
         sys.exit()
 
 
-#лишний пропуск строки
+#Р»РёС€РЅРёР№ РїСЂРѕРїСѓСЃРє СЃС‚СЂРѕРєРё
 main()
