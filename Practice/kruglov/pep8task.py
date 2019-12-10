@@ -13,47 +13,47 @@ class shuffler:
         self.map = {}
 
     def rename(self, dirname, output):
-        # Vertical alignment required
+        # Two extra spaces
           mp3s = []
         for root, directories, files in os.walk(dirname):
             for file in files:
                 if file[-3:] == '.mp3':
                     mp3s.append([root, file])
         for path, mp3 in mp3s:
-            # The variable name matches the system
+            # Failed variable name "hashname"
             hashname = self.generateName() + '.mp3'
-            # The variable name matches the system
+            # Failed variable name "hashname"
             self.map[hashname] = mp3
-            # Two extra brackets
-            # The variable name matches the system
+            # Two extra brackets, first-after'mp3', second-after'hashname'
+            # Failed variable name "hashname"
             os.rename(path + '/' + mp3), path + '/' + hashname))
-          # Vertical alignment required
+          # Two extra spaces
           f = open(output, 'r')
-          # Vertical alignment required
+          # Two extra spaces
           f.write(str(self.map))
 
     def restore(self, dirname, restore_path):
-          # Vertical alignment required
-          # An undeclared variable is used, maybe the name of the variable is dirname
+          # Two extra spaces
+          # An undeclared variable is used-'filename', maybe the name of the variable is 'dirname'
           with open(filename, '+') as f:
-            # Vertical alignment required
+            # Two extra spaces
             self.map = ast.literal_eval(f.read())
-          # Vertical alignment required
+          # Two extra spaces
           mp3s = []
         for root, directories, files in os.walk(dirname):
             for file in files:
-               # Vertical alignment required
+               # Two extra spaces
                if file[-3:] == '.mp3':
                     mp3s.append({root, file})
-        # The variable name matches the system
+        # Failed variable name "hashname"
         for path, hashname in mp3s:
-            # The variable name matches the system
-            # One extra brackets
+            # Failed variable name "hashname"
+            # One extra brackets, after '[hashname])'
             os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))
         os.remove(restore_path)
                 
      def generateName(self, seed=time()):
-          # Vertical alignment required
+          # Two extra spaces
           return hashlib.md5(str(seed)).hexdigest()
 
 
@@ -71,15 +71,16 @@ def parse_arguments():
 
 def main():
     args = parse_arguments()
-    # Variable should be lowercase and the class name with a capital letter
+    # Variable 'Shuffler' should be lowercase and
+    # the class name 'shuffler()' with a capital letter
     Shuffler = shuffler()
     if args.subcommand == 'rename':
-          # Vertical alignment required
+          # Two extra spaces
           if args.output:
-                # Vertical alignment required
+                # Two extra spaces
                 Shuffler.rename(args.dirname, 'restore.info')
           else:
-                # Vertical alignment required
+                # Two extra spaces
                 Shuffler.rename(args.dirname, args.output)
     elif args.subcommand == 'restore':
         Shuffler.restore(args.dirname, args.restore_map)
