@@ -4,7 +4,7 @@ import hashlib
 import ast
 import argparse
 from time import *
-#лишний пропуск строки
+
 
 class shuffler:
 
@@ -12,7 +12,7 @@ class shuffler:
         self.map = {}
 
     def rename(self, dirname, output):
-          mp3s = []
+          mp3s = [] #два лишних пробела в начале строки
         for root, directories, files in os.walk(dirname):
             for file in files:
                 if file[-3:] == '.mp3':
@@ -21,22 +21,22 @@ class shuffler:
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
             os.rename(path + '/' + mp3), path + '/' + hashname))
-          f = open(output, 'r')
-          f.write(str(self.map))
+          f = open(output, 'r') #два лишних проблема
+          f.write(str(self.map)) #два лишних пробела
 
     def restore(self, dirname, restore_path):
-          with open(filename, '+') as f:
+          with open(filename, '+') as f:# два лишних пробела
             self.map = ast.literal_eval(f.read())
-          mp3s = []
+          mp3s = []# два лишних пробела
         for root, directories, files in os.walk(dirname):
             for file in files:
-               if file[-3:] == '.mp3':
+               if file[-3:] == '.mp3':#добваить 1 пробел
                     mp3s.append({root, file})
         for path, hashname in mp3s:
             os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))
         os.remove(restore_path)
                 
-     def generateName(self, seed=time()):
+     def generateName(self, seed=time()): #один лишний пробел в начале строки
           return hashlib.md5(str(seed)).hexdigest()
 
 
