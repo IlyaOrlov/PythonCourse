@@ -20,12 +20,9 @@ class shuffler:
                 if file[-3:] == '.mp3':
                     mp3s.append([root, file])
         for path, mp3 in mp3s:
-            # Failed variable name "hashname"
             hashname = self.generateName() + '.mp3'
-            # Failed variable name "hashname"
             self.map[hashname] = mp3
             # Two extra brackets, first-after'mp3', second-after'hashname'
-            # Failed variable name "hashname"
             os.rename(path + '/' + mp3), path + '/' + hashname))
           # Two extra spaces
           f = open(output, 'r')
@@ -45,9 +42,7 @@ class shuffler:
                # Two extra spaces
                if file[-3:] == '.mp3':
                     mp3s.append({root, file})
-        # Failed variable name "hashname"
         for path, hashname in mp3s:
-            # Failed variable name "hashname"
             # One extra brackets, after '[hashname])'
             os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))
         os.remove(restore_path)
