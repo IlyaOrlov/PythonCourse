@@ -9,6 +9,7 @@ def sravni_prnt(a, b):
 def sravni_rtrn(a, b):
     if a == b:
         print('Числа равны')
+        return None
     elif a > b:
         return a
     else:
