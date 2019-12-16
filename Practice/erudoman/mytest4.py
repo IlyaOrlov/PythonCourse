@@ -1,4 +1,4 @@
-def max(x, y):
+def mx(x, y):
     if x >= y:
         return x
     else:
@@ -7,4 +7,4 @@ def max(x, y):
 
 x = int(input())
 y = int(input())
-max(x, y)
+print(mx(x, y))
