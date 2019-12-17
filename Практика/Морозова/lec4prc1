@@ -1,0 +1,14 @@
+a = 0
+while a != 100:
+
+    print(a)
+    if a % 15 == 0:
+        print('FizzBuzz')
+
+    elif a % 5 == 0:
+        print('Buzz')
+
+    elif a % 3 == 0:
+        print('Fizz')
+
+    a = a + 1 
