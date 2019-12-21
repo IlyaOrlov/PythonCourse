@@ -1,0 +1,90 @@
+orlov@ws125 MINGW64 ~/Documents
+$ git clone https://github.com/IlyaOrlov                                  /PythonCourse.git
+Cloning into 'PythonCourse'...
+remote: Enumerating objects: 18, done.
+remote: Counting objects: 100% (18/18), done.
+remote: Compressing objects: 100% (17/17), done.
+Receiving objects:  20% (660/3297), 868.01 KiB | 1.68 MiB/s               remote: Total 3297 (delta 1), reused 9 (delta 0), pack-reused 3279
+Receiving objects: 100% (3297/3297), 37.79 MiB | 1.59 MiB/s, done.
+Resolving deltas: 100% (1284/1284), done.
+Checking connectivity... done.
+
+orlov@ws125 MINGW64 ~/Documents
+$ cd PythonCourse/
+
+orlov@ws125 MINGW64 ~/Documents/PythonCourse (master)
+$ git branch
+* master
+
+orlov@ws125 MINGW64 ~/Documents/PythonCourse (master)
+$ git checkout -b MyBranch
+Switched to a new branch 'MyBranch'
+
+orlov@ws125 MINGW64 ~/Documents/PythonCourse (MyBranch)
+$ git branch
+* MyBranch
+  master
+
+orlov@ws125 MINGW64 ~/Documents/PythonCourse (MyBranch)
+$ git status
+On branch MyBranch
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        Practice/orlov/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+orlov@ws125 MINGW64 ~/Documents/PythonCourse (MyBranch)
+$ git add Practice/orlov/
+
+orlov@ws125 MINGW64 ~/Documents/PythonCourse (MyBranch)
+$ git status
+On branch MyBranch
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   Practice/orlov/1.txt.txt
+
+
+orlov@ws125 MINGW64 ~/Documents/PythonCourse (MyBranch)
+$ git commit -m "Added new file"
+[MyBranch de8ead0] Added new file
+ Committer: Ilia Orlov <orlov@education.merann.ru>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+ create mode 100644 Practice/orlov/1.txt.txt
+
+orlov@ws125 MINGW64 ~/Documents/PythonCourse (MyBranch)
+$ git status
+On branch MyBranch
+nothing to commit, working directory clean
+
+orlov@ws125 MINGW64 ~/Documents/PythonCourse (MyBranch)
+$ git config --global credential.helper store
+
+orlov@ws125 MINGW64 ~/Documents/PythonCourse (MyBranch)
+$ git push --set-upstream origin MyBranch
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (5/5), 535 bytes | 0 bytes/s, done.
+Total 5 (delta 0), reused 0 (delta 0)
+remote:
+remote: Create a pull request for 'MyBranch' on GitHub by visiting:
+remote:      https://github.com/IlyaOrlov/PythonCourse/pull/new/MyBranch
+remote:
+To https://github.com/IlyaOrlov/PythonCourse.git
+ * [new branch]      MyBranch -> MyBranch
+Branch MyBranch set up to track remote branch MyBranch from origin.
