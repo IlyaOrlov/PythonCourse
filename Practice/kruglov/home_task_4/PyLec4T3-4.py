@@ -1,26 +1,30 @@
-# 3
-d = [0, 3, 24, 2, 3, 7]
-b = []
+# 3 poor solution
+# d = [0, 3, 24, 2, 3, 7]
+# b = []
 
-i = 0
-s = len(d)
-while i < s:
-    c = min(d)
-    b.append(c)
-    d.pop(d.index(c))
-    i += 1
+# i = 0
+# s = len(d)
+# while i < s:
+#    c = min(d)
+#    b.append(c)
+#    d.pop(d.index(c))
+#    i += 1
 
-print(b)
+# print(b)
 
 # 3.1
-g = [0, 3, 24, 2, 3, 7]
-
-u = 0
-while u < len(g):
-    h = g.pop(g.index(min(g[u:]), u))
-    g.insert(u, h)
-    u += 1
-print(g)
+list1 = [0, 3, 24, 2, 3, 7]
+el = 0
+len_list = len(list1)
+while el < len_list:
+    min_ind = list1.index(min(list1[el:]), el)
+    min_val = list1.pop(min_ind)
+    if min_ind != el:
+        zero_el = list1.pop(el)
+        list1.insert(min_ind, zero_el)
+    list1.insert(el, min_val)
+    el += 1
+print(list1)
 
 # 4
 
