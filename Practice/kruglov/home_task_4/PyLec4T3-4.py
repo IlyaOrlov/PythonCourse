@@ -18,11 +18,14 @@ el = 0
 len_list = len(list1)
 while el < len_list:
     min_ind = list1.index(min(list1[el:]), el)
-    min_val = list1.pop(min_ind)
-    if min_ind != el:
-        zero_el = list1.pop(el)
-        list1.insert(min_ind, zero_el)
-    list1.insert(el, min_val)
+# best Python practice:
+    list[min_ind], list[el] = list1[el], list[min_ind]
+# previous solution
+    # min_val = list1.pop(min_ind)
+    # if min_ind != el:
+    #     zero_el = list1.pop(el)
+    #     list1.insert(min_ind, zero_el)
+    # list1.insert(el, min_val)
     el += 1
 print(list1)
 
