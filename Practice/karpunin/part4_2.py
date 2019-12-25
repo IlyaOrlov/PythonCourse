@@ -6,6 +6,7 @@
 #3 цифра равна 8
 #4 цифра равна 1
 #5 цифра равна 9
+
 def fun():
     i = input("введите только пятизначное число:")
     dig = []
@@ -13,8 +14,10 @@ def fun():
         if '1234567890'.find(s) != -1:
             dig.append(int(s))
     return dig
+
 stolbik = fun()
-if 4 < len(stolbik) < 6:
+
+if len(stolbik) == 5:
     for n in range(5):
         print(n+1, "цифра равна", stolbik[n])
 else:
