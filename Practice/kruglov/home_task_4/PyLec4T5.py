@@ -2,13 +2,17 @@
 
 
 def inter(str1, dict1):
-    if str1[-1:] in dict1:
-        return print("{}{}".format(str1[:-1], dict1[str1[-1:]]))
-    else:
-        return print("None")
+    str2 = ""
+    for el in str1.split():
+        if el in dict1:
+            str2 += dict1[el]
+        else:
+            str2 += el + " "
+    return str2
 
 
-s2 = "This is s"
-d2 = {"s": "Sparta", "t": "Troy", "a": "Athens"}
+s2 = "This is r"
+d2 = {"sss": "Sparta", "t": "Troy", "a": "Athens"}
 
-inter(s2, d2)
+
+print(inter(s2, d2))
