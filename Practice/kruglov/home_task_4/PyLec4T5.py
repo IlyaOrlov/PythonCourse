@@ -6,13 +6,14 @@ def inter(str1, dict1):
     for key in dict1.keys():
         if key in str2:
             el = str2.index(key)
-            str2.remove(key)
-            str2.insert(el,dict1[key])
+            str2[el] = dict1[key]
+            # str2.remove(key)
+            # str2.insert(el,dict1[key])
     str1 = " ".join(str2)
     return str1
 
 
-s2 = "This is sss"
+s2 = "This is t"
 d2 = {"sss": "Sparta", "t": "Troy", "a": "Athens"}
 
 
