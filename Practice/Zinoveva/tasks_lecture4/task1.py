@@ -1,6 +1,5 @@
-
 def printNumber():
-    for number in range(1,100):
+    for number in range(1,101):
         if (number % 3) is 0 and (number % 5) is 0:
             print ("FizzBuzz")
         elif (number % 3) is 0:
@@ -11,8 +10,6 @@ def printNumber():
             print (number)
 
 
-def main():
-
+if __name__ == '__main__':
     printNumber()
 
-main() 

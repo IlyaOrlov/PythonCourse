@@ -8,10 +8,8 @@ def printNumber(array):
             j = j + 1
         array[i], array[m] = array[m], array[i]
 
-def main():
+if __name__ == '__main__':
     nums = [0,3,24,2,3,7]
     print (nums)
     printNumber(nums)
     print (nums)
-
-main()
