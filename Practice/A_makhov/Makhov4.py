@@ -5,4 +5,5 @@ for a in range(1, 101):
         print("Buzz")
     elif a % 3 == 0:
         print("Fizz")
-    print(a)
+    else:
+        print(a)
