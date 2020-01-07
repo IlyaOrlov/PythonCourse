@@ -6,3 +6,5 @@ def fmax(a, b):
     else:
         max = b
     return max
+c = fmax(a, b)
+print("Наибольшее из двух", c)
