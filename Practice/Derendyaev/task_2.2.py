@@ -1,6 +1,6 @@
 a = int(input("Введите первое число:"))
 b = int(input("Введите второе число:"))
-def fmax():
+def fmax(a, b):
     if a > b:
         max = a
     else:
