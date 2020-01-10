@@ -1,4 +1,5 @@
 from tempfile import mktemp
+from os import path
 
 class WrapStrToFile:
     
@@ -7,12 +8,20 @@ class WrapStrToFile:
 
     @property
     def content(self):
-        
-        return open(self.filepath, "w")
+        # if path.exists(self.filepath):
+        #     return open(self.filepath, "r")
+        # else:
+        #     return "File does't exist"
+        try:
+            file = open(self.filepath)
+        except IOError as e:
+            return "File does't exist"
+    
 
     @content.setter
     def content(self, value):
-        pass
+        file = open(self.filepath, "w")
+        return file
 
     @content.deleter
     def content(self):
