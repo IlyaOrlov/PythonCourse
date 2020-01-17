@@ -1,5 +1,8 @@
+#  PythonCourse/Lectures/PyLec_5.pdf Task №3
+
 from tempfile import mktemp
-from os import path
+from os import path 
+from os import remove
 
 class WrapStrToFile:
     
@@ -8,24 +11,24 @@ class WrapStrToFile:
 
     @property
     def content(self):
-        # if path.exists(self.filepath):
-        #     return open(self.filepath, "r")
-        # else:
-        #     return "File does't exist"
         try:
-            file = open(self.filepath)
-        except IOError as e:
-            return "File does't exist"
+            with open(self.filepath, "r") as file:
+                text = file.read()
+                return "Output: {}".format(text)
+        except IOError as file:
+            return "Output: File does't exist"
     
 
     @content.setter
     def content(self, value):
-        file = open(self.filepath, "w")
-        return file
+        with open(self.filepath, "w") as file:
+            file.write(value)
+            return file
 
     @content.deleter
     def content(self):
-        pass
+        remove(self.filepath)
+
 
 wstf = WrapStrToFile()
 print(wstf.content)
