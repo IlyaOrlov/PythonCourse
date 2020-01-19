@@ -2,11 +2,11 @@ class Hero:
     def __init__(self, new_action):
 	    self._action = new_action
 	
-	@property
+    @property
     def action(self):
         return self._action
 		
-	@action.setter
+    @action.setter
     def action(self, new_action):
         if instance(new_action, Action):
             self._action = new_action
