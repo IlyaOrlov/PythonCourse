@@ -7,29 +7,32 @@ a = None
 def print_fun(ev):
     global a
     while True:
-        if not ev.is_set():
-            ev.set()
-            if a:
-                if a == 'q':
-                    ev.clear()
-                    break
-                print(a,)
-                a = None
+        if ev.is_set():
             ev.clear()
+            if a is not None:
+                if a == 'q':
+                    ev.set()
+                    break
+                else:
+                    print(a,)
+                    a = None
+            ev.set()
 
 
 if __name__ == '__main__':
     ev = Event()
-    ev.set()
     a = input()
-    ev.clear()
+    ev.set()
     t = Thread(target=print_fun, args=(ev,))
     t.start()
     while True:
         if a == 'q':
             break
-        ev.set()
-        a = input()
-        ev.clear()
-        time.sleep(5)
+        elif a is None:
+            if ev.is_set():
+                ev.clear()
+                a = input()
+                ev.set()
+        else:
+            time.sleep(5)
     t.join()
