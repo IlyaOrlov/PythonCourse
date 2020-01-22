@@ -1,29 +1,29 @@
 class Hero:
     def __init__(self, new_action):
-	    self._action = new_action
+        self._action = new_action
 	
-	@property
+    @property
     def action(self):
         return self._action
 		
-	@action.setter
+    @action.setter
     def action(self, new_action):
         if instance(new_action, Action):
             self._action = new_action
-		else:
+        else:
             print("Incorrect action")		
 
 class Action:
     def do_action(self):
-	    print("base action")
+        print("base action")
 
 class Run(Action):
     def do_action(self):
-	    print("running")
+        print("running")
 
 class Fly(Action):
     def do_action(self):
-	    print("flying")		
+        print("flying")		
 		
 h = Hero(Action())
 h.action = Run()
