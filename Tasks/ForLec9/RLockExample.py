@@ -30,6 +30,5 @@ if __name__ == '__main__':
             lock.acquire()
             a = input()
             lock.release()
-        else:
-            time.sleep(5)
+        time.sleep(5)
     t.join()

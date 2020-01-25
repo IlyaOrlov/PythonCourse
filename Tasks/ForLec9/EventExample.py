@@ -33,6 +33,5 @@ if __name__ == '__main__':
                 ev.clear()
                 a = input()
                 ev.set()
-        else:
-            time.sleep(5)
+        time.sleep(5)
     t.join()
