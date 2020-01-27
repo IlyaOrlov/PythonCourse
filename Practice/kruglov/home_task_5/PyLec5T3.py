@@ -1,11 +1,11 @@
 #  PythonCourse/Lectures/PyLec_5.pdf Task №3
 
 from tempfile import mktemp
-from os import path 
 from os import remove
 
+
 class WrapStrToFile:
-    
+
     def __init__(self):
         self.filepath = mktemp(".txt", "test")
 
@@ -15,9 +15,8 @@ class WrapStrToFile:
             with open(self.filepath, "r") as file:
                 text = file.read()
                 return "Output: {}".format(text)
-        except IOError as file:
+        except IOError:
             return "Output: File does't exist"
-    
 
     @content.setter
     def content(self, value):
