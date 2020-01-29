@@ -1,31 +1,28 @@
 #  PythonCourse/Lectures/PyLec_5.pdf Task №3
 
 from tempfile import mktemp
-from os import path 
 from os import remove
 
+
 class WrapStrToFile:
-    
+
     def __init__(self):
         self.filepath = mktemp(".txt", "test")
 
     @property
     def content(self):
         try:
-            file = open(self.filepath, "r")
-            text = file.read()
-            file.close()
-            return "Output: {}".format(text)
-        except IOError as e:
+            with open(self.filepath, "r") as file:
+                text = file.read()
+                return "Output: {}".format(text)
+        except IOError:
             return "Output: File does't exist"
-    
 
     @content.setter
     def content(self, value):
-        file = open(self.filepath, "w")
-        file.write(value)
-        file.close()
-        return file
+        with open(self.filepath, "w") as file:
+            file.write(value)
+            return file
 
     @content.deleter
     def content(self):

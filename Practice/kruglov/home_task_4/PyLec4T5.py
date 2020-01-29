@@ -7,8 +7,6 @@ def inter(str1, dict1):
         if key in str2:
             el = str2.index(key)
             str2[el] = dict1[key]
-            # str2.remove(key)
-            # str2.insert(el,dict1[key])
     str1 = " ".join(str2)
     return str1
 
