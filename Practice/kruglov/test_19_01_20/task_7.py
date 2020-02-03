@@ -8,7 +8,7 @@ def copy_file(
 ):
     try:
         with open(source, "r") as f_src:
-            if os.path.isfile('d'):
+            if os.path.isfile(destination):
                 print("Error: File existing!")
             else:
                 with open(destination, "w") as f_dst:
