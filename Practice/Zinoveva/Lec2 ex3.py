@@ -37,19 +37,18 @@ def main():
         print("input command to player")
         command = input()
         
-        if(command == "go"):
+        if command == "go":
             persons[number].go()
-        elif(command == "shoot"):
+        elif command == "shoot":
             persons[number].shoot()
-        elif(command == "fly"):
+        elif command == "fly":
             persons[number].fly()
         else:
-            print("unknown command")
-            print(command)
+            print("Unknown command: {}".format(command))
             
         persons[number].show_where_i()
         
-        if( persons[number].x == itm.x ):
+        if persons[number].x == itm.x:
             print("player{} got item", )
        
     
