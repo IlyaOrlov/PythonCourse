@@ -15,10 +15,9 @@ def deleteColumnByNumber(matrix, digit):
       for index, j in enumerate(i):
           if j == digit:
               deleteColumn(matrix, index)
-              return
 
 if __name__ == '__main__':
-    matrix = [[random.randint(0, 100) for j in range(5)] for i in range(5)]
+    matrix = [[1,2,3,2,0],[4,5,6,1,5],[8,6,5,6,8],[3,5,0,8,2],[1,0,6,4,3]]
     printArray(matrix)
     print("input number for delete:")
     digit = int(input())
