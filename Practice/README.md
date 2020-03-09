@@ -2,7 +2,7 @@
 
 Для работы с репозиторием можно установить git и использовать следующий порядок действий:
 1. Регистрируетесь на guithub.com и подписываетесь на данный репозиторий нажимая кнопку Watch справа вверху.
-2. На рабочем компьютере выполняете команду "git clone git@github.com:IlyaOrlov/PythonCourse.git", чтоб скачать репозиторий через ssh, либо  git clone https://github.com/IlyaOrlov/PythonCourse.git - через https. Второй вариант попроще и не требует дополнительных усилий. Первый вариант потребует от вас разобраться с настройкой ssh (https://help.github.com/articles/connecting-to-github-with-ssh/). 
+2. На рабочем компьютере выполняете команду "git clone https://github.com/IlyaOrlov/PythonCourse.git", чтоб скачать репозиторий через https, либо git clone git@github.com:IlyaOrlov/PythonCourse.git - для скачивания через ssh. Первый вариант попроще и не требует дополнительных усилий. Второй вариант потребует от вас разобраться с настройкой ssh (https://help.github.com/articles/connecting-to-github-with-ssh/). 
 3. По умолчанию вы будете находится на бранче master. Начиная работу над новым заданием, создайте свой бранч, с помощью следующей команды:
 "git checkout -b my_branch", где my_branch - название вашего бранча (английскими буквами без пробелов), которое вы ему придумаете.
 4. Публикуете эту ветку в удаленном репозитории: git push --set-upstream origin my_branch
