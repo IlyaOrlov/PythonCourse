@@ -1,4 +1,4 @@
-import random as rnd
+import random as rdm
 
 
 class Common:
@@ -9,60 +9,54 @@ class Common:
     armor = 0
 
     def move(self):
-        self.x = rnd.randint(0, 100)
-        self.y = rnd.randint(0, 100)
-        self.z = rnd.randint(0, 100)
+        self.x = rdm.randint(0, 100)
+        self.y = rdm.randint(0, 100)
+        self.z = rdm.randint(0, 100)
+
+    def spawn(self):
+        print("{} spawn at {}, {}, {}.".format(self.__class__.__name__, self.x, self.y, self.z))
+        print("HP = {}".format(self.health))
+        print("Armor = {}".format(self.armor))
+        print("Speed = {}".format(self.moving_speed))
 
     def shoot(self):
         print("Ka-Boom!")
 
+    def medicine(self):
+        self.health += 50
+
+    def shield(self):
+        self.armor += 50
+
+    def speed_boost(self):
+        self.moving_speed = "Faster Than Light."
+
+
+class Fly(Common):
+
+    def spawn(self):
+        print("I flying at {}, {}, {}.".format(self.x, self.y, self.z))
+        print("HP = {}".format(self.health))
+        print("Armor = {}".format(self.armor))
+        print("Speed = {}".format(self.moving_speed))
+
 
 class Damage(Common):
     moving_speed = "Fast"
-
-    def draw(self):
-        print("I'll kill you at {}, {}, {}.".format(self.x, self.y, self.z))
-        print("HP = {}".format(self.health))
-        print("Armor = {}".format(self.armor))
-        print("Speed = ", self.moving_speed)
 
 
 class Tank(Common):
     armor = 100
     moving_speed = "Slow"
 
-    def draw(self):
-        print("I'll protect you at {}, {}, {}.".format(self.x, self.y, self.z))
-        print("HP = {}".format(self.health))
-        print("Armor = {}".format(self.armor))
-        print("Speed = ", self.moving_speed)
-
 
 class Support(Common):
     moving_speed = "Normal"
 
-    def draw(self):
-        print("I'll help you at {}, {}, {}.".format(self.x, self.y, self.z))
-        print("HP = {}".format(self.health))
-        print("Armor = {}".format(self.armor))
-        print("Speed = ", self.moving_speed)
-
-
-def medicine(pers):
-    pers.health += 50
-
-
-def shield(pers):
-    pers.armor += 50
-
-
-def speed_boost(pers):
-    pers.moving_speed = "Faster Than Light."
-
 
 characters = [Damage(), Tank(), Support()]
 for char in characters:
-    char.draw()
+    char.spawn()
 while True:
     cmd = input("Введите команду (shoot, move или pick): ")
     n = int(input("Введите номер персонажа (от 0 до 2): "))
@@ -71,16 +65,18 @@ while True:
     elif cmd == "shoot":
         characters[n].shoot()
     elif cmd == "pick":
-        pick = input("Выберите, что взять (medicine, shield или speed_boost): ")
+        pick = input("Выберите, что взять (medicine, shield, speed_boost или wings): ")
         if pick == "medicine":
-            medicine(characters[n])
+            characters[n].medicine()
         elif pick == "shield":
-            shield(characters[n])
+            characters[n].shield()
         elif pick == "speed_boost":
-            speed_boost(characters[n])
+            characters[n].speed_boost()
+        elif pick == "wings":
+            characters[n] = Fly()
         else:
             break
     else:
         break
     for char in characters:
-        char.draw()
+        char.spawn()
