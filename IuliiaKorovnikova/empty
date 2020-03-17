@@ -1,1 +1,16 @@
+num1 = int(input ("Enter number 1"))
+num2 = int(input ("Enter number 2"))
 
+if num1 > num2:
+    print ("большее из двух: {}".format(num1))
+else:
+    print ("большее из двух: {}".format(num2))
+
+
+num3 = int(input ("Enter number 3"))
+num4 = int(input ("Enter number 4"))
+
+if num3 > num4:
+    return (num3)
+else:
+    return (num4)
