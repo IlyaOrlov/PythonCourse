@@ -12,33 +12,21 @@ big(7, 7)
 
 print(' ')
 
-#если переменную получаем от пользователя:
 a = int(input('Input any number:'))
 b = int(input('Input another number:'))
-
-if a > b:
-    print('A bigger number is', (a))
-elif a == b:
-    print('The numbers are equal')
-else:
-    print('A bigger number is', (b))
-
-#здесь так же можно заменить else на:
-#elif a < b:
-    #print ('A bigger number is', (b))
-#но это чуть длиннее
+print(max(a, b))
 
 print(' ')
 
-def big(x,y):
+def big2(x,y):
     if x > y:
-        return(x)
+        return x
     elif x == y:
         print('They are equal, genius!', end=' ')
-        return(x, y)
-    return(y)
+        return x
+    return y
 
-print(big(5,7))
-print(big(123,77))
-print(big(55,55))
-print(big(-86,33))
+print(big2(5,7))
+print(big2(123,77))
+print(big2(55,55))
+print(big2(-86,33))
