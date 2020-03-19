@@ -7,18 +7,13 @@ def big(a, b):
         print(b)
 
 big(5, 7)
-big(8,100)
+big(8, 100)
 big(7, 7)
+big(int(input('Введи число:')), int(input('Введи другое число:')))
 
 print(' ')
 
-a = int(input('Input any number:'))
-b = int(input('Input another number:'))
-print(max(a, b))
-
-print(' ')
-
-def big2(x,y):
+def big2(x, y):
     if x > y:
         return x
     elif x == y:
@@ -26,7 +21,9 @@ def big2(x,y):
         return x
     return y
 
-print(big2(5,7))
-print(big2(123,77))
-print(big2(55,55))
-print(big2(-86,33))
+print(big2(5, 7))
+print(big2(123, 77))
+print(big2(55, 55))
+print(big2(-86, 33))
+print(big2(int(input('Введи число:')), int(input('Введи другое число:'))))
+
