@@ -1,12 +1,12 @@
 # первое задание
 i = 1
 while i <= 100:
-    if i % 3 == 0:
-        print('Fizz')
+    if i % 15 == 0:
+#         print('FizzBuzz')
     elif i % 5 == 0:
         print('Buzz')
-    elif i % 15 == 0:
-        print('FizzBuzz')
+    elif i % 3 == 0:
+#         print('Fizz')
     print(i)
     i += 1
 
@@ -14,13 +14,13 @@ while i <= 100:
 number = input('Введите пятизначное число :')
 print('Число :'+ number)
 lst = list(number)
-print('1 цифра равна '+ lst[0])
-print('2 цифра равна '+ lst[1])
-print('3 цифра равна '+ lst[2])
-print('4 цифра равна '+ lst[3])
-print('5 цифра равна '+ lst[4])
+i = 0
+while i <= len(lst):
+    print("{} цифра равна : {}".format((i + 1), lst[i]))
+    i += 1
 
-# Третье задание
+
+# # Третье задание
 arr = [0, 3, 24, 2, 3, 7]
 i = 0
 while i <= len(arr):
