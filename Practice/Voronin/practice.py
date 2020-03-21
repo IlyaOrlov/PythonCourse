@@ -4,7 +4,7 @@ def number(a, b):
     else:
         print(b)
 
-number (13, 4)
+number(13, 4)
 
 def number2(a2, b2):
     if a2 > b2:
