@@ -1,7 +1,6 @@
-a = input('Введите пятизначное число: ')
+lst1 = input('Введите пятизначное число: ')
 
-print('Число: {}'.format(a))
-lst1 = list(a)
+print('Число: {}'.format(lst1))
 if len(lst1) == 5:
     i = 0
     while i <= len(lst1):
