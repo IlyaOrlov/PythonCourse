@@ -3,7 +3,9 @@ a = input('Введите пятизначное число: ')
 print('Число: {}'.format(a))
 lst1 = list(a)
 if len(lst1) == 5:
-    for i in lst1:
-        print("{} цифра равна {}".format((lst1.index(i) + 1), i))
+    i = 0
+    while i <= len(lst1):
+        print("{} цифра равна {}".format((i + 1), lst1[i]))
+        i += 1
 else:
     print('Введённое число не пятизначное.')
