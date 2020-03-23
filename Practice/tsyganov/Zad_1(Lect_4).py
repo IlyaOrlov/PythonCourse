@@ -1,9 +1,14 @@
-x=0
-while x<100:
+x=1
+while x<=100:
     if x%3==0:
         print('Fizz')
-    elif x%5==0:
+
+    if x%5==0:
         print('Buzz')
-    elif x%15==0:
+
+    if x%15==0:
         print('FizzBuzz')
-    x+=1
+
+    elif x%3!=0 and x%5!=0 and x%15!=0:
+        print(x)
+    x += 1
