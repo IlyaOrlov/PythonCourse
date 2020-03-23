@@ -9,10 +9,7 @@ for i in range(n):
     for j in range(m):
         if matrix[i][j] == number:
             index_column.append(j)
-index_column = list(set(index_column))
-if len(index_column) > 1:
-    for i in range(1, len(index_column)):
-        index_column[i]-=i
+index_column = sorted(list(set(index_column)), reverse=True)
 for i in range(n):
     for j in index_column:
         matrix[i].pop(j)
