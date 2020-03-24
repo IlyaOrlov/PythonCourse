@@ -15,7 +15,7 @@ number = input('Введите пятизначное число :')
 print('Число :'+ number)
 lst = list(number)
 i = 0
-while i <= len(lst):
+while i < len(lst):
     print("{} цифра равна : {}".format((i + 1), lst[i]))
     i += 1
 
