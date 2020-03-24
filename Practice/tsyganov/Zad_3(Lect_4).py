@@ -1,8 +1,13 @@
-arr = [0,3,24,2,3,7]
-arr_1=[]
+arr = [7,3,24,2,3,0] # [7,3,24,2,3,0]
 x=0
+y=0
 while x<len(arr):
-    arr_1.append(arr[x])
-    arr_1.sort()
-    print(arr_1)
-    x += 1
+        a=min(arr[x:])
+        y=x
+        while a!=arr[y]:
+            y+=1
+        else:
+                arr[y] = arr[x]
+                arr[x] = a
+                print(arr)
+        x+=1
