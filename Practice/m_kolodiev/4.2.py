@@ -4,9 +4,8 @@ if num.isdigit():
 
     if len(num) == 5:
         i = 0
-        nums = list(num)
 
-        for x in nums:
+        for x in num:
             i += 1
             print('The {} number is {}'.format(i, x))
     else:
