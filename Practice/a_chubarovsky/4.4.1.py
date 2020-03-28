@@ -10,7 +10,7 @@ def tab_to_space(file):
         print(line)
 
 
-f = open("my_file.txt", "r+")
+f = open("my_file.txt")
 cmd = int(input("Введите команду (1 - заменить пробелы на табуляцию; 2 - заменить табуляцию на пробелы: "))
 if cmd == 1:
     space_to_tab(f)
