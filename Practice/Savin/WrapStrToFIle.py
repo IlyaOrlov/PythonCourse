@@ -12,14 +12,17 @@ class WrapStrToFIle:
         except FileNotFoundError:
             print('Файл еще не существует')
         else:
-            print(f.read())
+            text = f.read()
             f.close()
+        return text
+
 
     @content.setter
     def content(self, value):
         f = open(self._filepath[1], 'w')
         f.write(value)
         f.close()
+
 
     @content.deleter
     def content(self):
