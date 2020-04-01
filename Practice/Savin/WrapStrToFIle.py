@@ -1,14 +1,15 @@
 import tempfile
+import os
 
 
 class WrapStrToFIle:
     def __init__(self):
-        self._filepath = tempfile.mkstemp()
+        self._fd, self._filepath = tempfile.mkstemp()
 
     @property
     def content(self):
         try:
-            f = open(self._filepath[1])
+            f = open(self._filepath)
         except FileNotFoundError:
             print('Файл еще не существует')
         else:
@@ -19,19 +20,23 @@ class WrapStrToFIle:
 
     @content.setter
     def content(self, value):
-        f = open(self._filepath[1], 'w')
+        f = open(self._filepath, 'w')
         f.write(value)
         f.close()
 
 
     @content.deleter
     def content(self):
-        self._filepath = 'Файл удален'
+        os.close(self._fd)
+        os.remove(self._filepath)
 
 
 t = WrapStrToFIle()
 t.content = 'ABCD'
 print(t.content)
-t.content = 'Test2'
-print(t.content)
+print(t._filepath)
 del t.content
+m = WrapStrToFIle()
+m.content = 'Test2'
+print(m.content)
+print(m._filepath)
