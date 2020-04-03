@@ -1,19 +1,11 @@
-array = [[0, 3, 0],
-         [7, 6, 8],
-         [0, 0, 3]]
+matrix = [[0, 3, 0, 6],
+          [7, 6, 8, 7],
+          [0, 0, 3, 9]]
 
 deletion = int(input("Enter the number to remove all columns containing it: "))
-columns_to_delete = []
 
-for row in array:
-    for column_index in range(len(row)):
-        if row[column_index] == deletion and column_index not in columns_to_delete:
-            columns_to_delete.append(column_index)
+matrix = [[matrix[i][j] for i in range(len(matrix))] for j in range(len(matrix[0]))]
+matrix = [row for row in matrix if deletion not in row]
+matrix = [[matrix[i][j] for i in range(len(matrix))] for j in range(len(matrix[0]))]
 
-columns_to_delete.sort(reverse=True)
-
-for row in array:
-    for column_index in columns_to_delete:
-        del row[column_index]
-
-print(array)
+print(matrix)
