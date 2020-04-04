@@ -1,4 +1,3 @@
-import os
 import random
 w = 0
 l = 0
