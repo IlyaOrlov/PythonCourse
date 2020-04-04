@@ -7,26 +7,9 @@ for row in matrix:
     print(row)
 number = int(input('Столбец с какой цифрой удалить: '))
 
-def transp(matrix):
-    transp_matrix = []
-    for j in range(len(matrix[0])):
-        row = []
-        for i in range(len(matrix)):
-            row.append(matrix[i][j])
-        transp_matrix.append(row)
-    return transp_matrix
-
-def del_row(matrix, number):
-    lst = [i for i in range(len(matrix))]
-    lst.reverse()
-    for i in lst:
-        if number in matrix[i]:
-            del matrix[i]
-    return matrix
-
-matrix = transp(matrix)
-matrix = del_row(matrix, number)
-matrix = transp(matrix)
+matrix = list(zip(*matrix))
+matrix = [row for row in matrix if number not in row]
+matrix = list(zip(*matrix))
 
 for row in matrix:
     print(row)
