@@ -1,5 +1,6 @@
 import random
 import time
+
 class Man:
 
     def __init__(self, first_name):
