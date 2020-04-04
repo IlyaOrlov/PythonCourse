@@ -1,12 +1,13 @@
-str = ('    roma    anna    ')
-def tab_func(str):
-    str = str.replace('    ', '\t')
-    return str
-print(tab_func(str))
+s = '    roma    anna    '
+def tab_func(s):
+    s = s.replace('    ', '\t')
+    return s
+print(tab_func(s))
 
 
-str1 = ('ann    roma    ')
-def space_func(str1):
-    str1 = str1.replace('\t','    ')
-    return str1
-print(space_func(str1))
+s1 = 'ann    roma    '
+def space_func(s1):
+    s1 = s1.replace('\t','    ')
+    return s1
+print(space_func(s1))
+
