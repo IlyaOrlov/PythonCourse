@@ -1,14 +1,12 @@
-file = open("proba", "r+")
-cmd = int(input("Введите число: 1 - табуляция -> "    "; 2 - "    " -> табуляция; :"))
-if cmd == 1:
-    for i in file:
-        i.replace("\t", "    ")
-    print(i)
-elif cmd == 2:
-    for i in file:
-        i.replace("    ", "\t")
-    print(i)
-else:
-    print("Говно")
-file.close()
+def taborprob(str, cmd):
+    if cmd == 1:
+        return str.replace("\t", "    ")
+    elif cmd == 2:
+        return str.replace("    ", "\t")
+    else:
+        print("Введено неизвестное число")
 
+str = input("Введите строку:")
+cmd = int(input("1: tab->probel;\n2: probel->tab;\n"))
+otvet = taborprob(str, cmd)
+print("Измененная строка:", otvet)
