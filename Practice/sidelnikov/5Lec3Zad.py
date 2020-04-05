@@ -9,10 +9,11 @@ class WrapStrToFile:
     def content(self):
         try:
             f = open(self.filepath)
-            return f.read()
-            f.close()
         except FileNotFoundError:
             print("File doesn't exist")
+        else:
+            return f.read()
+            f.close()
 
     @content.setter
     def content(self, value):
