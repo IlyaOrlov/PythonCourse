@@ -10,16 +10,15 @@ class WrapStrToFile:
     def content(self):
         try:
             f = open(self.file_path)
+            return f.read()
         except FileNotFoundError:
             print("File doesn't exist.")
         except Exception as exc:
             print("Some unexpected error: {}.".format(exc))
-        else:
-            return self.content
 
     @content.setter
     def content(self, value):
-        f = open(self.file_path, 'w')
+        f = open(self.file_path, 'w+')
         f.write(value)
         f.close()
 
