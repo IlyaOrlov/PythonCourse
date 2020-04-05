@@ -8,12 +8,14 @@ class WrapStrToFile:
     @property
     def content(self):
         try:
+            file = None
             f = open(self.filepath)
             file = f.read()
             f.close()
         except FileNotFoundError:
             print("File doesn't exist")
         return file
+
     @content.setter
     def content(self, value):
         f = open(self.filepath, "w+")
