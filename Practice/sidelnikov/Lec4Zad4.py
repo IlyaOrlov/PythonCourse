@@ -1,12 +1,12 @@
-def taborprob(str, cmd):
+def taborprob(stroka, cmd):
     if cmd == 1:
-        return str.replace("\t", "    ")
+        return stroka.replace("\t", "    ")
     elif cmd == 2:
-        return str.replace("    ", "\t")
+        return stroka.replace("    ", "\t")
     else:
         print("Введено неизвестное число")
 
-str = input("Введите строку:")
+stroka = input("Введите строку:")
 cmd = int(input("1: tab->probel;\n2: probel->tab;\n"))
-otvet = taborprob(str, cmd)
+otvet = taborprob(stroka, cmd)
 print("Измененная строка:", otvet)
