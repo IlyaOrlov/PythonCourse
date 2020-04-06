@@ -10,7 +10,9 @@ class WrapStrToFile:
     def content(self):
         try:
             f = open(self.file_path)
-            return f.read()
+            data = f.read()
+            f.close()
+            return data
         except FileNotFoundError:
             print("File doesn't exist.")
         except Exception as exc:
