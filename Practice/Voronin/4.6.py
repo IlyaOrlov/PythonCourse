@@ -4,10 +4,11 @@ a = [
     [5, 8, 32, 13, 6],
     [4, 2, 1, 4, 8]
 ]
+number = input('Введите число :')
 
 for i in reversed(range(len(a))):
     for j in reversed(range(len(a[i]))):
-        if a[i][j] == 13:
+        if a[i][j] == int(number):
             for n in a:
                 n.pop(j)
 
