@@ -7,6 +7,6 @@ planets_list = planets_info.split()
 i = 0
 while i < len(planets_list):
     if planets_list[i] in planets_day:
-        (planets_list[i]) = "{:.2f}".format((float(planets_day[planets_list[i]])/24))
+        planets_list[i] = "{:.2f}".format((float(planets_day[planets_list[i]])/24))
     i += 1
 print(' '.join(planets_list))
