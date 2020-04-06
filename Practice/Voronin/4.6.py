@@ -5,10 +5,13 @@ a = [
     [4, 2, 1, 4, 8]
 ]
 
-for i in a:
-    for j in i:
-        if j == 5:
-            a.pop(i)
-
+for i in reversed(range(len(a))):
+    for j in reversed(range(len(a[i]))):
+        if a[i][j] == 13:
+            for n in a:
+                n.pop(j)
 
 print(a)
+
+
+
