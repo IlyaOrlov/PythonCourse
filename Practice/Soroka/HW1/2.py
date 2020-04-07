@@ -40,10 +40,10 @@ for k in range(len(arr) - 1):
 
 print(arr)
 
+arr1 = [0, 3, 24, 2, 3, 7]
+for j in range(len(arr1)):
+    min_n = min(arr1[j:])
+    min_ind = arr1.index(min_n, j)
+    arr1[j], arr1[min_ind] = arr1[min_ind], arr1[j]
 
-for j in range(len(arr)):
-    min_n = min(arr[j:])
-    min_ind = arr.index(min_n, j)
-    arr[j], arr[min_ind] = arr[min_ind], arr[j]
-
-print(arr)
+print(arr1)
