@@ -1,4 +1,7 @@
-arr = [0, 3, 24, 2, 3, 7]
+from random import randint
+
+arr = [randint(0, 100) for i in range(6)]
+
 
 
 def sortirovka(array):
@@ -8,12 +11,9 @@ def sortirovka(array):
         m = array.index(j, i)
         if array[i] >= j:
             array[i], array[m] = array[m], array[i]
-        else:
-            continue
         i += 1
 
 
+print(arr)
 sortirovka(arr)
 print(arr)
-
-
