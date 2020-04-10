@@ -1,12 +1,13 @@
-def replacement(vvod, start, final):
-    for strk in vvod:
+def Replacement(vvod, new_file, start, final):
+    for strk in vvod.readlines():
         strk = strk.replace(start, final)
-    return strk
+        print(strk)
+        new_file.write(strk)
+    return new_file
 
+with open("111") as work_file:
+    b = input("Что меняем ")
+    c = input("На что меняем ")
+    with open("replaced", 'w') as new_file:
+        Replacement(work_file, new_file, b, c)
 
-a = open("111")
-b = input("Что меняем ")
-c = input("На что меняем ")
-d = replacement(a, b, c)
-print(d)
-a.close()

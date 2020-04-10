@@ -1,6 +1,5 @@
-i = (input())
-a = list(i)
+start = input("Введите число")
 s = 0
-while s < len(a):
-    print(s+1, 'number =', a[s])
+while s < len(start):
+    print(s+1, 'цифра =', start[s])
     s += 1

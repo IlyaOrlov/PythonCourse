@@ -1,10 +1,8 @@
-a = (input('input your array:')).split()
-i = 0
-while i < len(a):
-    index = 0
-    minimum = min(a[i:])
-    index = a[i:].index(minimum) + i
-    a[index] = a[i]
-    a[i] = minimum
-    i += 1
-print(a)
+a = [0, 3, 24, 2, 3, 7, 6, 45, 76, 23, 87, 4563, 34, 98]
+i = 0  # счетчик цикла
+while i < len(a):  # цикл перебор значений списка
+    min_val = min(a[i:])  # поиск минимального значения в диапазоне исключающем уже обработанные числа
+    min_index = a.index(min_val, i, len(a))  # индекс вхождения минимального значения в диапазоне исключающем обработанные числа
+    a[i], a[min_index] = a[min_index], a[i]  # обмен значениями
+    i += 1  # инкримент счетчика
+print(a)  # вывод
