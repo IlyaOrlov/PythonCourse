@@ -28,11 +28,11 @@ def serialize(N):
     for i in range(N):
         with open(r'C:\Temp\human.data', 'w+b') as f:
             person = {}
-            person['fname'] = (random.choice(fname_list))
-            person['lname'] = (random.choice(lname_list))
-            person['age'] = (random.randint(17, 40))
-            person['height'] = (random.randint(160, 200))
-            person['weight'] = (random.randint(60, 100))
+            person['fname'] = random.choice(fname_list)
+            person['lname'] = random.choice(lname_list)
+            person['age'] = random.randint(17, 40)
+            person['height'] = random.randint(160, 200)
+            person['weight'] = random.randint(60, 100)
             human = Human.from_dict(person)
             pickle.dump(human, f)
 
