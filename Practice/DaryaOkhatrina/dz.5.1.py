@@ -10,7 +10,8 @@ class Man:
 
 class Pupil(Man):
     def solve_task(self):
-        print(self.name, "I'm not ready yet", time.sleep, r.randint(3, 6))
+        time.sleep(r.randint(3, 6))
+        print(self.name, "I'm not ready yet")
 
 
 
