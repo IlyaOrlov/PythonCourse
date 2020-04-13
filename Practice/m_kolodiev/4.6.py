@@ -4,10 +4,10 @@ m = [
     [1, 4, 7, 8]
 ]
 
-i = 5
+i = 2
 
-m = [*zip(*m)]
+m = zip(*m)
 m = [row for row in m if i not in row]
-m = [*zip(*m)]
+m = zip(*m)
 for row in m:
     print(row)
