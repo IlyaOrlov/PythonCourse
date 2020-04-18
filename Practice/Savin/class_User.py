@@ -1,44 +1,46 @@
 # Задание 9
 class User:
 
-    def __init__(self):
-        self.name = None
-        self.age = None
+    def __init__(self, name: str, age: int):
+        self._name = name
+        self._age = age
 
-    def setName(self, name: str):
-        self.name = name
+    @property
+    def name(self):
+        return self._name
 
-    def getName(self):
-        return self.name
+    @name.setter
+    def name(self, value):
+        self._name = value
 
-    def setAge(self, age: int):
-        self.age = age
+    @property
+    def age(self):
+        return self._age
 
-    def getAge(self):
-        return self.age
+    @age.setter
+    def age(self, value):
+        self._age = value
+
 
 class Worker(User):
 
-    def __init__(self):
-        super().__init__()
-        self.salary = None
+    def __init__(self, name: str, age: int, salary: int):
+        super().__init__(name, age)
+        self._salary = salary
 
-    def setSalary(self, salary: int):
-        self.salary = salary
+    @property
+    def salary(self):
+        return self._salary
 
-    def getSalary(self):
-        return self.salary
+    @salary.setter
+    def salary(self, value):
+        self._salary = value
 
-w1 = Worker()
-w1.setName('John')
-w1.setAge(25)
-w1.setSalary(1000)
-w2 = Worker()
-w2.setName('Jack')
-w2.setAge(26)
-w2.setSalary(2000)
-print(f'name: {w1.getName()}, age: {w1.getAge()}, salary: {w1.getSalary()}')
-print(f'name: {w2.getName()}, age: {w2.getAge()}, salary: {w2.getSalary()}')
-print(f'sum salary: {w1.getSalary() + w2.getSalary()}')
+
+w1 = Worker('John', 25, 1000)
+w2 = Worker('Jack', 26, 2000)
+print(f'name: {w1.name}, age: {w1.age}, salary: {w1.salary}')
+print(f'name: {w2.name}, age: {w2.age}, salary: {w2.salary}')
+print(f'sum salary: {w1.salary + w2.salary}')
 
 

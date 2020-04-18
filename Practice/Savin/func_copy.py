@@ -29,7 +29,8 @@ def copydir(paht_to_source, paht_to_destination):
     os.mkdir(paht_to_destination)
     for root, subfoldars, files in os.walk(paht_to_source):
         for folder in subfoldars:
-            path_to_copyfolder = paht_to_destination + '\\' + folder + '\\'
+            path_to_folder = os.path.join(root, folder)
+            path_to_copyfolder = paht_to_destination + path_to_folder[len(paht_to_source):]
             os.mkdir(path_to_copyfolder)
 
         for file in files:

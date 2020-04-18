@@ -52,18 +52,26 @@ def to_title(stroka):
         new_stroka.append(stroka[0].upper())
         i = 1
     while i < len(stroka):
-        if stroka[i] == ' ' and stroka[i+1].isalpha():
+        if stroka[i] == ' ' and i < len(stroka)-1 and stroka[i+1].isalpha():
             new_stroka.append(stroka[i])
             new_stroka.append(stroka[i+1].upper())
             i += 2
-            continue
         else:
             new_stroka.append(stroka[i])
             i += 1
     return ''.join(new_stroka)
 
-stroka = to_title('orlov ilya evgenyevich')
+stroka = to_title('orlov ilya evgenyevich ')
 print(stroka)
+
+
+def to_title_2(stroka):
+    lst = [word.capitalize() for word in stroka.split()]
+    return ' '.join(lst)
+
+stroka = to_title_2('orlov ilya evgenyevich')
+print(stroka)
+
 
 # Задание 5
 def count_symbol(stroka, symbol):

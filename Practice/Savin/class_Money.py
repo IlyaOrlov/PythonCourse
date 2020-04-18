@@ -4,56 +4,56 @@ class Money:
         if kop > 99:
             raise TypeError(f'Должно быть не больше 99коп. Задали {kop}')
         if rub < 0:
-            self.abs = -(abs(rub) * 100 + kop)
+            self._abs = -(abs(rub) * 100 + kop)
         else:
-            self.abs = rub * 100 + kop
-        self.rub = rub
-        self.kop = kop
+            self._abs = rub * 100 + kop
+        self._rub = rub
+        self._kop = kop
 
-        self.kurs = 74.13
+        self._kurs = 74.13
 
     def __str__(self):
-        if len(str(self.kop)) > 1 and str(self.kop).isalnum():
-            return f'{self.rub},{self.kop}'
+        if len(str(self._kop)) > 1 and str(self._kop).isalnum():
+            return f'{self._rub},{self._kop}'
         else:
-            return f'{self.rub},0{self.kop}'
+            return f'{self._rub},0{self._kop}'
 
     def __lt__(self, other):
-        return abs(self.abs) < abs(other.abs)
+        return abs(self._abs) < abs(other._abs)
 
     def __le__(self, other):
-        return abs(self.abs) <= abs(other.abs)
+        return abs(self._abs) <= abs(other._abs)
 
     def __eq__(self, other):
-        return abs(self.abs) == abs(other.abs)
+        return abs(self._abs) == abs(other._abs)
 
     def __ne__(self, other):
-        return abs(self.abs) != abs(other.abs)
+        return abs(self._abs) != abs(other._abs)
 
     def __gt__(self, other):
-        return abs(self.abs) > abs(other.abs)
+        return abs(self._abs) > abs(other._abs)
 
     def __ge__(self, other):
-        return abs(self.abs) >= abs(other.abs)
+        return abs(self._abs) >= abs(other._abs)
 
     def __add__(self, other):
-        result = self.abs + other.abs
+        result = self._abs + other._abs
         return self.convert(result)
 
     def __sub__(self, other):
-        result = self.abs - other.abs
+        result = self._abs - other._abs
         return self.convert(result)
 
     def __mul__(self, other):
-        result = self.abs * other
+        result = self._abs * other
         return self.convert(result)
 
     def __truediv__(self, other):
         if isinstance(other, Money):
-            result = round(self.abs / other.abs, 2)
+            result = round(self._abs / other._abs, 2)
             return result
         else:
-            result = int(self.abs / other)
+            result = int(self._abs / other)
             return self.convert(result)
 
     def convert(self, abs):
@@ -71,7 +71,7 @@ class Money:
             return Money(rub, kop)
 
     def rub_in_usd(self):
-        result = round(self.abs/100 / self.kurs, 2)
+        result = round(self._abs / 100 / self._kurs, 2)
         return result
 
 
@@ -85,5 +85,6 @@ print(m1/m2)
 print(m1*2)
 print(m1/2)
 print(m1.rub_in_usd())
+
 
 
