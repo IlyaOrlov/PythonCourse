@@ -13,10 +13,9 @@ while i <= 100:
 # второе задание
 number = input('Введите пятизначное число :')
 print('Число :'+ number)
-lst = list(number)
 i = 0
-while i < len(lst):
-    print("{} цифра равна : {}".format((i + 1), lst[i]))
+while i < len(number):
+    print("{} цифра равна : {}".format((i + 1), number[i]))
     i += 1
 
 
