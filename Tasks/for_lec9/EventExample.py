@@ -1,35 +1,32 @@
 from threading import Thread, Event
 import time
 
-a = None
+lst = []
 
 
 def print_fun(ev):
-    global a
+    global lst
     while True:
-        if not ev.is_set():
-            ev.set()
-            if a:
-                if a == 'q':
-                    ev.clear()
-                    break
-                print(a,)
-                a = None
-            ev.clear()
+        if ev.is_set():
+            ev.wait()
+            if 'q' in lst:
+                break
+            while len(lst) > 0:
+                print(lst.pop(0),)
+        time.sleep(1)  # делает возможным, но не гарантирует переключение на другой поток
 
 
 if __name__ == '__main__':
     ev = Event()
-    ev.set()
-    a = input()
-    ev.clear()
     t = Thread(target=print_fun, args=(ev,))
+    lst.append(input())
+    ev.set()  # lst не пустой, поэтому разрешаем чтение из lst
     t.start()
     while True:
-        if a == 'q':
+        if 'q' in lst:
             break
-        ev.set()
-        a = input()
         ev.clear()
-        time.sleep(5)
+        lst.append(input())
+        ev.set()
+        time.sleep(1)  # делает возможным, но не гарантирует переключение на другой поток
     t.join()
