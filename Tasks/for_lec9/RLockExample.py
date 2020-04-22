@@ -15,6 +15,7 @@ def print_fun(l):
             print(a, end=' ')
             a = None
         l.release()
+        time.sleep(2)
 
 
 if __name__ == '__main__':
