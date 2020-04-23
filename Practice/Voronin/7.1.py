@@ -10,12 +10,12 @@ d1w = datetime.weekday(d1)
 work_day = []
 for i in range(q_day + 1):
     if d1w < 7:
-        if 0 < d1w < 6:
+        if d1w < 5:
             work_day.append(d1w)
             d1w += 1
         else:
             d1w += 1
-    else:
+    if d1w > 6:
         d1w = 0
 
 print('Количество рабочих дней ' + str(len(work_day)))
