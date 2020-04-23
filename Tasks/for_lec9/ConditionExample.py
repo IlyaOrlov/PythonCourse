@@ -1,35 +1,36 @@
 from threading import Thread, Condition
 import time
 
-a = None
+lst = []
 
 
 def print_fun(cv):
-    global a
+    global lst
     while True:
         with cv:
-            while not a:
+            while len(lst) == 0:
                 cv.wait()
-            if a == 'q':
+            if 'q' in lst:
                 cv.notify()
                 break
-            print(a,)
-            a = None
+            while len(lst) > 0:
+                print(lst.pop(0),)
             cv.notify()
+            time.sleep(1)
 
 
 if __name__ == '__main__':
     cv = Condition()
-    a = input()
+    lst.append(input())
     t = Thread(target=print_fun, args=(cv,))
     t.start()
     while True:
         with cv:
-            while a and a != 'q':
+            while len(lst) > 0 and 'q' not in lst:
                 cv.wait()
-            if a == 'q':
-                break
-            a = input()
+            lst.append(input())
             cv.notify()
-            time.sleep(5)
+            if 'q' in lst:
+                break
+            time.sleep(1)
     t.join()
