@@ -4,30 +4,28 @@ import time
 a = None
 
 
-def print_fun(l):
+def print_fun(lock):
+    global a
     while True:
-        l.acquire()
-        global a
+        lock.acquire()
         if a:
             if a == 'q':
-                l.release()
+                lock.release()
                 break
             print(a, end=' ')
             a = None
-        l.release()
-        time.sleep(2)
 
 
 if __name__ == '__main__':
-    l = RLock()
+    lock = RLock()
     a = input()
-    t = Thread(target=print_fun, args=(l,))
+    t = Thread(target=print_fun, args=(lock,))
     t.start()
     while True:
         if a == 'q':
             break
-        l.acquire()
+        lock.acquire()
         a = input()
-        l.release()
-        time.sleep(5)
-t.join()
+        lock.release()
+        time.sleep(1)
+    t.join()
