@@ -14,8 +14,7 @@ def print_fun(lock):
                 break
             print(a, end=' ')
             a = None
-        lock.release()
-        time.sleep(1)
+
 
 if __name__ == '__main__':
     lock = RLock()
