@@ -9,20 +9,19 @@ class WrapStrToFile:
     @property
     def content(self):
         try:
-            f = open(self.filepath)
-            f1 = f.read()
-            f.close()
-            return f1
+            with (open(self.filepath)) as f1:
+                return f1.read()
         except FileNotFoundError:
             print("файл не существует")
+            return None
 
 
 
     @content.setter
     def content(self, value):
-        f = open(self.filepath, 'w')
-        f.write(value)
-        f.close()
+        with (open(self.filepath, 'w')) as f1:
+            f1.write(value)
+
 
     @content.deleter
     def content(self):
