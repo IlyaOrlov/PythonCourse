@@ -3,19 +3,17 @@ import time
 import itertools as it
 
 
-sum_list = [0, '', []]
-
-
 def my_sum(data):
+    sum_list = [0, '', []]
     proc_name = mp.current_process().name
     for arg in data:
-        if type(arg) == int:
+        if isinstance(arg, int):
             sum_list[0] += arg
             print(f"{proc_name} processed value {arg}")
-        if type(arg) == str:
+        if isinstance(arg, str):
             sum_list[1] += ' ' + arg
             print(f"{proc_name} processed value {arg}")
-        if type(arg) == list:
+        if isinstance(arg, list):
             sum_list[2] += list(it.chain(arg))
             print(f"{proc_name} processed value {arg}")
         time.sleep(1)
