@@ -21,26 +21,25 @@ def find_primes(end, start=3):
 
 
 if __name__ == "__main__":
+    start_func = time.time()
+    find_primes(10000)
+    find_primes(20000, 10001)
+    find_primes(30000, 20001)
+    print("Lead time = {:.2f} sec.".format(time.time() - start_func))
     start_threads = time.time()
-    th1 = threading.Thread(name='thread_1', target=find_primes(10000))
-    th2 = threading.Thread(name='thread_2', target=find_primes(20000, 10001))
-    th3 = threading.Thread(name='thread_3', target=find_primes(30000, 20001))
-    th1.start()
-    th2.start()
-    th3.start()
-    th1.join()
-    th2.join()
-    th3.join()
+    threads = [threading.Thread(target=find_primes(10000)), threading.Thread(target=find_primes(20000, 10001)),
+               threading.Thread(target=find_primes(30000, 20001))]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
     print("Lead time = {:.2f} sec.".format(time.time() - start_threads))
 
     start_processes = time.time()
-    pr1 = mp.Process(target=find_primes(10000))
-    pr2 = mp.Process(target=find_primes(20000, 10001))
-    pr3 = mp.Process(target=find_primes(30000, 20001))
-    pr1.start()
-    pr2.start()
-    pr3.start()
-    pr1.join()
-    pr2.join()
-    pr3.join()
+    processes = [mp.Process(target=find_primes(10000)), mp.Process(target=find_primes(20000, 10001)),
+                 mp.Process(target=find_primes(30000, 20001))]
+    for process in processes:
+        process.start()
+    for process in processes:
+        process.join()
     print("Lead time = {:.2f} sec.".format(time.time() - start_processes))
