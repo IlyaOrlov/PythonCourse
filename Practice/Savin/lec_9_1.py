@@ -22,34 +22,38 @@ def find_primes(start, end):
     return list_numbers
 
 
-print('Один поток')
-start = time.time()
-find_primes(3, 10000)
-find_primes(10001, 20000)
-find_primes(20001, 30000)
-time1 = start - time.time()
-print(f'Время операции: {time1}')
-
-print('Три потока')
-start = time.time()
-t1 = threading.Thread(target=find_primes, args=(3, 10000))
-t2 = threading.Thread(target=find_primes, args=(10001, 20000))
-t3 = threading.Thread(target=find_primes, args=(20001, 30000))
-threads = [t1, t2, t3]
-
-for t in threads:
-    t.start()
-
-for t in threads:
-    t.join()
-
-time2 = start - time.time()
-print(f'Время операции: {time2} ')
-print((time1 > time2))
-
-print('Три процесса')
-start = time.time()
 if __name__ == '__main__':
+    print('Один поток')
+    start = time.time()
+    find_primes(3, 10000)
+    find_primes(10001, 20000)
+    find_primes(20001, 30000)
+    time1 = start - time.time()
+    print(f'Время операции: {time1}')
+
+
+if __name__ == '__main__':
+    print('Три потока')
+    start = time.time()
+    t1 = threading.Thread(target=find_primes, args=(3, 10000))
+    t2 = threading.Thread(target=find_primes, args=(10001, 20000))
+    t3 = threading.Thread(target=find_primes, args=(20001, 30000))
+    threads = [t1, t2, t3]
+
+    for t in threads:
+        t.start()
+
+    for t in threads:
+        t.join()
+
+    time2 = start - time.time()
+    print(f'Время операции: {time2} ')
+    print((time1 > time2))
+
+
+if __name__ == '__main__':
+    print('Три процесса')
+    start = time.time()
     proc_1 = multiprocessing.Process(target=find_primes, args=(3, 10000))
     proc_2 = multiprocessing.Process(target=find_primes, args=(10001, 20000))
     proc_3 = multiprocessing.Process(target=find_primes, args=(20001, 30000))
