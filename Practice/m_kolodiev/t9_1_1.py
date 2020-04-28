@@ -28,7 +28,8 @@ start_thr = time.time()
 threads = []
 for i in range(3):
     thread = threading.Thread(target=find_primes, args=(starts[i], ends[i]))
-    thread.start()
     threads.append(thread)
-    thread.join()
+    thread.start()
+for thr in threads:
+    thr.join()
 print(f"Multithreading computing time: {time.time() - start_thr}")

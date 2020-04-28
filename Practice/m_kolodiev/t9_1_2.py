@@ -24,7 +24,8 @@ if __name__ == '__main__':
     processes = []
     for i in range(3):
         process = multiprocessing.Process(target=find_primes, args=(starts[i], ends[i]))
-        process.start()
         processes.append(process)
-        process.join()
+        process.start()
+    for p in processes:
+        p.join()
     print(f"Multiprocessing computing time: {time.time() - start_process} sec.")
