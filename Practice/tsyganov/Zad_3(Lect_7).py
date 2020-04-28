@@ -17,7 +17,7 @@ def serialize(self):
 def deserialize():
         with open("myfile.py", 'rb') as f:
                 res_des = pickle.load(f)
-                print (res_des)
+                return res_des
 
 def zavod(n):
     surname_box=['Lennon','Hendrix','Morrison']
