@@ -28,7 +28,7 @@ if __name__ == '__main__':
     find_primes(3, 10000)
     find_primes(10001, 20000)
     find_primes(20001, 30000)
-    time1 = start - time.time()
+    time1 = time.time() - start
     print(f'Время операции: {time1}')
 
 
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     for t in threads:
         t.join()
 
-    time2 = start - time.time()
+    time2 = time.time() - start
     print(f'Время операции: {time2} ')
     print((time1 > time2))
 
@@ -65,7 +65,7 @@ if __name__ == '__main__':
     for proc in processes:
         proc.join()
 
-    time3 = start - time.time()
+    time3 = time.time() - start
     print(f'Время операции: {time3} ')
     print((time2 > time3))
 
