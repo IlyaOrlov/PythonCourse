@@ -20,33 +20,31 @@ def find_primes(end, start=3):
 
     return lst1
 
-start = time.time()
-print(find_primes(10000))
-print(find_primes(20000, 10001))
-print(find_primes(30000, 20001))
-print(time.time()-start)
-
-start = time.time()
-th = threading.Thread(target=find_primes, args=(10000,))
-th.start()
-th.join()
-th1 = threading.Thread(target=find_primes, args=(20000, 10001))
-th1.start()
-th1.join()
-th2 = threading.Thread(target=find_primes, args=(30000, 20001))
-th2.start()
-th2.join()
-print(time.time()-start)
-
 if __name__ == '__main__':
     start = time.time()
-    p = multiprocessing.Process(target=find_primes, args=(10000,))
-    p.start()
-    p.join()
-    p1 = multiprocessing.Process(target=find_primes, args=(20000, 10001))
-    p1.start()
-    p1.join()
-    p2 = multiprocessing.Process(target=find_primes, args=(30000, 20001))
-    p2.start()
-    p2.join()
+    print(find_primes(10000))
+    print(find_primes(20000, 10001))
+    print(find_primes(30000, 20001))
+    print(time.time()-start)
+
+
+    start = time.time()
+    th = [threading.Thread(target=find_primes, args=(10000,)),
+          threading.Thread(target=find_primes, args=(20000, 10001)),
+          threading.Thread(target=find_primes, args=(30000, 20001))]
+    for i in th:
+        i.start()
+    for i in th:
+        i.join()
+    print(time.time()-start)
+
+
+    start = time.time()
+    p = [multiprocessing.Process(target=find_primes, args=(10000,)),
+        multiprocessing.Process(target=find_primes, args=(20000, 10001)),
+        multiprocessing.Process(target=find_primes, args=(30000, 20001))]
+    for i in p:
+        i.start()
+    for i in p:
+        i.join()
     print(time.time() - start)
