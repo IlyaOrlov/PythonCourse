@@ -1,4 +1,5 @@
 import socket
+import pickle
 
 from lec_10_2_user import User
 
@@ -10,10 +11,11 @@ class TcpClient:
         self.host = host
         self._socket = None
 
+
     def run(self):
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._socket.connect((self.host, self.port))
-        message = (self.user.name + ' ' + str(self.user.age)).encode()
+        message = pickle.dumps(self.user)
         self._socket.send(message)
         self._socket.close()
 

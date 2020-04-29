@@ -1,7 +1,7 @@
 import socket
 import socketserver
+import pickle
 
-from lec_10_2_user import User
 
 host = socket.gethostbyname(socket.gethostname())
 port = 9090
@@ -9,16 +9,15 @@ port = 9090
 
 class TCPHandler(socketserver.BaseRequestHandler):
 
-    clients = {}
+    users = {}
+
 
     def handle(self):
-        data = self.request.recv(1024).strip()
+        users = pickle.loads(self.request.recv(1024).strip())
         addr = self.client_address[1]
-        if addr not in self.clients:
-            name, age = data.decode().split(' ')
-            u = User(name, age)
-            self.clients[addr] = u
-            print(f'user {u.name} ({u.age} age) is connected. Address {addr}')
+        if addr not in self.users:
+            self.users[addr] = users
+            print(f'user {users.name} ({users.age} age) is connected. Address {addr}')
 
 
 if __name__ == '__main__':
