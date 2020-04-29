@@ -14,8 +14,6 @@ def Datecomp(a, b):
     while a < b:
         if a.isoweekday() in range(1,5):
             s += 1
-        else:
-            s += 0
         a += datetime.timedelta(days = 1)
     return s
 
