@@ -11,6 +11,7 @@ class Manager_time:
 
 
 with Manager_time():
+
     def max_in_lst(lst):
         m = lst[0]
         for i in lst:
@@ -18,5 +19,6 @@ with Manager_time():
                 m = i
         return m
 
-
+lst = [10, 27, 42, 15]
+print(max_in_lst(lst))
 
