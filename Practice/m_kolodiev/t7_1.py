@@ -1,11 +1,12 @@
 from datetime import datetime, timedelta
+import time
 
 
 def work_days(start, end):
     delta = timedelta(days=1)
     diff = 0
     while start != end:
-        if start.weekday() not in [5, 6]:
+        if start.weekday() < 5:
             diff += 1
         start += delta
     return diff

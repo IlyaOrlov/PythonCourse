@@ -14,26 +14,27 @@ class Human:
         self.age = random.randint(18, 70)
         self.phone = random.randint(10000000000, 19999999999)
 
-        print(f"{self.name} {self.surname} is {self.age}, phone number: {self.phone}. Last seen in {self.location}")
-
-    def repr(self):
-        print(f"\n{self.name} {self.surname}\nAge: {self.age}\nPhone number: {self.phone}\nLocation: {self.location}")
+    def __repr__(self):
+        return f"\n{self.name} {self.surname}\nAge: {self.age}\nPhone number: {self.phone}\nLocation: {self.location}"
 
 
 def serialize(number):
     people = []
+    print("Serializing:")
     for i in range(number):
         person = Human()
         people.append(person)
+        print(repr(person))
     with open("human.data", "wb") as file:
         pickle.dump(people, file)
 
 
 def deserialize():
+    print("\nDeserialized:")
     with open("human.data", "rb") as file:
         data = pickle.load(file)
     for man in data:
-        print(f"\nName: {man.name} {man.surname}\nAge: {man.age}\nPhone number: {man.phone}\nLocation: {man.location}")
+        print(repr(man))
 
 
 serialize(5)
