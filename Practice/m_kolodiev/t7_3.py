@@ -24,7 +24,7 @@ def serialize(number):
     for i in range(number):
         person = Human()
         people.append(person)
-        print(repr(person))
+        print(person)
     with open("human.data", "wb") as file:
         pickle.dump(people, file)
 
@@ -34,7 +34,7 @@ def deserialize():
     with open("human.data", "rb") as file:
         data = pickle.load(file)
     for man in data:
-        print(repr(man))
+        print(man)
 
 
 serialize(5)
