@@ -36,6 +36,8 @@ if __name__ == '__main__':
     st1 = time.time()
     for each in thread_list:
         each.start()
+
+    for each in thread_list:
         each.join()
     st1: float = time.time() - st1
     print(st1)
@@ -48,6 +50,7 @@ if __name__ == '__main__':
     st2 = time.time()
     for each in process_list:
         each.start()
+    for each in process_list:
         each.join()
     st2: float = time.time() - st2
     print(st2)

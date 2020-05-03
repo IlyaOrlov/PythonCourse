@@ -13,10 +13,11 @@ class WrapStrToFile:
         # в случае неудачи возвращаем 'File doesn't exist'
         try:
             with open(self.path, 'r') as file_open:
-                print('file contented next information {}'.format(file_open.readlines()))
-
+                # print('file contented next information {}'.format(file_open.readlines()))
+                return file_open.readlines()
         except FileExistsError:
             print('File does not exist')
+
 
     @content.setter
     def content(self, value): # попытка записи в файл указанного содержимого
