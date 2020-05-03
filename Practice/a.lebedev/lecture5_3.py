@@ -1,20 +1,19 @@
 import tempfile as tf
 import os
+import shutil
 
 class WrapStrToFile:
     def __init__(self): # здесь инициализируется атрибут filepath, # он содержит путь до файла-хранилища
-        self.path = tf.mkstemp('.txt', 'first', 'test')[1]
-        print('v peremennoy self.path = ', self.path)
-        # print('v peremennoy self.content ', self.content)
+        fd, self.path = tf.mkstemp('.txt', 'first', 'test')
+        print('file was created')
+        os.close(fd)
 
     @property
     def content(self): # попытка чтения из файла, в случае успеха возвращаем содержимое
         # в случае неудачи возвращаем 'File doesn't exist'
         try:
             with open(self.path, 'r') as file_open:
-                # self.content =
-                print(365)
-            # return file_open.read()
+                print('file contented next information {}'.format(file_open.readlines()))
 
         except FileExistsError:
             print('File does not exist')
@@ -22,17 +21,19 @@ class WrapStrToFile:
     @content.setter
     def content(self, value): # попытка записи в файл указанного содержимого
         with open(self.path, 'wt') as file_open:
-            file_open.write(value)
+            file_open.writelines(value)
+        shutil.copy(self.path, "C:\\Users\\Home\\PycharmProjects\\mytest\\test\\temp.txt")  #тест файл для отслеживания
 
     @content.deleter
     def content(self): # удаляем файл: os.remove(имя_файла)
         os.remove(self.path)
-        print('dannye udaleny')
+        print('file was delete')
 
 wstf = WrapStrToFile()
 wstf.content
-wstf.content = '1234'
-try:
-    del wstf.content
-except PermissionError:
-    print('FILE OPEN IN OTHER APP')
+wstf.content = 'hello world'
+wstf.content
+wstf.content = 'Wow it work'
+wstf.content
+del wstf.content
+
