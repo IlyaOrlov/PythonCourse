@@ -12,16 +12,16 @@ class ClientThread(threading.Thread):
 
     def run(self):
         data = self._connection.recv(1024)
-        user_data = pickle.loads(data)
-        print(f'User {user_data[0]}, age {user_data[1]} connected in {datetime.datetime.now().strftime("%H:%M:%S")}')
+        user = pickle.loads(data)
+        print(f'User {user.name}, age {user.age} connected in {datetime.datetime.now().strftime("%H:%M:%S")}')
         while True:
             a = self._connection.recv(1024)
             if a.decode() == 'quit':
                 self._connection.close()
-                print(f'User {user_data[0]} disconnected in {datetime.datetime.now().strftime("%H:%M:%S")}')
+                print(f'User {user.name} disconnected in {datetime.datetime.now().strftime("%H:%M:%S")}')
                 break
             else:
-                print(f'{user_data[0]}: {a.decode()}')
+                print(f'{user.name}: {a.decode()}')
 
 
 class TcpServer:
