@@ -2,6 +2,7 @@ import threading
 import socket
 import datetime
 import pickle
+from user_info import User
 
 
 class ClientThread(threading.Thread):
