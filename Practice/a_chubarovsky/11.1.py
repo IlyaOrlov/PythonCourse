@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 
 class MySqlite:
@@ -10,7 +11,7 @@ class MySqlite:
         self.conn = sqlite3.connect(self.db_name)
         print(f'DataBase {self.db_name} is open.')
         self.cursor = self.conn.cursor()
-        return self.conn
+        return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         print('DataBase is closed.')
@@ -31,20 +32,20 @@ class MySqlite:
     def select(self, some_cmd):
         c = self.cursor.execute(some_cmd)
         for row in c:
-            print(row)
+            data = json.dumps(row)
+            print(json.loads(data))
 
 
 if __name__ == '__main__':
     try:
-        table = MySqlite('my_sqlite_database.db')
-        with table:
+        with MySqlite('my_sqlite_database.db') as table:
             while True:
                 cmd = input('Type SQL command: ')
                 if cmd == 'quit':
                     break
                 elif 'SELECT' in cmd:
                     table.select(cmd)
-                elif 'SELECT' not in cmd and cmd != 'quit':
+                elif 'SELECT' not in cmd:
                     table.execute(cmd)
     except Exception as Error:
         print(f'Error: {Error}')
