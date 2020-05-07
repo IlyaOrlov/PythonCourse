@@ -1,6 +1,6 @@
 import socket
 
-lst = ['пр2в1т ', 'м1ня ', 'з3вут ', 'Д1н2с ']
+lst = ['cat', 'dog', 'mouse', 'parrot']
 a = ""
 for i in lst:
     a += str(i)
