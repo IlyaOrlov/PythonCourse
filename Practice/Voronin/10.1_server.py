@@ -10,12 +10,11 @@ conn, addr = s.accept()
 while True:
     f = conn.recv(1024)
     f = f.decode()
-    a = ''
     for x in d.keys():
         f = f.replace(x, d[x])
 
     conn.send(f.encode())
-    conn.close()
+conn.close()
 
 
 
