@@ -31,9 +31,10 @@ class MySqlite:
 
     def select(self, some_cmd):
         c = self.cursor.execute(some_cmd)
+        data = []
         for row in c:
-            data = json.dumps(row)
-            print(json.loads(data))
+            data.append(row)
+        return json.dumps(data)
 
 
 if __name__ == '__main__':
@@ -44,7 +45,9 @@ if __name__ == '__main__':
                 if cmd == 'quit':
                     break
                 elif 'SELECT' in cmd:
-                    table.select(cmd)
+                    json_data = json.loads(table.select(cmd))
+                    for element in json_data:
+                        print(element)
                 elif 'SELECT' not in cmd:
                     table.execute(cmd)
     except Exception as Error:
