@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 from datetime import date,timedelta
+=======
+from _datetime import date,timedelta
+>>>>>>> 82bf2c06c204f9f26465b9e6a5261b9275bfaae2
 
 d1 = date(2020, 4, 1)
 d2 = date(2020, 5, 1)

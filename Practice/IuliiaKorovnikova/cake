@@ -1,0 +1,38 @@
+class Cake:
+
+    def make_base(self):
+        print("бисквит готов")
+    def add_cream(self):
+        print("крем-чиз")
+    def add_dekor(self):
+        print("декор")
+
+class BerryCake(Cake):
+    def make_base(self):
+        print("ванильный бисквит")
+    def add_dekor(self):
+        print("ягодный декор\n")
+
+class ChocoCake(Cake):
+    def make_base(self):
+        print("шоколадный бисквит")
+    def add_dekor(self):
+        print("шоколадный декор\n")
+
+class HoneyCake(Cake):
+    def make_base(self):
+        print("медовый бисквит")
+    def add_dekor(self):
+        print ("карамельный декор\n")
+
+def cake_maker(c):
+    c.make_base()
+    c.add_cream()
+    c.add_dekor()
+
+print("Готовим ягодный торт:")
+cake_maker(BerryCake())
+print("Готовим шоколадный торт:")
+cake_maker(ChocoCake())
+print("Готовим медовый торт:")
+cake_maker(HoneyCake())

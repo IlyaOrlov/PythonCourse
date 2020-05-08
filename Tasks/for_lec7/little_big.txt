@@ -1,0 +1,7 @@
+0101
+<- little-endian  # 5
+-> big-endian     # 10
+
+
+Computer1 (le)          Computer2 (be)
+5 -> 0101 ->            -> 1010 -> 10
