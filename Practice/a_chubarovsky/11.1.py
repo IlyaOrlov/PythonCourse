@@ -48,7 +48,7 @@ if __name__ == '__main__':
                     json_data = json.loads(table.select(cmd))
                     for element in json_data:
                         print(element)
-                elif 'SELECT' not in cmd:
+                else:
                     table.execute(cmd)
     except Exception as Error:
         print(f'Error: {Error}')
