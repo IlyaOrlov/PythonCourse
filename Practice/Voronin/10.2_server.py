@@ -1,6 +1,6 @@
 import socket
 import pickle
-from 10.2_client import Users
+from users import Users
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = '127.0.0.1'
