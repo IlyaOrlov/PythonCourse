@@ -4,9 +4,12 @@ from money import Money
 
 class TestMoney(unittest.TestCase):
 
-    m1 = Money(10, 55)
-    m2 = Money(5, 35)
-    m3 = Money(73, 44, 73.44)
+    @classmethod
+    def setUpClass(cls):
+        cls.m1 = Money(10, 55)
+        cls.m2 = Money(5, 35)
+        cls.m3 = Money(73, 44, 73.44)
+        print(f'Starting test class Money with attributes:\n{cls.m1};\n{cls.m2};\n{cls.m3}')
 
     def test_money1(self):
         self.assertRaises(TypeError, Money, 10.0, 20.0)
