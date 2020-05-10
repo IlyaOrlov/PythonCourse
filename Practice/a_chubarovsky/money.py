@@ -1,8 +1,3 @@
-def int_r(num):  # функция для классического округления
-    num = int(num + (0.5 if num > 0 else -0.5))
-    return num
-
-
 class Money:
 
     def __init__(self, rubles, pennies, exchange_rate=None):
@@ -15,6 +10,11 @@ class Money:
         self.rubles = rubles
         self.pennies = pennies
         self.exchange_rate = exchange_rate
+
+    @staticmethod
+    def int_r(num):  # функция для классического округления
+        num = int(num + (0.5 if num > 0 else -0.5))
+        return num
 
     def __str__(self):
         if self.exchange_rate is None:
@@ -39,13 +39,13 @@ class Money:
     def __truediv__(self, other):
         divided = (self.rubles * 100 + self.pennies) / (other.rubles * 100 + other.pennies)
         div_rubles = int(divided)
-        div_pennies = int_r((divided - div_rubles) * 100)
+        div_pennies = self.int_r((divided - div_rubles) * 100)
         return Money(div_rubles, div_pennies)
 
     def __mul__(self, other):
         multiple = float((self.rubles * 100 + self.pennies) / 100) * ((other.rubles * 100 + other.pennies) / 100)
         mul_rubles = int(multiple)
-        mul_pennies = int_r((multiple - mul_rubles) * 100)
+        mul_pennies = self.int_r((multiple - mul_rubles) * 100)
         return Money(mul_rubles, mul_pennies)
 
     def __lt__(self, other):
@@ -87,5 +87,5 @@ class Money:
     def convert(self):
         converted = (self.rubles * 100 + self.pennies) / (self.exchange_rate * 100)
         conv_dollars = int(converted)
-        conv_cents = int_r((converted - conv_dollars) * 100)
+        conv_cents = self.int_r((converted - conv_dollars) * 100)
         return Money(conv_dollars, conv_cents, self.exchange_rate)
