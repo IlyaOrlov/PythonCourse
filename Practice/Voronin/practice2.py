@@ -13,20 +13,19 @@ while i <= 100:
 # второе задание
 number = input('Введите пятизначное число :')
 print('Число :'+ number)
-lst = list(number)
 i = 0
-while i <= len(lst):
-    print("{} цифра равна : {}".format((i + 1), lst[i]))
+while i < len(number):
+    print("{} цифра равна : {}".format((i + 1), number[i]))
     i += 1
 
 
 # # Третье задание
 arr = [0, 3, 24, 2, 3, 7]
 i = 0
-while i <= len(arr):
+while i < (len(arr)-1):
     m = i
     j = i + 1
-    while j <= len(arr):
+    while j < len(arr):
         if arr[j] < arr[m]:
             m = j
         j += 1
