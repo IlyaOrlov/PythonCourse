@@ -4,6 +4,6 @@ while len(str(x)) != 5 or x.isdigit() is False:
     x = input('Введите пятизначное число: ')
 else:
     v = 1
-    for i in str(x):
+    for i in x:
         print(v, 'цифра равна', i)
         v += 1
