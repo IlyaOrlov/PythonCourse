@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Director List</h1>
+
+    {% if director_list %}
+    <ul>
+
+      {% for director in director_list %}
+      <li>
+        <a href="{{ director.get_absolute_url }}">{{ director }}</a>
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no directors.</p>
+    {% endif %}       
+{% endblock %}

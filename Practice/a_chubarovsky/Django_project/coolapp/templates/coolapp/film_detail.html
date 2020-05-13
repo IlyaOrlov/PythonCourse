@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Title: {{ film.title }}</h1>
+
+  <p><strong>Director:</strong> <a href="{% url 'director-detail' film.director.pk %}">{{ film.director }}</a></p>
+  <p><strong>Summary:</strong> {{ film.summary }}</p>
+  <p><strong>Genre:</strong> {% for genre in film.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+
+{% endblock %}
