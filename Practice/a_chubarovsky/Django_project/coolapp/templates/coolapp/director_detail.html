@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Director: {{ director }}</h1>
+
+    <p>{{director.date_of_birth}} - {% if director.date_of_death %}{{director.date_of_death}}{% endif %}</p>
+
+<div style="margin-left:20px;margin-top:20px">
+<h4>Films</h4>
+
+<dl>
+{% for film in director.film_set.all %}
+  <dt><a href="{% url 'film-detail' film.pk %}">{{ film }}</a>
+  <dd>{{book.summary}}</dd>
+{% endfor %}
+</dl>
+
+</div>
+{% endblock %}
