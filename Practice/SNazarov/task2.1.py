@@ -1,8 +1,8 @@
 def numbers(a, b):
     if a > b:
-        print("First number is bigger: " + str(a))
+        print(f"First number is bigger: {a}")
     else:
-        print("Second number is bigger: " + str(b))
+        print(f"Second number is bigger: {b}")
 
 print("Enter two nubmers, please!")
 first = int(input("Enter first number: "))

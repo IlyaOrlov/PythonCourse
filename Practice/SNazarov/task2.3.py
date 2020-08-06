@@ -10,6 +10,14 @@ class Warriors:
     def run(self):
         self.x += 1
 
+    def runFast(self):
+        print("I`m running very fast!!!")
+        self.x += 2
+
+    def runSlow(self):
+        print("I`m running slower!!!")
+        self.x -= 2        
+
     def shoot(self):
         print("BA-baHhhh!!!!")
 
@@ -19,9 +27,11 @@ class Warriors:
         if i == 1:
             print("you found thing! It is + 2 speed!!!")
             self.x += 2
+            self.run = self.runFast
         else:
             print("you found thing! It is - 2 speed!!!")
             self.x -= 2
+            self.run = self.runSlow
 
 class CaptainVdv(Warriors):
     def draw(self):
@@ -47,18 +57,18 @@ while True:
         print("Wrong choise!!!")
         continue
     choose = input("What a warrior has to do? Select, please!: | 1.Run | 2.Shoot | 3.Fly | 4.Pick up an item | 5.Exit |: ")
-    if choose in '1':
+    if choose == '1':
         warrior[pers].run()
-    elif choose in '2':
+    elif choose == '2':
         warrior[pers].shoot()
-    elif choose in '3':
+    elif choose == '3':
         if pers == 0:
             warrior[pers].fly()
         else:
             print("This warrior can`t fly!!!")    
-    elif choose in '4':
+    elif choose == '4':
         warrior[pers].leftUp()
-    elif choose in '5':
+    elif choose == '5':
         break    
     else:
         print("Wrong choise!!!")
