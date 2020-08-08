@@ -76,3 +76,4 @@ while True:
         break
     for personage in personages:
         personage.draw()
+
