@@ -18,7 +18,7 @@ def return_biggest_number(number_1, number_2):
     elif number_2 > number_1:
         return number_2
     else:
-        return "numbers are equal"
+        return None
 
 
 print(return_biggest_number(4, 5))
