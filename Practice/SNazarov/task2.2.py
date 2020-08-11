@@ -5,9 +5,9 @@ def numbers(a, b):
         return b
 
 print("Enter two nubmers, please!")
-first = input("Enter first number: ")
-second = input("Enter second number: ")
+first = int(input("Enter first number: "))
+second = int(input("Enter second number: "))
 result = numbers(first, second)
-print("This number is bigger: " + result)
+print(f"This number is bigger: {result}")
 
-numbers(int(first), int(second))
+numbers(first, second)

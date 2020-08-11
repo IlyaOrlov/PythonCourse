@@ -1,37 +1,55 @@
 import random
 
 
+class RunAction:
+    def run(self):
+        print("I`m running!")
+
+class FastRunAction(RunAction):
+    def run(self):
+        print("I`m running very fast!!!")
+
+class SlowRunAction(RunAction):
+    def run(self):
+        print("I`m running slower!!!")
+
 class Warriors:
+    run_action = RunAction()
     x = 0
+
+    def run(self):
+        self.run_action.run()
+        self.x += 1
+
+    def runFast(self):
+        self.run_action.run()
+        self.x += 2
+
+    def runSlow(self):
+        self.run_action.run()
+        self.x -= 2
+
+    def set_action(self, new_action):
+        self.run_action = new_action
 
     def draw(self):
         print(f"I`m warrior at - {self.x}")
 
-    def run(self):
-        self.x += 1
-
-    def runFast(self):
-        print("I`m running very fast!!!")
-        self.x += 2
-
-    def runSlow(self):
-        print("I`m running slower!!!")
-        self.x -= 2        
-
     def shoot(self):
         print("BA-baHhhh!!!!")
 
-    def leftUp(self):
-        print("I pick up something!")
-        i = random.randint(0, 1)
-        if i == 1:
-            print("you found thing! It is + 2 speed!!!")
-            self.x += 2
-            self.run = self.runFast
-        else:
-            print("you found thing! It is - 2 speed!!!")
-            self.x -= 2
-            self.run = self.runSlow
+def leftUp(warrior):
+    print("I pick up something!")
+    i = random.randint(0, 1)
+    if i == 1:
+        print("you found thing! It is + 2 speed!!!")
+        warrior.set_action(FastRunAction())
+        warrior.run = warrior.runFast
+
+    else:
+        print("you found thing! It is - 2 speed!!!")
+        warrior.set_action(SlowRunAction())
+        warrior.run = warrior.runSlow
 
 class CaptainVdv(Warriors):
     def draw(self):
@@ -49,6 +67,7 @@ class ColonelAviation(Warriors):
         print(f"I`m ColonelAviation at - {self.x}")
 
 warrior = [CaptainVdv(), ColonelAviation(), MajorInfantry()]
+
 for warr in warrior:
     warr.draw()
 while True:
@@ -67,7 +86,7 @@ while True:
         else:
             print("This warrior can`t fly!!!")    
     elif choose == '4':
-        warrior[pers].leftUp()
+        leftUp(warrior[pers])
     elif choose == '5':
         break    
     else:
@@ -75,4 +94,3 @@ while True:
         continue
     for warr in warrior:
         warr.draw()
-        
