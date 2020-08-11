@@ -1,8 +1,9 @@
-#сравнить два числа
 
-def intMoreThan():
-    numFirst = int(input('Введите первое число:'))
-    numSecond = int(input('Введите второе число:'))
+numFirst = int(input('Введите первое число:'))
+numSecond = int(input('Введите второе число:'))
+
+def intMoreThan(numFirst, numSecond):
+    """ функция сравнивает два числа"""
     if numFirst < numSecond:
         print(numSecond)
     elif numFirst > numSecond:
