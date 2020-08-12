@@ -50,11 +50,21 @@ def v2_tab_or_spaces(line, tab_to_spaces=True):
         print(new_line)         # or return
 
 
+def v3_tab_or_spaces(line, tab_to_spaces=True):
+    if tab_to_spaces is True:  # for '\t'=4spaces
+        # return line.expandtabs(tabsize=4) - it's the first idea,
+        # but correctly only the first replacement and... v1 and v2 were made
+        return line.replace("\t", "    ")
+
+    return line.replace("    ", "\t")  # for 4spaces='\t'
+
+
 line_tab = "\tOne\tTwo...Three\tFour\t...Five"
 v1_tab_or_spaces(line_tab)
 v2_tab_or_spaces(line_tab)
+print(v3_tab_or_spaces(line_tab))
 
 line_with_spaces = "    Five Four    Three  Two    One    "
 v1_tab_or_spaces(line_with_spaces, tab_to_spaces=False)
 v2_tab_or_spaces(line_with_spaces, tab_to_spaces=False)
-
+print(v3_tab_or_spaces(line_with_spaces, tab_to_spaces=False))
