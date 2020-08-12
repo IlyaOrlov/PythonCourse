@@ -46,11 +46,11 @@ class shuffler:     # have to be "class Shuffler"
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    subparsers = parser.add_subparsers(dest='subcommand', help='subcommand help') # have to be "sub_command" and "sub_command_help"
-    rename_parser = subparsers.add_parser('rename', help='rename help')           # have to be "rename_help"
+    subparsers = parser.add_subparsers(dest='subcommand', help='subcommand help') # have to be "sub_command"
+    rename_parser = subparsers.add_parser('rename', help='rename help')           
     rename_parser.add_argument('dirname')                                         # have to be "dir_name"
     rename_parser.add_argument('-o', '--output', help='path to a file where restore map is stored')
-    restore_parser = subparsers.add_parser('restore', help="command_a help")      # have to be "command_a_help"
+    restore_parser = subparsers.add_parser('restore', help="command_a help")      
     restore_parser.add_argument('dirname')                                        # have to be "dir_name"
     restore_parser.add_argument('restore_map')
     args = parser.parse_args()
