@@ -10,7 +10,7 @@ from time import *
                         # 2 строки между блоком import и началом блока кода
 
 class Shuffler:         # имена классов вида CamelCase
-                        # одна строка между методами класса и функциями
+
     def __init__(self):
         self.map = {}
 
@@ -23,9 +23,9 @@ class Shuffler:         # имена классов вида CamelCase
         for path, mp3 in mp3s:
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
-            os.rename(path + '/' + mp3, path + '/' + hashname)       # два лишних закрывающих *скобки в строке
-            f = open(output, 'r')                           # недостающие отступы, переименование каждого файла в цикле
-            f.write(str(self.map))
+            os.rename(path + '/' + mp3, path + '/' + hashname)       # два лишних закрывающих пробела в строке
+        f = open(output, 'r')                           # выравнивание-отступы
+        f.write(str(self.map))
 
     def restore(self, dirname, restore_path):
         with open(filename, '+') as f:                  # использование filename без импорта
@@ -37,7 +37,7 @@ class Shuffler:         # имена классов вида CamelCase
                     mp3s.append({root, file})
         for path, hashname in mp3s:
             os.rename(path + '/' + hashname, path + '/' + self.map[hashname])     # лишняя скобка
-        os.remove(restore_path)
+            os.remove(restore_path)
 
     def generate_name(self, seed=time()):                # выравнивание-отступы и отсутствует ':'
         return hashlib.md5(str(seed)).hexdigest()
