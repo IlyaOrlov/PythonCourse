@@ -3,6 +3,6 @@ def print_max(a, b):
                                              #if a > b:
                                              #    print(f"Max number={a}")
                                              #else:
-                                             #    print(f"Max number={b}")
+print_max(77, 99)                            #    print(f"Max number={b}")
 
 
