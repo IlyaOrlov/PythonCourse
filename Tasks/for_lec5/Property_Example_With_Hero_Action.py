@@ -8,7 +8,7 @@ class Hero:
 		
     @action.setter
     def action(self, new_action):
-        if instance(new_action, Action):
+        if isinstance(new_action, Action):
             self._action = new_action
         else:
             print("Incorrect action")		
