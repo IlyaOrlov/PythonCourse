@@ -21,8 +21,8 @@ class shuffler:         # имена классов начинаться с за
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
             os.rename(path + '/' + mp3), path + '/' + hashname)) # несоответствие открывающих и закрывающих скобок
-          f = open(output, 'r')                             # не соблюден отступ относительно цикла for
-          f.write(str(self.map))                            # не соблюден отступ относительно цикла for
+          f = open(output, 'r')                             # не ошибка, но количество пробелов в отступе более 4х относительно функции rename
+          f.write(str(self.map))                            # не ошибка, но количество пробелов в отступе более 4х относительно функции rename
 
     def restore(self, dirname, restore_path):
           with open(filename, '+') as f:
