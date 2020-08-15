@@ -6,13 +6,13 @@ import argparse
 from time import *
 
 
-class shuffler:
+class shuffler:        # Имена классов должно быть согласно CapWords
 
     def __init__(self):
         self.map = {}
 
     def rename(self, dirname, output):
-          mp3s = []
+          mp3s = []                      # нет 4 отступов в теле функции rename, не на равне с другиме строками в теле функции
         for root, directories, files in os.walk(dirname):
             for file in files:
                 if file[-3:] == '.mp3':
@@ -20,23 +20,23 @@ class shuffler:
         for path, mp3 in mp3s:
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
-            os.rename(path + '/' + mp3), path + '/' + hashname))
-          f = open(output, 'r')
-          f.write(str(self.map))
+            os.rename(path + '/' + mp3), path + '/' + hashname)) # лишняя скобка в середине и конце строки.
+          f = open(output, 'r')           # убрать 2 отступов до цикла for
+          f.write(str(self.map))          # убрать 2 отступов до цикла for
 
     def restore(self, dirname, restore_path):
-          with open(filename, '+') as f:
+          with open(filename, '+') as f:   # тело with имеет разный индекс отступов в каждой строке. Неверный аргумент(filename).
             self.map = ast.literal_eval(f.read())
           mp3s = []
         for root, directories, files in os.walk(dirname):
             for file in files:
                if file[-3:] == '.mp3':
                     mp3s.append({root, file})
-        for path, hashname in mp3s:
-            os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))
+        for path, hashname in mp3s:       # тело цикла for имеет разный индекс отступов в каждой строке.
+            os.rename(path + '/' + hashname, path + '/' + self.map[hashname])) # лишня скобка в конце строки ).
         os.remove(restore_path)
                 
-     def generateName(self, seed=time()):
+     def generateName(self, seed=time()): # функция generateName имеет больше 4 отступов.
           return hashlib.md5(str(seed)).hexdigest()
 
 
