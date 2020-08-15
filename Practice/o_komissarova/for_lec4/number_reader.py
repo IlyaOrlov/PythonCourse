@@ -5,7 +5,7 @@ def read_number(number):
     if not str(number).isdigit():
         print("incorrect input")
         return False
-    numbers = list(str(number))
+    numbers = str(number)
     for num, val in enumerate(numbers, 1):
         print(str(num) + ' цифра равна ' + str(val))
     return True
