@@ -24,7 +24,7 @@ class shuffler:
             # изменить hashname на hash_name
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
-            # Добавить открывающую скобку, удалить закрывающую
+            # удалить две закрывающие скобки
             os.rename(path + '/' + mp3), path + '/' + hashname))
           f = open(output, 'r')
           f.write(str(self.map))
