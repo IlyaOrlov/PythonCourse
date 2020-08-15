@@ -3,7 +3,7 @@ def del_column(number, matrix):
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             if matrix[i][j] == number:
-                if column_number.__contains__(j):
+                if j in column_number:
                     continue
                 column_number.append(j)
     if column_number is None:
