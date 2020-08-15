@@ -1,14 +1,11 @@
 import os
-#import tempfile - I can not use the library, because my interpreter trows Error already at import
-import datetime                            # only for unique file_path
+import tempfile
 
 
 class WrapStrToFile:
-    id = 0                                 # only for unique file_path
 
     def __init__(self):
-        WrapStrToFile.id += 1              # only for unique file_path
-        self.file_path = str(WrapStrToFile.id)+"_"+str(datetime.date.today())+".txt"  # have to be 'tempfile.mktemp()'
+        self.file_path = tempfile.mktemp()
 
     @property                              # get file_content
     def content(self):
