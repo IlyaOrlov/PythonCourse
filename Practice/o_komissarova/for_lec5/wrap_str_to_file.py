@@ -10,9 +10,9 @@ class WrapStrToFile:
     def content(self):
         try:
             f = open(self._filepath, 'r')
-            self._content = f.read()
+            string = f.read()
             f.close()
-            return self._content
+            return string
         except (IOError, EOFError):
             return "file doesn't exist"
 
@@ -20,11 +20,10 @@ class WrapStrToFile:
     def content(self, value):
         try:
             f = open(self._filepath, 'w')
-            self._content = value
-            f.write(self._content)
+            f.write(value)
             f.close()
-        except (IOError, EOFError):
-            print("file doesn't exist")
+        except Exception as e:
+            print("unexpected error: {}".format(e))
 
     @content.deleter
     def content(self):

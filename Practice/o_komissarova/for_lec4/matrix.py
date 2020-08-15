@@ -3,6 +3,8 @@ def del_column(number, matrix):
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             if matrix[i][j] == number:
+                if column_number.__contains__(j):
+                    continue
                 column_number.append(j)
     if column_number is None:
         print('number is not found')
@@ -11,7 +13,7 @@ def del_column(number, matrix):
         column_number.reverse()
         for row in matrix:
             for number in column_number:
-                del(row[number])
+                del (row[number])
     return matrix
 
 
@@ -34,9 +36,14 @@ print_matrix(matrix)
 del_column(3, matrix)
 print_matrix(matrix)
 
-
 # delete one column
 matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print_matrix(matrix)
+del_column(3, matrix)
+print_matrix(matrix)
+
+# delete column with repeating numbers
+matrix = [[1, 2, 3], [4, 5, 3], [7, 8, 3]]
 print_matrix(matrix)
 del_column(3, matrix)
 print_matrix(matrix)
