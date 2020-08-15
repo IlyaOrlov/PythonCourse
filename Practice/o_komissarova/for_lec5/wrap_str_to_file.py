@@ -5,7 +5,6 @@ import os
 class WrapStrToFile:
     def __init__(self):
         self._filepath = tempfile.mktemp()
-        self._content = None
 
     @property
     def content(self):
@@ -15,7 +14,7 @@ class WrapStrToFile:
             f.close()
             return self._content
         except (IOError, EOFError):
-            print("file doesn't exist")
+            return "file doesn't exist"
 
     @content.setter
     def content(self, value):
