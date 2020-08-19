@@ -23,7 +23,7 @@ class Shuffler
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
            #os.rename(path + '/' + mp3), path + '/' + hashname))   Лишняя скобка в середине
-            os.rename(path + '/' + mp3, path + '/' + hashname))
+            os.rename(path + '/' + mp3, path + '/' + hashname)
           #f = open(output, 'r')   Лишние отступы
           #f.write(str(self.map))
         f = open(output, 'r')

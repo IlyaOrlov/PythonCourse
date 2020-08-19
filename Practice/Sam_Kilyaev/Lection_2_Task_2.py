@@ -10,7 +10,7 @@ def more(a, b):
     elif b > a:
         return b
     elif b == a:
-        print(f"{a} equal {b}")
+        return None
 
 
 print(more(a, b))

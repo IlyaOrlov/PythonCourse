@@ -9,7 +9,7 @@ def replace(string, want):
         result = re.sub('\t', '    ', string)
         print(result)
     elif want == "2":
-        result = re.sub(' +', '\t', string)
+        result = re.sub(' {4}', '\t', string)
         print(result)
 
 

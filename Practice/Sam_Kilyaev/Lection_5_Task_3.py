@@ -13,7 +13,7 @@ class WrapStrToFile:
                 return self.fp.read()
 
         except OSError:
-            print("File not found")
+            return "File not found"
 
     @content.setter
     def content(self, value):
