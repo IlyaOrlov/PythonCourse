@@ -18,19 +18,27 @@ def make_matrix(len_of_matrix=3, high_of_matrix=5):
     return A
 
 
-def delete_column(matrix, num_delete):
+def find_num_for_delete(matrix, num_delete):
     for i in matrix:
-        index = None
         for j in i:
             if j == num_delete:
-                index = i.index(j)
-                for a in matrix:
-                    del a[index]
+                delete_column(i, j, matrix, num_delete)
 
+
+def delete_column(i, j, matrix, num_delete):
+    index = i.index(j)
+    for a in matrix:
+        del a[index]
+    find_num_for_delete(matrix, num_delete)
+
+
+def print_matrix(matrix):
     for i in matrix:
         print(f"{i}", end='')
         print()
 
 
 arr = make_matrix(len_of_matrix, high_of_matrix)
-delete_column(arr, your_number)
+matrix_test = [[1, 2, 2], [3, 4, 5]]
+find_num_for_delete(matrix_test, 2)
+print_matrix(matrix_test)
