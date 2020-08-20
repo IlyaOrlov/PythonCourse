@@ -23,7 +23,7 @@ def file_spece_or_tab(line):
     print(newLine)
 
 file = open('myfile.txt', 'r')
-line = file.readlines()[0].strip()
+line = file.read()
 file.close()
 
 file_spece_or_tab(line)
