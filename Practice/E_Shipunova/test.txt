@@ -1,0 +1,3 @@
+A function definition is an executable statement.
+Its execution binds the function name in the current
+local namespace to a function object.
