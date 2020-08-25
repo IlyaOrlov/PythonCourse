@@ -1,14 +1,20 @@
-def change (source):
-    if (source[-4]=='.' or source[-5]=='.'):
+def change(source):
+    if source[-4] == '.' or source[-5] == '.':
         f = open(source, 'r')
-        str = f.read()
+        string = f.read()
         f.close()
         f = open(source, 'w')
-        f.write(str.replace('    ','\t'))
+        if string.find('\t') != -1:
+            f.write(string.replace('\t', '    '))
+        else:
+            f.write(string.replace('    ', '\t'))
         f.close()
     else:
-        str = source
-        return str.replace('    ','\t')
+        string = source
+        if string.find('\t') != -1:
+            return string.replace('\t', '    ')
+        else:
+            return string.replace('    ', '\t')
+
 
 change("file.txt")
-

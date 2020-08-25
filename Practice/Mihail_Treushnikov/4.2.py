@@ -1,9 +1,9 @@
-def interpolate(string):
-    dict = {' ':'*', '.':'!'}
-    for key, value in dict.items():
-        string = string.replace(key, value)
-    return string
+def interpolate(string_text):
+    dictionary = {' ': '*', '.': '!'}
+    for key, value in dictionary.items():
+        string_text = string_text.replace(key, value)
+    return string_text
 
 
-str = "Hello my frien. What is your name."
-print(interpolate(str))
+text = "Hello my friend. What is your name."
+print(interpolate(text))
