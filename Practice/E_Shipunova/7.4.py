@@ -30,11 +30,11 @@ def del_all(path_to_dir):
                         print(f"{i} is young")
 
                 else:
-                    print(f"' {i} '  is dir")                          # for testing
-                    is_empty = not bool(sorted(Path(path_of_item).rglob('*')))
-                    if not is_empty:                                   # only if the dir isn't empty
-                        print(f"======> go to into {path_of_item}")    # for testing
-                        del_in_dir(path_of_item)                       # go into this dir
+                    print(f"' {i} '  is dir")                           # for testing
+                    #is_empty = not bool(sorted(Path(path_of_item).rglob('*')))
+                    #if not is_empty:                                   # only if the dir isn't empty
+                    print(f"======> go to into {path_of_item}")         # for testing
+                    del_in_dir(path_of_item)                            # go into this dir
 
                     # after  'go to into dir'
                     time_of_create = datetime.datetime.fromtimestamp(os.path.getctime(path_of_item))
