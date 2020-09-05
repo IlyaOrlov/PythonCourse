@@ -8,3 +8,4 @@ def interpolate(string, dictionary):
 dict = {'cat': 'кошка', 'table': 'стол'}
 str = 'cat is on the table'
 print(interpolate(str, dict))
+
