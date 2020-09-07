@@ -9,21 +9,20 @@
 # // здесь реализованный алгоритм
 # // на выходе должен получиться список, содержащий [0, 2, 3, 3, 7, 24]
 
-def sort(arr):
-    number_min = 0
-    min = 0
+def mySort(arr):
+    for i in range(len(arr)):
+        number_min = i
+        minimum_val = arr[i]
+        for index in range(i, len(arr)):
+            if arr[index] <= minimum_val:
+                minimum_val = arr[index]
+                number_min = index
+        arr[number_min] = arr[i]
+        arr[i] = minimum_val
 
-    for item in range (0, len(arr)):
-        if arr[item] < min:
-            min = arr [item]
-            number_min = item
 
-            arr[number_min] = arr[0]
-            arr[0] = min
+    print(arr)
+    return arr
 
-    for item in arr:
-        print (item)
-
-sort([40,3,24,2,3,7])
-
+mySort([70, 0, 3, -5, 24, 2, 3, 7, 1 ,-1])
 

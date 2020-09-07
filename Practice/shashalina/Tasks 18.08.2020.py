@@ -32,3 +32,5 @@ def myGen(file):
 
 for n in myGen("file.text"):
         sys.stdout.write(n)
+
+
