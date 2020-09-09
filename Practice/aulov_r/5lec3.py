@@ -7,13 +7,11 @@ class WrapStrToFIle:
     @property
     def content(self):
         try:
-            a = open(self._filepath[1])
+           a = open(self.__filepath[1])
+           return a.read()
         except FileNotFoundError:
             print('not file')
-        else:
-            a.read()
-            a.close()
-
+        
     @content.setter
     def content(self, value):
         a = open(self._filepath[1], 'w')
