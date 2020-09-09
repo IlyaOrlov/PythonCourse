@@ -11,22 +11,20 @@ class WrapStrToFile:
     def content(self):
         try:
             with open(self.filepath, "r") as file:
-                exem = file.read()
-                return "Output: {}".format(exem)
+                return file.read()
+
         except IOError as file:
             return "Output: File does't exist"
 
-
     @content.setter
     def content(self, value):
+        self.value = value
         with open(self.filepath, "w") as file:
-            file.write(value)
-            return file
+            file.write(self.value)
 
     @content.deleter
     def content(self):
         remove(self.filepath)
-
 
 wrap = WrapStrToFile()
 print(wrap.content)
