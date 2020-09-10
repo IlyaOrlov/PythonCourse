@@ -1,6 +1,7 @@
 import threading
 import socket
 
+
 class ClientThread(threading.Thread):
     def __init__(self, conn, addr):
         super().__init__()
