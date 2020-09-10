@@ -1,7 +1,7 @@
 import datetime
 
 
-def working_days(first_data, second_data):
+def weekday(first_data, second_data):
     delta = second_data - first_data
     first_day = first_data.strftime("%A")
 
@@ -14,4 +14,4 @@ def working_days(first_data, second_data):
 
 
 if __name__ == "__main__":
-    print(working_days(datetime.datetime(2020, 2, 14), datetime.datetime(2020, 2, 20)))
+    print(weekday(datetime.datetime(2020, 2, 14), datetime.datetime(2020, 2, 20)))
