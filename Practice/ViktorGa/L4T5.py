@@ -6,5 +6,5 @@ def interpolate(string, dictionary):
 
 
 dictionar = {'python': 'это самое', 'успел': 'опаздал', 'я': 'я опять'}
-str = 'и вот я успел сделать python'
-print(interpolate(str, dictionar))
+stroka = 'и вот я успел сделать python'
+print(interpolate(stroka, dictionar))
