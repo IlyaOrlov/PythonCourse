@@ -15,66 +15,51 @@ class Money:
         number = float(str(self).replace(",", "."))
         return number*self._dollar_course
 
+    def __float__(self):
+        return float(str(self).replace(",", "."))
+
     def __str__(self):
         return "{},{}".format(self._rub, self._kop)
 
     def __add__(self, other):
         if isinstance(other, Money):
-            number1 = float(str(self).replace(",", "."))
-            number2 = float(str(other).replace(",", "."))
-            number3 = round(number1 + number2, 2)
-            result = str(number3).split('.')
-            money = Money(result[0], result[1])
+            number = str(round(float(self)+float(other), 2)).split('.')
+            money = Money(number[0], number[1])
             return money
 
     def __sub__(self, other):
         if isinstance(other, Money):
-            number1 = float(str(self).replace(",", "."))
-            number2 = float(str(other).replace(",", "."))
-            number3 = round(number1 - number2, 2)
-            result = str(number3).split('.')
-            money = Money(result[0], result[1])
+            number = str(round(float(self) - float(other), 2)).split('.')
+            money = Money(number[0], number[1])
             return money
 
     def __mul__(self, other):
         if isinstance(other, Money):
-            number1 = float(str(self).replace(",", "."))
-            number2 = float(str(other).replace(",", "."))
-            number3 = round(number1 * number2, 2)
-            result = str(number3).split('.')
-            money = Money(result[0], result[1])
+            number = str(round(float(self) * float(other), 2)).split('.')
+            money = Money(number[0], number[1])
             return money
 
     def __truediv__(self, other):
         if isinstance(other, Money):
-            number1 = float(str(self).replace(",", "."))
-            number2 = float(str(other).replace(",", "."))
-            number3 = round(number1 / number2, 2)
-            result = str(number3).split('.')
-            money = Money(result[0], result[1])
+            number = str(round(float(self) / float(other), 2)).split('.')
+            money = Money(number[0], number[1])
             return money
 
     def __lt__(self, other):
         if isinstance(other, Money):
-            number1 = float(str(self).replace(",", "."))
-            number2 = float(str(other).replace(",", "."))
-            if number1 < number2:
+            if float(self) < float(other):
                 return True
             return False
 
     def __gt__(self, other):
         if isinstance(other, Money):
-            number1 = float(str(self).replace(",", "."))
-            number2 = float(str(other).replace(",", "."))
-            if number1 > number2:
+            if float(self) > float(other):
                 return True
             return False
 
     def __eq__(self, other):
         if isinstance(other, Money):
-            number1 = float(str(self).replace(",", "."))
-            number2 = float(str(other).replace(",", "."))
-            if number1 == number2:
+            if float(self) == float(other):
                 return True
             return False
 

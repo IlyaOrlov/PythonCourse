@@ -1,12 +1,11 @@
 def to_title(string):
+    str = string.split(" ")
     new_str = ""
     i = 0
-    if len(string) > 0:
-        new_str = string[0].capitalize()
-        i += 1
-    while i < len(string):
-        new_str += string[i]
-        i += 1
+    for i in range(len(str)):
+        new_str += str[i][0].capitalize()
+        new_str += str[i][1:]
+        new_str += " "
     return new_str
 
 

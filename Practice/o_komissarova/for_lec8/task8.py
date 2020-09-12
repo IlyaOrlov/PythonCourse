@@ -1,5 +1,6 @@
 import shutil, os
 from pathlib import Path
+from Practice.o_komissarova.for_lec8.task7 import copy_file
 
 
 def copy_dir(source, destination):
@@ -20,7 +21,7 @@ def copy_dir(source, destination):
         for _file in files:
             file_path = Path(source).joinpath(_file)
             file_copy_path = Path(copy_dir_path).joinpath(_file)
-            shutil.copyfile(file_path, file_copy_path)
+            copy_file(file_path, file_copy_path)
         for _dir in dirs:
             dir_path = Path(source).joinpath(_dir)
             dir_copy_path = Path(copy_dir_path).joinpath(_dir)

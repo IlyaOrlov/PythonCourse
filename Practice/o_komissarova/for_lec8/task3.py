@@ -11,13 +11,13 @@ def my_range(*args):
     result = []
     if len(args) == 1:
         stop = args[0]
-    if len(args) >= 2:
+    elif len(args) >= 2:
         start = args[0]
         stop = args[1]
-    if len(args) == 3:
-        step = args[2]
-        if step == 0:
-            raise ValueError
+        if len(args) == 3:
+            step = args[2]
+            if step == 0:
+                raise ValueError
     position = start
     if step > 0:
         while position <= stop:
