@@ -28,7 +28,6 @@ def numbers(num):
 
     return arr
 
-
 with MyManager():
     numbers(10000000)
 
