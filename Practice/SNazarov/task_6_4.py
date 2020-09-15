@@ -16,10 +16,7 @@ def filter_false(data):
     return list(itertools.filterfalse(lambda x: len(x) < 5, data))
 
 
-
-
 if __name__ == "__main__":
-
     value = ([1, 2, 3], [4, 5], [6, 7])
     print(sum_chain(value))
     st = 'password'

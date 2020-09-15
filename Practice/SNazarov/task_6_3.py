@@ -13,7 +13,6 @@ class MyManager:
 
 arr = []
 
-
 def numbers(num):
 
     global arr
@@ -28,7 +27,6 @@ def numbers(num):
             arr.append(i)
 
     return arr
-
 
 with MyManager():
     numbers(10000000)
