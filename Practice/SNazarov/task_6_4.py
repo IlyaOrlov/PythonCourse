@@ -17,6 +17,7 @@ def filter_false(data):
 
 
 if __name__ == "__main__":
+
     value = ([1, 2, 3], [4, 5], [6, 7])
     print(sum_chain(value))
     st = 'password'
