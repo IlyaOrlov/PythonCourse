@@ -19,10 +19,16 @@ def find():
 find()
 
 # Транспонировать матрицу
-import numpy
 
-def matrix(m):
-    mt = m.transpose()
-    print(mt)
+def transpose(matr):
+        newMatr = []
+        for i in range(len(matr[0])):
+             newMatr.append([0] * len(matr))
+        for row in range(len(matr)):
+                for column in range(len(matr[row])):
+                        newMatr[column][row] = matr[row][column]
+        return newMatr
 
-matrix(numpy.array([[1, 2, 3], [4, 5, 6]]))
+# [print(list(x)) for x in zip(*matr)]
+
+print(transpose([[1, 2, 3], [4, 5, 6]]))
