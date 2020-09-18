@@ -24,15 +24,19 @@ server.listen(5)
 
 while True:
     conn, addr = server.accept()
-    shifr = list(conn.recv(1024).decode())  # get shifr from client
+    shifr = conn.recv(1024).decode()   # get shifr from client
     print(f'I got "{"".join(shifr)}" from client {addr}.')
 
     res = []
+    inv_secret = {v: k for k, v in secret.items()}  # dictionary is invented
     for ch in shifr:
-        for key in secret.keys():
-            if ch == secret[key]:
-                res.append(key)
+        try:
+            res.append(inv_secret[ch])
+        except KeyError:
+            print("It's an incorrect shifr!!!")
+            conn.send("It's an incorrect shifr!!! I don't know what is this".encode())
 
     conn.send((''.join(res)).encode())
+    print("The code decrypted successfully.")
     conn.close()
 server.close()
