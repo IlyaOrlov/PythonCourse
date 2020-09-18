@@ -28,6 +28,8 @@ def tab(obj):
         fw.write(new_obj)
         fw.close
 
+        return new_obj
+
     else:
         lst_str = obj.split("    ")
         inter_lst = []
