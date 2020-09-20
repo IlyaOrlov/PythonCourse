@@ -27,7 +27,7 @@ if __name__ == '__main__':
         thread.join()
     print('Многопоточность время выполнения: ', time.time() - start_t)
 
-    t = time.time()
+    start_t = time.time()
     processes = [multiprocessing.Process(target=find_primes, args=(3, 100000)),
                  multiprocessing.Process(target=find_primes, args=(100001, 200000)),
                  multiprocessing.Process(target=find_primes, args=(200001, 300000))]
