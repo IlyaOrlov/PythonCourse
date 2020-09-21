@@ -1,6 +1,6 @@
 import time
 
-class TimeCounterк:
+class TimeCounter:
 
     def __enter__(self):
         self.start_time = time.perf_counter()
@@ -10,7 +10,7 @@ class TimeCounterк:
         self.end_time = time.perf_counter() - self.start_time
         print('operating time {}'.format(self.end_time))
 
-with TimeCounterк():
+with TimeCounter():
     lst = []
     for i in range(1, 10000000):
         lst.append(i ** 2)
