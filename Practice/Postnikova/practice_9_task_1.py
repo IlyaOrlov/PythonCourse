@@ -20,11 +20,10 @@ all_values = [(10000, 3), (20000, 10001), (30000, 20001)]
 all_threads = []
 def find_primes_with_threads(values):
     start_1 = time.time()
-    for i in range(3):
-        for my_range in all_values:
-            thr = threading.Thread(target=find_primes, args=my_range)
-            thr.start()
-            all_threads.append(thr)
+    for my_range in all_values:
+        thr = threading.Thread(target=find_primes, args=my_range)
+        thr.start()
+        all_threads.append(thr)
 
     for thr in all_threads:
         thr.join()
@@ -39,11 +38,10 @@ all_process = []
 start_2 = time.time()
 if __name__ == "__main__":
     thr_result = find_primes_with_threads(all_values)
-    for j in range(3):
-        for my_range in all_values:
-            p = multiprocessing.Process(target=find_primes, args=my_range)
-            p.start()
-            all_process.append(p)
+    for my_range in all_values:
+        p = multiprocessing.Process(target=find_primes, args=my_range)
+        p.start()
+        all_process.append(p)
 
     for p in all_process:
         p.join()
@@ -56,7 +54,7 @@ if __name__ == "__main__":
 
 
     if (thr_result < p_result):
-        print(f"Using threads is faster than process by {p_result-thr_result}")
+        print(f"Using threads is faster than process by {p_result-thr_result} sec")
     else:
         print(f"Using threads is faster than process by {thr_result - p_result} sec")
 
