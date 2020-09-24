@@ -1,4 +1,4 @@
-import threading
+import multiprocessing
 
 # Task_2
 
@@ -20,14 +20,14 @@ def summarize_anythig(*args):
 
 
 all_values = [(1, 2, 3, 88), ['Python', 'is', 'a', 'programming', 'language'], [[1, 2, 3], [5, 8, 9], [22, 77, 12]]]
-all_treads = []
+all_processes = []
 
-for j in range(3):
+if __name__ == "__main__":
     for my_range in all_values:
-        thr = threading.Thread(target=summarize_anythig, args=my_range)
-        thr.start()
-        all_treads.append(thr)
+        p = multiprocessing.Process(target=summarize_anythig, args=my_range)
+        p.start()
+        all_processes.append(p)
 
-    for thr in all_treads:
-        thr.join()
-        print('Process {} is joined'.format(thr))
+    for p in all_processes:
+        p.join()
+        print('Process {} is joined'.format(p))
