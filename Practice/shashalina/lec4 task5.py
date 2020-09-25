@@ -7,7 +7,6 @@ def myReplace(obj):
   a  = {'one': 1, 'two': 2, 'three': 3}
   newStr = obj
   for key in a:
-    if obj.find(key) > -1:
       newStr = newStr.replace(key, str(a[key]))
 
   return newStr

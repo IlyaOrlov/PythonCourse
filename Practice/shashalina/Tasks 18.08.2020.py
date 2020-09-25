@@ -26,7 +26,7 @@ class MyIter():
         else:
             raise StopIteration
 
-iter = MyIter("The cat see a tree", " ")
+MyIterator = MyIter("The cat see a tree", " ")
 for x in iter:
    print(x)
 
