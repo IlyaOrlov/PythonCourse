@@ -7,3 +7,4 @@ def copy_file(source, destination):
         content = f.read()
     with open(destination, 'x') as f:
         f.write(content)
+
