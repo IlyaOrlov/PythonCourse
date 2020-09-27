@@ -1,6 +1,6 @@
+import pickle
 import threading
 import socket
-import json
 
 
 class ClientThread(threading.Thread):
@@ -11,10 +11,9 @@ class ClientThread(threading.Thread):
 
     def run(self):
         print('Connection from address {}'.format(self._address))
-        data = self._connection.recv(1024).decode()
-        user = json.loads(data)
-
-        print('Received user - name: {}, age: {}'.format(user['name'], user['age']))
+        data = self._connection.recv(1024)
+        user = pickle.loads(data)
+        print('Received user - name: {}, age: {}'.format(user.getName(), user.getAge()))
         self._connection.close()
         print('Closed connection from {}'.format(self._address))
 
@@ -50,4 +49,3 @@ if __name__ == '__main__':
         srv.run()
     except KeyboardInterrupt:
         srv.stop()
-
