@@ -18,3 +18,4 @@ def url_ok(url):
 
 if __name__ == '__main__':
     get_urls('http://google.com')
+
