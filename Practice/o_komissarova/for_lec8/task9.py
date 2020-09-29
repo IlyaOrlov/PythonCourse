@@ -38,7 +38,8 @@ class Worker(User):
         return self.salary
 
 
-worker_John = Worker("John", 25, 1000)
-print(worker_John.getName(), worker_John.getAge(), worker_John.getSalary())
-worker_Jack = Worker("Jack", 26, 2000)
-print(worker_Jack.getName(), worker_Jack.getAge(), worker_Jack.getSalary())
+if __name__ == '__main__':
+    worker_John = Worker("John", 25, 1000)
+    print(worker_John.getName(), worker_John.getAge(), worker_John.getSalary())
+    worker_Jack = Worker("Jack", 26, 2000)
+    print(worker_Jack.getName(), worker_Jack.getAge(), worker_Jack.getSalary())
