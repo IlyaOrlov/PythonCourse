@@ -6,8 +6,11 @@ def sort(arr):
         for j in range(i + 1, len(arr)):
             if arr[j] < arr[min_value]:
                 min_value = j
-                arr[i] = arr[min_value]
-                arr[min_value] = arr[i]
+        temp = arr[i]
+        arr[i] = arr[min_value]
+        arr[min_value] = temp
+
+            
 
 arr = []
 for i in range(1, 7):
