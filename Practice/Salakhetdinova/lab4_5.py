@@ -1,6 +1,5 @@
 def interpolate(string, dictionary):
-    for key in dictionary:
-        if key in string:
+    for key in dictionary:       
             string = string.replace(key, dictionary[key])
     return string
 
