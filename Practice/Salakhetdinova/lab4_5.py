@@ -1,6 +1,6 @@
 def interpolate(string, dictionary):
     for key in dictionary:       
-            string = string.replace(key, dictionary[key])
+        string = string.replace(key, dictionary[key])
     return string
 
 string = "Люди только чай пьют, а в их душах совершается трагедия"
