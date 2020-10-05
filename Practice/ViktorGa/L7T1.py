@@ -2,16 +2,13 @@ import datetime
 
 
 def working_days(first_data, second_data):
-    delta = second_data - first_data
-    first_day = first_data.weekday()
-
-    if first_day == "Saturday":
-        return (delta.days+1) - (delta.days+1)//7*2 - 2
-    elif first_day == "Sunday":
-        return (delta.days + 1) - (delta.days + 1) // 7 * 2 - 1
-
-    return (delta.days+1) - (delta.days+1)//7*2
+    count = 0
+    current_day = first_data
+    while current_day <= second_data:
+        if current_day.weekday() < 5:
+            count += 1
+        current_day = current_day + datetime.timedelta(days=1)
+    return count
 
 
-if __name__ == "__main__":
-    print(working_days(datetime.datetime(2020, 2, 14), datetime.datetime(2020, 2, 20)))
+print(working_days(datetime.datetime(2020, 10, 2), datetime.datetime(2020, 10, 10)))
