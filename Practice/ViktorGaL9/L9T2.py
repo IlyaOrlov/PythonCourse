@@ -1,5 +1,4 @@
-import threading
-
+import multiprocessing
 
 def sum_mixer(*args):
     for i in range(len(args)):
@@ -24,10 +23,12 @@ def sum_mixer(*args):
         return 1
 
 
-threads = [threading.Thread(target=sum_mixer, args=([0, 2, 9])),
-           threading.Thread(target=sum_mixer, args=(1, 0, 00, 2, 1)),
-           threading.Thread(target=sum_mixer, args=("py", "th", "on"))]
-for thread in threads:
-    thread.start()
-for thread in threads:
-    thread.join()
+if __name__ == "__main__":
+
+    processes = [multiprocessing.Process(target=sum_mixer, args=([0, 2, 9])),
+                 multiprocessing.Process(target=sum_mixer, args=(1, 0, 00, 2, 1)),
+                 multiprocessing.Process(target=sum_mixer, args=("py", "th", "on"))]
+    for process in processes:
+        process.start()
+    for process in processes:
+        process.join()
