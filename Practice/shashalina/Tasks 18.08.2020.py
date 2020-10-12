@@ -26,8 +26,8 @@ class MyIter():
         else:
             raise StopIteration
 
-MyIterator = MyIter("The cat see a tree", " ")
-for x in iter:
+myIterator = MyIter("The cat see a tree", " ")
+for x in myIterator:
    print(x)
 
 # Написать генератор для построчного чтения файла.

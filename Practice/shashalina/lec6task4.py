@@ -22,9 +22,9 @@ myCheckLength(['hello', 'i', 'write', 'cool', 'code'])
 #  Функция выдает на строку 'password' все возможные комбинации вида
 # ([('p', 'a', 's', 's'), ('p', 'a', 's', 'w'), ('p', 'a', 's', 'o'), ...)
 
-def myCombination(str):
+def myCombination(word):
     arr = []
-    for i in permutations(str, 4):
+    for i in permutations(word, 4):
         arr.append(i)
     print(arr)
 
