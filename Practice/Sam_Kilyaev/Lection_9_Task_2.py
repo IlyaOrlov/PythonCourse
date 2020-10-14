@@ -1,5 +1,5 @@
 from multiprocessing import Process
-
+import random
 
 def sum_other_type(a, b):
     if type(a) == int and type(b) == int:
@@ -30,24 +30,15 @@ a2 = 'HaH'
 b2 = 'Ha'
 a3 = [1, 2, 3, 'fg', 'fh']
 b3 = [4, 5, 6, 'hg', 'kl']
-p1 = Process(name='p1', target=sum_other_type, args=(a1, b1))
-p2 = Process(name='p2', target=sum_other_type, args=(a2, b2))
-p3 = Process(name='p3', target=sum_other_type, args=(a3, b3))
-p4 = Process(name='p4', target=sum_other_type, args=(a1, b2))
-p5 = Process(name='p5', target=sum_other_type, args=(a2, b3))
-p6 = Process(name='p6', target=sum_other_type, args=(a3, b1))
 
 if __name__ == '__main__':
-    p1.start()
-    p2.start()
-    p3.start()
-    p4.start()
-    p5.start()
-    p6.start()
-    p1.join()
-    p2.join()
-    p3.join()
-    p4.join()
-    p5.join()
-    p6.join()
+    ps = []
+    my_args = [a1, b1, a2, b2, a3, b3]
+    for i in range(10):
+        proc = Process(target=sum_other_type, args=(random.choice(my_args), random.choice(my_args)))
+        proc.start()
+        ps.append(proc)
+
+    for i in ps:
+        i.join()
 
