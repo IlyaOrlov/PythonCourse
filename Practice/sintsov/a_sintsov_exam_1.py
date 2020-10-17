@@ -64,7 +64,7 @@ print(my_range(-10, -3, 'q'))
 #first variant
 def to_title1(line: str):
     lst = [word.capitalize() for word in line.split(' ')]
-    return ("".join(el+' ' for el in lst))
+    return (" ".join(el for el in lst))
 
 print(to_title1("qwe asd zxc"))
 
@@ -75,15 +75,21 @@ def to_title2(line: str):
 print(to_title1("qwe asd zxc"))
 
 #5
+#first variant
 def count_symbol(line: str, symb: str):
     lst = [ch for ch in line if ch == symb]
     return len(lst)
 
 print(count_symbol("qweasdq", "q"))
 
+#second variant
+def count_symbol(line: str, symb: str):
+    return line.count(symb)
+
 #6
 
 #7
+#first variant
 from os import path
 
 class FileExistException(Exception):
@@ -100,6 +106,24 @@ def my_copyfile(source: str, destination: str):
     except FileNotFoundError:
         print("File "+source+" not found")
     except FileExistException:
+        print("File " + destination + " is exist")
+
+my_copyfile("./test1.txt", "./out.txt")
+my_copyfile("./test.txt", "./out.txt")
+my_copyfile("./test.txt", "./out.txt")
+
+#second variant
+from os import path
+
+def my_copyfile(source: str, destination: str):
+    try:
+        with open(source, "r") as fIn:
+            line = fIn.read()
+        with open(destination, "x") as fOut:
+            fOut.write(line)
+    except FileNotFoundError:
+        print("File "+source+" not found")
+    except FileExistsError:
         print("File " + destination + " is exist")
 
 my_copyfile("./test1.txt", "./out.txt")

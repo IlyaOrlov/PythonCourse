@@ -5,7 +5,7 @@ def translate(str):
                  list('abvgdegziklmnoprstufhc466eya')))
     lst = []
     for c in str:
-        lst.append(d.get(c) if d.get(c) else '*')
+        lst.append(d.get(c,'*'))
     return ''.join(lst)
 
 

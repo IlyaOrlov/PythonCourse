@@ -31,11 +31,13 @@ class WrapStrToFile(object):
             return line
         except FileNotFoundError:
             print("File doesn't exist")
+            return ''
     @content.setter
     def content(self, value):
         try:
             f = open(self.filepath, "w")
             f.write(str(value))
+            f.close()
         except FileNotFoundError:
             print("File doesn't exist")
     @content.deleter

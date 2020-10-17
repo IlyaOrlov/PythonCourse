@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
     without_all()
     with_threading()
-    with_multiprocessing()
+    with_multiprocessing() #самый быстрый способ
 
 
 
