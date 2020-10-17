@@ -1,4 +1,5 @@
 import unittest
+import nose
 
 from Money import Money
 
@@ -8,6 +9,7 @@ class TestMoney(unittest.TestCase):
     m2 = Money(10, 40)
     m3 = Money(200, 20)
     m4 = Money(400, 4)
+    m5 = Money(5, 50)
 
     def test_equals(self):
         self.assertTrue(self.m1 == self.m1)
@@ -33,16 +35,17 @@ class TestMoney(unittest.TestCase):
     def test_add_with_none(self):
         with self.assertRaises(TypeError):
             self.m3 + None
-            self.m4 + None
 
     def test_add_with_other_type(self):
         with self.assertRaises(TypeError):
             self.m3 + 1
-            self.m4 + 20
 
     def test_sub(self):
         m5 = Money(90, 10)
         self.assertEqual(self.m1 - self.m2, m5)
+
+    def test_sub_additional(self):
+        self.assertEqual(self.m2 - self.m5, Money(4, 90))
 
     def test_sub_with_none(self):
         with self.assertRaises(TypeError):

@@ -25,7 +25,7 @@ class Money:
         kop = self._kop - other._kop
         remainder = 0
         if kop < 0:
-            kop = 100 - kop
+            kop = 100 - abs(kop)
             remainder = 1
         rub = self._rub - other._rub - remainder
         return Money(rub, kop)
