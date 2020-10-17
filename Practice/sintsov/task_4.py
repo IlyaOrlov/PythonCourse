@@ -23,18 +23,17 @@ def sort(arr):
 # 4
 def tabToSpace(fileDirection: str, switcher: int):
     d = {"    " : "\t"}
-    f = open(fileDirection, "r")
-    lst = []
-    for line in f:
-        for k, v in d.items():
-            if switcher is 1:
-                line = line.replace(k, v)
-            elif switcher is 2:
-                line = line.replace(v, k)
-            lst.append(line)
-    f = open(fileDirection, "w")
-    f.write("".join(lst))
-    f.close()
+    with open(fileDirection, "r") as f:
+        lst = []
+        for line in f:
+            for k, v in d.items():
+                if switcher is 1:
+                    line = line.replace(k, v)
+                elif switcher is 2:
+                    line = line.replace(v, k)
+                    lst.append(line)
+    with open(fileDirection, "w") as f:
+        f.write("".join(lst))
 
 #5
 def templates(line: str, templates: dict):

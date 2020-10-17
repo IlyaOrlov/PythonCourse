@@ -86,6 +86,14 @@ print(count_symbol("qweasdq", "q"))
 def count_symbol(line: str, symb: str):
     return line.count(symb)
 
+#third var
+def count_symbol(line: str, symb: str):
+    count = 0
+    for ch in line:
+        if ch == symb:
+            count = count + 1
+    return count
+
 #6
 
 #7
