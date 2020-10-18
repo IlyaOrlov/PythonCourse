@@ -43,13 +43,12 @@ def my_range(*args):
         lst = []
         i = 0
         current = lambda start, step, i: start + step * i
-        flag = 1 #по умолчанию шаг положительный, двигаемся вправо, пока текущее меньше stop
-        if (step < 0): # если шаг отрицательный, двигаемся влево, пока stop меньше текущего
-            flag = -1
-        while ((stop - current(start, step, i)) * flag > 0):
+        stopAppend = lambda start, step, stop, i: current(start, step, i) < stop if step > 0 else current(start, step, i) > stop  
+        while((stopAppend)(start, step, stop, i)):
             lst.append(current(start, step, i))
             i += 1
         return lst
+
 
     except WrongArgumentsException:
         print("Arguments are wrong")
