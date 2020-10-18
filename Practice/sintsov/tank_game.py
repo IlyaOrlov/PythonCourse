@@ -35,74 +35,71 @@ class Item():
     def getName(self):
         return self._name
 
-    def isRightDirection(self, direction, item2):
-        if (direction == 'w'):
-            if (self._yCord - self._step > 0):
-               if (self._xCord == item2.getX() and self._yCord - self._step == item2.getY()):
-                   return False
-               else:
-                   return True
-            else:
-                return False
-        elif(direction == 's'):
-            if(self._yCord + self._step < self.arena.hight - 1):
-                if (self._xCord == item2.getX() and self._yCord + self._step == item2.getY()):
-                    return False
-                else:
-                    return True
-            else:
-                return False
-        elif(direction == 'a'):
-            if(self._xCord - self._step > 0):
-                if(self._yCord == item2.getY() and self._xCord - self._step == item2.getX()):
-                    return False
-                else:
-                    return True
-            else:
-                return False
-        elif(direction == 'd'):
-            if(self._xCord + self._step < self.arena.width - 1):
-                if (self._yCord == item2.getY() and self._xCord + self._step == item2.getX()):
-                    return False
-                else:
-                    return True
-        elif(direction == 'q'):
-            if ((self._yCord - self._step > 0) and (self._xCord - self._step > 0)):
-                if (self._yCord - self._step == item2.getY() and self._xCord - self._step == item2.getX()):
-                    return False
-                else:
-                    return True
-        elif (direction == 'e'):
-            if ((self._yCord - self._step > 0) and (self._xCord + self._step < self.arena.width - 1)):
-                if (self._yCord - self._step == item2.getY() and self._xCord + self._step == item2.getX()):
-                    return False
-                else:
-                    return True
+    def isRightDirection(self, item2):
+        if ((self._yCord > self.arena.hight - 1)
+                or (self._yCord < 0)
+                or (self._yCord == item2.getY())
+                or (self._xCord > self.arena.width - 1)
+                or (self._xCord < 0)
+                or (self._xCord == item2.getX())):
+            return False
+        return True
 
-    def move(self, direction, item2):
-        if (self.isRightDirection(direction, item2)):
-            self.setState("RUNNING")
-            if (direction == 'w'):
-                self._yCord -= self._step
-                self._direction = 'north'
-            elif (direction == 's'):
-                self._yCord += self._step
-                self._direction = 'south'
-            elif (direction == 'a'):
-                self._xCord -= self._step
-                self._direction = 'west'
-            elif (direction == 'd'):
-                self._xCord += self._step
-                self._direction = 'east'
-            elif (direction == 'q'):
-                self._yCord -= self._step
-                self._xCord -= self._step
-                self._direction = 'north-west'
-            elif (direction == 'e'):
-                self._yCord -= self._step
-                self._xCord += self._step
-                self._direction = 'north-east'
-        else:
+    def defaultMoving(self, direction, item2, factor):
+        step = self._step * factor
+        if (direction == 'w'):
+            self._yCord -= step
+            self._direction = 'north'
+        elif (direction == 's'):
+            self._yCord += step
+            self._direction = 'south'
+        elif (direction == 'a'):
+            self._xCord -= step
+            self._direction = 'west'
+        elif (direction == 'd'):
+            self._xCord += step
+            self._direction = 'east'
+        elif (direction == 'q'):
+            self._yCord -= step
+            self._xCord -= step
+            self._direction = 'north-west'
+        elif (direction == 'e'):
+            self._yCord -= step
+            self._xCord += step
+            self._direction = 'north-east'
+
+    def doubleStepMoving(self, direction, item2, factor):
+        doubleStep = self._step * 2 * factor
+        if (direction == 'w'):
+            self._yCord -= doubleStep
+            self._direction = 'north'
+        elif (direction == 's'):
+            self._yCord += doubleStep
+            self._direction = 'south'
+        elif (direction == 'a'):
+            self._xCord -= doubleStep
+            self._direction = 'west'
+        elif (direction == 'd'):
+            self._xCord += doubleStep
+            self._direction = 'east'
+        elif (direction == 'q'):
+            self._yCord -= doubleStep
+            self._xCord -= doubleStep
+            self._direction = 'north-west'
+        elif (direction == 'e'):
+            self._yCord -= doubleStep
+            self._xCord += doubleStep
+            self._direction = 'north-east'
+
+    def move(self, direction, item2, movingType):
+        moving = self.defaultMoving
+        if (movingType == 'DOUBLESTEP'):
+            moving = self.doubleStepMoving
+        moving(direction, item2, 1)
+        self.setState("RUNNING")
+
+        if (not isRightDirection):
+            moving(direction, item2, -1)
             self.setState("WRONG WAY")
 
     def shoot(self, bang):
@@ -258,22 +255,22 @@ class Arena:
 
     def _moveTank(self):
         if (self.command == 'w'):
-            self.tank.move('w', self.aim)
+            self.tank.move('w', self.aim, 'DEFAULT')
             self.bang.updateCords()
         elif (self.command == 's'):
-            self.tank.move('s', self.aim)
+            self.tank.move('s', self.aim, 'DEFAULT')
             self.bang.updateCords()
         elif (self.command == 'a'):
-            self.tank.move('a', self.aim)
+            self.tank.move('a', self.aim, 'DEFAULT')
             self.bang.updateCords()
         elif (self.command == 'd'):
-            self.tank.move('d', self.aim)
+            self.tank.move('d', self.aim, 'DEFAULT')
             self.bang.updateCords()
         elif (self.command == 'q'):
-            self.tank.move('q', self.aim)
+            self.tank.move('q', self.aim, 'DEFAULT')
             self.bang.updateCords()
         elif (self.command == 'e'):
-            self.tank.move('e', self.aim)
+            self.tank.move('e', self.aim, 'DEFAULT')
             self.bang.updateCords()
 
     def _shootTank(self):
@@ -292,13 +289,13 @@ class Arena:
     def _moveAim(self):
         r = randint(1,4)
         if (r == 1):
-            self.aim.move('w', self.tank)
+            self.aim.move('w', self.tank, 'DEFAULT')
         elif (r == 2):
-            self.aim.move('s', self.tank)
+            self.aim.move('s', self.tank, 'DEFAULT')
         elif (r == 3):
-            self.aim.move('a', self.tank)
+            self.aim.move('a', self.tank, 'DEFAULT')
         elif (r == 4):
-            self.aim.move('d', self.tank)
+            self.aim.move('d', self.tank, 'DEFAULT')
 
     def _startMenu(self):
         print("Tanki the Game (by asintsov)")

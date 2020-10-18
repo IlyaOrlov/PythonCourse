@@ -43,8 +43,8 @@ def my_range(*args):
         lst = []
         i = 0
         current = lambda start, step, i: start + step * i
-        stopAppend = lambda start, step, stop, i: current(start, step, i) < stop if step > 0 else current(start, step, i) > stop  
-        while((stopAppend)(start, step, stop, i)):
+        stopAppend = lambda start, step, stop, i: current(start, step, i) < stop if step > 0 else current(start, step, i) > stop
+        while(stopAppend(start, step, stop, i)):
             lst.append(current(start, step, i))
             i += 1
         return lst
