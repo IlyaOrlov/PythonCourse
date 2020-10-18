@@ -28,9 +28,9 @@ class TestMoney(unittest.TestCase):
     def test_add(self):
         m5 = Money(110, 90)
         m6 = Money(600, 24)
-        self.assertEqual(self.m1 + self.m2, m5)
+        self.assertEqual(m5, self.m1 + self.m2)
         self.assertEqual(self.m2 + self.m1, self.m1 + self.m2)
-        self.assertEqual(self.m3 + self.m4, m6)
+        self.assertEqual(m6, self.m3 + self.m4)
 
     def test_add_with_none(self):
         with self.assertRaises(TypeError):
@@ -42,10 +42,10 @@ class TestMoney(unittest.TestCase):
 
     def test_sub(self):
         m5 = Money(90, 10)
-        self.assertEqual(self.m1 - self.m2, m5)
+        self.assertEqual(m5, self.m1 - self.m2)
 
     def test_sub_additional(self):
-        self.assertEqual(self.m2 - self.m5, Money(4, 90))
+        self.assertEqual(Money(4, 90), self.m2 - self.m5)
 
     def test_sub_with_none(self):
         with self.assertRaises(TypeError):
@@ -74,8 +74,8 @@ class TestMoney(unittest.TestCase):
         m5 = Money(19, 25)
         m6 = Money(9, 66)
 
-        self.assertEqual(self.m3/self.m2, m5)
-        self.assertEqual(self.m1/self.m2, m6)
+        self.assertEqual(m5, self.m3/self.m2)
+        self.assertEqual(m6, self.m1/self.m2)
 
     def test_truediv_with_none(self):
         with self.assertRaises(TypeError):
