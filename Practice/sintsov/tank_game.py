@@ -253,24 +253,24 @@ class Arena:
     def setDialog(self, str):
         self.dialog = self.dialog.replace(self.dialog, str)
 
-    def _moveTank(self):
+    def _moveTank(self, movingType):
         if (self.command == 'w'):
-            self.tank.move('w', self.aim, 'DEFAULT')
+            self.tank.move('w', self.aim, movingType)
             self.bang.updateCords()
         elif (self.command == 's'):
-            self.tank.move('s', self.aim, 'DEFAULT')
+            self.tank.move('s', self.aim, movingType)
             self.bang.updateCords()
         elif (self.command == 'a'):
-            self.tank.move('a', self.aim, 'DEFAULT')
+            self.tank.move('a', self.aim, movingType)
             self.bang.updateCords()
         elif (self.command == 'd'):
-            self.tank.move('d', self.aim, 'DEFAULT')
+            self.tank.move('d', self.aim, movingType)
             self.bang.updateCords()
         elif (self.command == 'q'):
-            self.tank.move('q', self.aim, 'DEFAULT')
+            self.tank.move('q', self.aim, movingType)
             self.bang.updateCords()
         elif (self.command == 'e'):
-            self.tank.move('e', self.aim, 'DEFAULT')
+            self.tank.move('e', self.aim, movingType)
             self.bang.updateCords()
 
     def _shootTank(self):
@@ -289,13 +289,13 @@ class Arena:
     def _moveAim(self):
         r = randint(1,4)
         if (r == 1):
-            self.aim.move('w', self.tank, 'DEFAULT')
+            self.aim.move('w', self.tank, movingType)
         elif (r == 2):
-            self.aim.move('s', self.tank, 'DEFAULT')
+            self.aim.move('s', self.tank, movingType)
         elif (r == 3):
-            self.aim.move('a', self.tank, 'DEFAULT')
+            self.aim.move('a', self.tank, movingType)
         elif (r == 4):
-            self.aim.move('d', self.tank, 'DEFAULT')
+            self.aim.move('d', self.tank, movingType)
 
     def _startMenu(self):
         print("Tanki the Game (by asintsov)")
@@ -332,6 +332,7 @@ class Arena:
 
 
     def _playGame(self):
+        movingType = 'DEFAULT'
         while(True):
             self._getCommand()
             if (self.command == 'x'):
@@ -342,15 +343,15 @@ class Arena:
             elif (self.command == 'w' or self.command == 's'
                   or self.command == 'a' or self.command == 'd'
                   or self.command == 'q' or self.command == 'e'):
-                self._moveTank()
+                self._moveTank(movingType)
                 if (self.tank.getState() != "WRONG WAY" and self.tank.getState() != "WRONG SHOT"):
                     self.setDialog(self.tank.getState())
                     self._updateArena()
                     self._printArena()
                     time.sleep(1)
-                    self._moveAim()
+                    self._moveAim(movingType)
                     while (self.aim.getState() != "RUNNING"):
-                        self._moveAim()
+                        self._moveAim(movingType)
                 else:
                     self.setDialog(self.tank.getState())
             elif (self.command == ' '):
