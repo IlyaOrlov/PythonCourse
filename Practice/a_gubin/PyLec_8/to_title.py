@@ -2,16 +2,11 @@ import re
 
 
 def to_title(string):
-    s = set(x for x in re.findall(r" \w", string))
-    if string[0].isalpha():
-        string = string[0].upper() + string[1:]
-    for mo in s:
-        string = string.replace(mo, mo.upper())
-    return string
+    return re.sub(r"(^| )\w", lambda mo: mo[0].upper(), string, flags=re.M)
 
 
 if __name__ == "__main__":
-    a = "   aaaa  caa raa s"
+    a = "   aaaa  caa raa s r"
     b = "bbb b bbbb bb    "
     c = "   ccc   c  c   cc    "
     print(a.title() == to_title(a))

@@ -1,19 +1,16 @@
 import sys
+import re
 
 
 class ParagraphReader:
     def __init__(self, text, paragraph_sign="@"):
-        self._text = text.split(paragraph_sign)
-        self._index = 0
+        self._re_iter = re.finditer(f"[^{paragraph_sign}]+", text)
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        if self._index < len(self._text):
-            paragraph, self._index = self._text[self._index], self._index + 1
-            return paragraph
-        raise StopIteration
+        return next(self._re_iter)[0]
 
 
 if __name__ == "__main__":

@@ -17,11 +17,8 @@ class WrapStrToFile:
 
     @content.setter
     def content(self, string):
-        try:
-            with open(self.filepath, 'w') as file:
-                file.write(string)
-        except FileNotFoundError:
-            print("File doesn't exist")
+        with open(self.filepath, 'w') as file:
+            file.write(string)
 
     @content.deleter
     def content(self):
