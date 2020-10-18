@@ -32,27 +32,25 @@ def my_range(*args):
             start, stop, step = args
         else:
             raise WrongArgumentsException()
+
         for arg in args:
             if type(arg) is not int:
                 raise WrongArgumentsException()
-        if (step == 0):
+
+        if (step == 0 or (step > 0 and start >= stop) or (step < 0 and start <= stop)):
             raise WrongArgumentsException()
 
         lst = []
         i = 0
-        if (step > 0):
-            if (start >= stop):
-                raise WrongArgumentsException()
-            while (start+step * i < stop):
-                lst.append(start + step * i)
-                i += 1
-        elif(step < 0):
-            if (start <= stop):
-                raise WrongArgumentsException()
-            while (start+step * i > stop):
-                lst.append(start + step * i )
-                i += 1
+        current = lambda start, step, i: start + step * i
+        flag = 1 #по умолчанию шаг положительный, двигаемся вправо, пока текущее меньше stop
+        if (step < 0): # если шаг отрицательный, двигаемся влево, пока stop меньше текущего
+            flag = -1
+        while ((stop - current(start, step, i)) * flag > 0):
+            lst.append(current(start, step, i))
+            i += 1
         return lst
+
     except WrongArgumentsException:
         print("Arguments are wrong")
 

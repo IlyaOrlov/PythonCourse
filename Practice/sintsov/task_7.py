@@ -52,12 +52,11 @@ with open('./human.data', 'wb') as outF:
     for i in range (5):
         human = Human()
         humans.append(human)
-        pickle.dump(humans, outF)
+    pickle.dump(humans, outF)
 
 with open('./human.data', 'rb') as inF:
     try:
-        while True:
-            people = pickle.load(inF)
+        people = pickle.load(inF)
     except EOFError:
         pass
 
