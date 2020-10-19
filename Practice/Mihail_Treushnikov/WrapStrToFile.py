@@ -15,6 +15,7 @@ class WrapStrToFile:
             return text
         except (IOError, EOFError):
             print("File doesn't exist yet")
+            return None
 
     @content.setter
     def content(self,value):

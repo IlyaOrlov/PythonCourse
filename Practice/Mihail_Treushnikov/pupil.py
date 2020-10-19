@@ -9,7 +9,7 @@ class Pupil(Man):
 
     def solve_task(self):
         sleep(random.randint(3,6))
-        super(Pupil, self).solve_task()
+        super()
 
 man = Pupil('Mike')
 man.solve_task()
