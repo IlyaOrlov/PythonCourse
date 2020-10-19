@@ -10,14 +10,14 @@ connection = pika.BlockingConnection(
         pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
 
-channel.exchange_declare(exchange='logs', exchange_type='fanout')
+channel.exchange_declare(exchange='logs', exchange_type='topic')
 queue_name = 'hello_1'
 result = channel.queue_declare(queue=queue_name, exclusive=True)
-channel.queue_bind(exchange='logs', queue=queue_name)
+channel.queue_bind(exchange='logs', routing_key='*.hello', queue=queue_name)
 
 
 def callback(ch, method, properties, body):
-    print(f'Processing msg by {body.decode()}: {NAME}')
+    print(f'Processing msg {body.decode()} by: {NAME}')
     channel.basic_ack(delivery_tag=method.delivery_tag)
 
 
