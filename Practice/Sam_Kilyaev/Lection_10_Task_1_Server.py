@@ -13,14 +13,10 @@ while True:
     print(f'I get"{"".join(code)}" from client {addr}.')
     result = []
     for i in code:
-        try:
-            a = secret.get(i)
-            result.append(a)
-        except KeyError:
-            print("I don't know")
-            conn.send("What do you mean?".encode())
+        a = secret.get(i)
+        result.append(a)
     for j in result:
-        if j == None:
+        if j is None:
             result = []
     conn.send((''.join(result)).encode())
     conn.close()
