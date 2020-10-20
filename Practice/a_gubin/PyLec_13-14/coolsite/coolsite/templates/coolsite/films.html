@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Films</title>
+</head>
+<body>
+    {% extends 'coolsite/page_header.html' %}
+    {% block content %}
+    {% if user.is_staff %}
+        <a href="{% url 'new_film' %}">Add new film</a>
+    {% endif %}
+    <h2>All films:</h2>
+    <ol>
+    {% for film in films %}
+        <li><a href="/films/{{film.id}}">{{film.name}}</a></li>
+    {% endfor  %}
+    </ol>
+    {% endblock content %}
+</body>
+</html>
