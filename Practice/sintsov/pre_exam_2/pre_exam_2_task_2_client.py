@@ -11,11 +11,12 @@ class IterClient:
 
     def __next__(self):
         data_size = sys.getsizeof(self.data) - 17 # не нашел нигде почему 17 байт прибавляется при encode()
+        end_of_range = self.count + self.step if self.count + self.step <= data_size else data_size
         if self.count < data_size:
             lst = []
-            for i in range(self.count, self.count + self.step if self.count + self.step <= data_size else data_size):
+            for i in range(self.count, end_of_range):
                 lst.append(bin(self.data[i])[2:])
-            self.count = self.count + self.step if self.count + self.step <= data_size else data_size
+            self.count = end_of_range
             return "".join(lst)
         else:
             self.sock.close()
