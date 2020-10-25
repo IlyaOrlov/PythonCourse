@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Films</title>
+</head>
+<body>
+
+{% extends 'coolapp/base.html' %}
+{% block content %}
+
+{% if films %}
+
+    <h3>Films list:</h3>
+    <ul>
+    {% for film in films %}
+        <li>{{ film.name }} (id: {{ film.id }})</li>
+    {% endfor %}
+    </ul>
+
+{% else %}
+<h3>There are no films on the site!</h3>
+{% endif %}
+
+{% endblock content %}
+
+</body>
+</html>
