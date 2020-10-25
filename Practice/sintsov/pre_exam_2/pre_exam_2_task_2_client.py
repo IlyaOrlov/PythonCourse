@@ -13,11 +13,9 @@ class IterClient:
         data_size = sys.getsizeof(self.data) - 17 # не нашел нигде почему 17 байт прибавляется при encode()
         end_of_range = self.count + self.step if self.count + self.step <= data_size else data_size
         if self.count < data_size:
-            lst = []
-            for i in range(self.count, end_of_range):
-                lst.append(bin(self.data[i])[2:])
+            bytes = self.data[self.count : end_of_range : 1]
             self.count = end_of_range
-            return "".join(lst)
+            return bytes
         else:
             self.sock.close()
             raise StopIteration
@@ -26,5 +24,22 @@ class IterClient:
         return self
 
 
-for i in IterClient('localhost', 4001, 2):
+class IterClient_2:
+    def __init__(self, host, port, step=1):
+        self.step, self.count = step, 0
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock.connect((host, port))
+
+    def __next__(self):
+        data = self.sock.recv(self.step)
+        if data:
+            return data
+        self.sock.close()
+        raise StopIteration
+
+    def __iter__(self):
+        return self
+
+
+for i in IterClient_2('localhost', 4001, 3):
     print(i)
