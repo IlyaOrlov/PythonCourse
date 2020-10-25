@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie site</title>
+</head>
+
+<body>
+{% extends 'coolapp/base.html' %}
+{% block content %}
+
+{% if genres %}
+    <h3>The site contains films of various genres:</h3>
+    <ul>
+        {% for genre in genres %}
+        <li>{{ genre|lower }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if count_films %}
+    <h3>The site has {{ count_films }} films.</h3>
+{% endif %}
+
+<img src='static/coolapp/images/4.png'>
+{% endblock content %}
+</body>
+</html>
