@@ -17,11 +17,10 @@ def reverse(my_list):
 # task 3
 def my_range(*args):
     for i in args:
-        if not str(i).isdigit():
-            try:
-                int(str(i))
-            except ValueError:
-                return "Invalid input data"
+        try:
+            int(str(i))
+        except ValueError:
+            return "Invalid input data"
 
     start = 0
     step = 1
@@ -51,10 +50,10 @@ def my_range(*args):
 # task 4
 def to_title(string):
     words = string.split(" ")
-    new_string = ""
+    new_string = []
     for word in range(len(words)):
-        new_string += words[word].capitalize() + " "
-    return new_string
+        new_string.append(words[word].capitalize())
+    return ' '.join(new_string)
 
 
 # task 5
@@ -93,11 +92,6 @@ def my_format(*args):
 
 # task 7
 def copy_file(source, destination):
-    if not os.path.exists(source):
-        raise FileNotFoundError
-    if os.path.exists(destination):
-        raise FileExistsError
-
     with open(source, 'r') as file_for_read:
         content = file_for_read.read()
     with open(destination, 'x') as file_for_write:
