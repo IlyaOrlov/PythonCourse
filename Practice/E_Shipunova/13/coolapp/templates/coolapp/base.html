@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie site</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+    <div>
+        <h1 class="title">Movie site</h1>
+    </div>
+    <p>
+        <a href="/">Main page</a>
+        <a href="/films">Films of site</a>
+        <a href="/premieres">Premieres</a>
+        For admin:
+        <a href="/admin">Registration</a>
+        <a href="/new">Add film</a>
+    </p>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
