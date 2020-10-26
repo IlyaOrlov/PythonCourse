@@ -8,13 +8,20 @@ class MyIter:
         return self
 
     def __next__(self):
-        text_array = self.text.split(self.separator)
-        if self.position < len(text_array):
-            result = text_array[self.position]
-            self.position += 1
-            return result
-        else:
-            raise StopIteration
+        text_array = self.text
+        result = ""
+        while True:
+            if self.position == len(text_array):
+                raise StopIteration
+            elif text_array[self.position] == self.separator:
+                self.position += 1
+            elif text_array[self.position + 1] == self.separator:
+                result += text_array[self.position]
+                self.position += 1
+                return result
+            else:
+                result += text_array[self.position]
+                self.position += 1
 
 
 for i in MyIter('123\t456\t789\t', '\t'):

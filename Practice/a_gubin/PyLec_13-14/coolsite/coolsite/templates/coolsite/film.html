@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Film</title>
+</head>
+<body>
+    {% extends 'coolsite/page_header.html' %}
+    {% block content %}
+    <br><p><a href="{% url 'list_films' %}">All films</a></p>
+    <h2>{{film.name}}</h2>
+    <p>Description: {{film.desc}}</p>
+    <p>Rate: {{film.rate}}</p> <hr>
+    <h3>Create comment:</h3>
+    <form method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Comment on</button>
+    </form> <hr>
+    <h3>Comments:</h3>
+    {% for comment in comments %}
+        <p>Date: {{ comment.create_date }}</p>
+        <p>Author: {{ comment.author }}</p>
+        <p>{{ comment.comm }}</p> <br>
+    {% endfor %}
+    {% endblock content %}
+</body>
+</html>
