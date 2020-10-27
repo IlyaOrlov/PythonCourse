@@ -6,15 +6,12 @@ def sort(arr):
         for j in range(i + 1, len(arr)):
             if arr[j] < arr[min_value]:
                 min_value = j
-        temp = arr[i]
-        arr[i] = arr[min_value]
-        arr[min_value] = temp
+                arr[i] = arr[min_value]
+                arr[min_value] = arr[i]
 
-            
-
-arr = []
-for i in range(1, 7):
-    arr.append(random.randint(1, 50))
+arr = [1, 5, 3]
+#for i in range(1, 7):
+   # arr.append(random.randint(1, 50))
 print(arr)
 sort(arr)
 print(arr)
