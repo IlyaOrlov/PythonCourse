@@ -1,0 +1,5 @@
+<p>You logged in as <b>{{ user.username }}</b></p>
+<a href="{% url 'main_page' %}">Main page | </a>
+<a href="{% url 'logout' %}">Log out | </a>
+{% block content %}
+{% endblock %}

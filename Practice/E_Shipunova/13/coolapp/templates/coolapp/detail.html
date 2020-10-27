@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About film</title>
+</head>
+<body>
+{% extends 'coolapp/base.html' %}
+{% block content %}
+
+<h3>{{ film.name }}</h3>
+<p> {{ film.desc }} </p>
+    {% if film.pub_date %}
+        <p> Film date - {{ film.pub_date }}! </p>
+    {% else %}
+        <p> Film date - Unknow! </p>
+    {% endif %}
+<p>Rate: {{film.rate}}</p>
+
+{% if film.comment_set.all %}
+    {% for com in film.comment_set.all %}
+        <p> Comment: {{ com.comm }}</p>
+    {% endfor %}
+{% else %}
+    <p>Be the first to comment.</p>
+{% endif %}
+
+<h3>New comment:</h3>
+<form method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add</button>
+</form>
+
+{% endblock content %}
+</body>
+</html>

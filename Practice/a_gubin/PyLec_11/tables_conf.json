@@ -1,0 +1,51 @@
+[
+  { "table_name" : "producers",
+    "columns" : [
+      { "name" : "id",
+        "type" :  "integer",
+        "constraints" : "primary key autoincrement"},
+      { "name" : "name",
+        "type" : "text",
+        "constraints" : "not null"}
+    ]
+  },
+  { "table_name" : "customers",
+    "columns" : [
+      { "name" : "id",
+        "type" :  "integer",
+        "constraints" : "primary key autoincrement"},
+      { "name" : "name",
+        "type" : "text",
+        "constraints" : "not null"}
+    ]
+  },
+  { "table_name" : "goods",
+    "columns" : [
+      { "name" : "id",
+        "type" :  "integer",
+        "constraints" : "primary key autoincrement"},
+      { "name" : "name",
+        "type" : "text",
+        "constraints" : "not null"},
+      { "name" : "producer_id",
+        "type" : "integer",
+        "constraints" : "references producers(id)"},
+      { "name" : "price",
+        "type" : "integer",
+        "constraints" : "not null"}
+    ]
+  },
+  { "table_name" : "orders",
+    "columns" : [
+      { "name" : "id",
+        "type" :  "integer",
+        "constraints" : "primary key autoincrement"},
+      { "name" : "customer_id",
+        "type" : "integer",
+        "constraints" : "references customers(id)"},
+      { "name" : "goods_id",
+        "type" : "integer",
+        "constraints" : "references goods(id)"}
+    ]
+  }
+]
